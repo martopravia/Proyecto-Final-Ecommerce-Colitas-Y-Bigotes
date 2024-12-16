@@ -1,0 +1,22 @@
+.product-card {
+    width: 18rem;
+    margin: 0 auto; 
+    text-align: center;  
+   /* padding-top: 20px;*/
+  }
+  
+  .product-card img {
+    height: 300px;
+    object-fit: cover; 
+  }
+  
+  .product-card .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .product-card .card-text {
+    font-size: 1rem;
+    color: #333; 
+  }
+  
