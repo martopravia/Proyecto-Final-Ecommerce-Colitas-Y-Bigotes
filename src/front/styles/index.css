@@ -6,3 +6,8 @@
     font-size: 2rem;
     margin: 5px;
 }
+
+.carouselImg {
+    height: 350px;
+    object-fit: cover;
+}

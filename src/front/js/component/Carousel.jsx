@@ -29,24 +29,23 @@ const Carousel = () => {
         <div className="carousel-item active">
           <img
             src="https://picsum.photos/id/237/1920/1080"
-            className="d-block w-100"
-            style={{ height: 350, objectFit: "cover" }}
-            alt="..."
+            className="d-block w-100 carouselImg"
+                       alt="..."
           />
         </div>
         <div className="carousel-item">
           <img
             src="https://picsum.photos/seed/picsum/1920/1080"
-            className="d-block w-100"
-            style={{ height: 350, objectFit: "cover" }}
+            className="d-block w-100 carouselImg"
+           
             alt="..."
           />
         </div>
         <div className="carousel-item">
           <img
             src="https://picsum.photos/1920/1080?grayscale"
-            className="d-block w-100"
-            style={{ height: 350, objectFit: "cover" }}
+            className="d-block w-100 carouselImg"
+            
             alt="..."
           />
         </div>
