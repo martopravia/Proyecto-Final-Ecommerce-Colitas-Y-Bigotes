@@ -62,3 +62,8 @@
   border-width: 2px;
   text-transform: uppercase;
 }
+
+.photoCart {
+  height: 200px;
+  width: 200px;
+}

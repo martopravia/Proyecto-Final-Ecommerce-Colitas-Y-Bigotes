@@ -14,6 +14,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import Register from "./pages/register";
 import Categories from "./pages/Categories.jsx";
+import Cart from "./pages/Cart.jsx";
 
 //create your first component
 const Layout = () => {
@@ -33,7 +34,9 @@ const Layout = () => {
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<Register />} path="/register" />
                         <Route element={<Categories />} path="/categories" />
-                        <Route element={<h1>Not found!</h1>} />
+                        <Route element={<Cart />} path="/cart" />
+                      
+                        <Route element={<h1>404: Not Found</h1>} path="*" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
