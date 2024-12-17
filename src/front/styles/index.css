@@ -46,3 +46,19 @@
   height: 150px;
   object-fit: cover;
 }
+
+.imgNavbar {
+  border-radius: 5px;
+  height: 60px;
+  width: auto;
+}
+
+.formNavbar {
+  width: 40%;
+  max-width: 1200px;
+}
+
+.button-NavBar{
+  border-width: 2px;
+  text-transform: uppercase;
+}
