@@ -1,4 +1,6 @@
 import React from 'react'
+import ProductCard from '../component/cards.jsx'
+
 
 const Confirm_buys = () => {
     return (
@@ -36,8 +38,25 @@ const Confirm_buys = () => {
                     </section>
                 </section >
             </form>
-            <hr/>
-            
+            <hr />
+            <section>
+                <h2 className='h2 m-3'> Se te olvidó algo ?</h2>
+
+                <div className='row'>
+                    <div className='col-3'>
+                        <ProductCard />
+                    </div>
+                    <div className='col-3'>
+                        <ProductCard />
+                    </div>
+                    <div className='col-3'>
+                        <ProductCard />
+                    </div>
+                    <div className='col-3'>
+                        <ProductCard />
+                    </div>
+                </div>
+            </section>
         </>
     )
 }
