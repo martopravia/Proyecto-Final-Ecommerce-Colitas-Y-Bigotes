@@ -5,17 +5,12 @@ import logo from "./../../img/logo.png";
 export const Navbar = () => {
   return (
     <>
-      <nav className="navbar bg-light py-2">
-        <div className="container-fluid d-flex align-items-center">
+      <nav className="navbar bg-light py-2 px-3 px-md-5">
+        <div className="container-fluid d-flex flex-wrap align-items-center justify-content-between">
           <a className="navbar-brand" href="#">
-            <img
-              src={logo}
-              alt="Logo"
-              className="me-2"
-              style={{ borderRadius: 5, height: 60, width: 120 }}
-            />
+            <img src={logo} alt="Logo" className="me-2 imgNavbar" />
           </a>
-          <form className="mx-auto" style={{ width: "40%" }} role="search">
+          <form className="mx-auto mx-2 mx-md-4 formNavbar" role="search">
             <div className="input-group">
               <input
                 type="search"
@@ -31,8 +26,8 @@ export const Navbar = () => {
               </button>
             </div>
           </form>
-          <div className="d-flex align-items-center">
-            <a href="#" className="btn btn-light me-3">
+          <div className="d-flex align-items-center gap-3">
+            <a href="#" className="btn btn-light ">
               <i className="fas fa-sign-in-alt" />
             </a>
             <a href="#" className="btn btn-light">
@@ -41,48 +36,146 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
-      <div className="container-fluid mt-2">
-        <div className="row align-items-center">
-          <div className="col-2">
+      <div className="container-fluid mt-2 px-3 px-md-5">
+        <div className="row align-items-center justify-content-center">
+          <div className="dropdown col-md-2 mb-2 mb-md-0">
             <button
+              className="btn btn-outline-dark fw-bold button-NavBar dropdown-toggle button"
               type="button"
-              className="btn btn-outline-dark fw-bold"
-              style={{ borderWidth: 2, textTransform: "uppercase" }}
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
-              Categorías
+              Categorias
             </button>
+            <ul className="dropdown-menu">
+              <li>
+                <a className="dropdown-item" href="#">
+                  Raciones
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Accesorios
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Juguetes
+                </a>
+              </li>
+            </ul>
           </div>
-          <div className="col-8 d-flex justify-content-center">
-            <button
-              type="button"
-              className="btn btn-outline-dark fw-bold mx-2"
-              style={{ borderWidth: 2, textTransform: "uppercase" }}
-            >
-              Perros
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-dark fw-bold mx-2"
-              style={{ borderWidth: 2, textTransform: "uppercase" }}
-            >
-              Gatos
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-dark fw-bold mx-2"
-              style={{ borderWidth: 2, textTransform: "uppercase" }}
-            >
-              Roedores
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-dark fw-bold mx-2"
-              style={{ borderWidth: 2, textTransform: "uppercase" }}
-            >
-              Aves
-            </button>
+
+          <div className="col-12 col-md-8 d-flex flex-wrap justify-content-center gap-2">
+
+            <div className="dropdown">
+              <button
+                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Perros
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Raciones
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Accesorios
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Juguetes
+                  </a>
+                </li>
+             
+              </ul>
+            </div>
+
+
+            <div className="dropdown">
+              <button
+                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Gatos
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Raciones
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Accesorios
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Juguetes
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="dropdown">
+              <button
+                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Roedores
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Raciones
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Accesorios
+                  </a>
+                </li>
+ 
+              </ul>
+            </div>
+
+
+            <div className="dropdown">
+              <button
+                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Aves
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Raciones
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Accesorios
+                  </a>
+                </li>
+
+              </ul>
+            </div>
           </div>
-          <div className="col-2" />
+          <div className="col-2 d-none d-md-block" />
         </div>
       </div>
     </>
