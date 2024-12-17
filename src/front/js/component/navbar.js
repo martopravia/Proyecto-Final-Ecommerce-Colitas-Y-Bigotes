@@ -8,14 +8,9 @@ export const Navbar = () => {
       <nav className="navbar bg-light py-2 px-3 px-md-5">
         <div className="container-fluid d-flex flex-wrap align-items-center justify-content-between">
           <a className="navbar-brand" href="#">
-            <img
-              src={logo}
-              alt="Logo"
-              className="me-2 imgNavbar"
-              
-            />
+            <img src={logo} alt="Logo" className="me-2 imgNavbar" />
           </a>
-          <form className="mx-auto mx-2 mx-md-4 formNavbar"  role="search">
+          <form className="mx-auto mx-2 mx-md-4 formNavbar" role="search">
             <div className="input-group">
               <input
                 type="search"
@@ -43,44 +38,142 @@ export const Navbar = () => {
       </nav>
       <div className="container-fluid mt-2 px-3 px-md-5">
         <div className="row align-items-center justify-content-center">
-          <div className="col-md-2 mb-2 mb-md-0">
+          <div className="dropdown col-md-2 mb-2 mb-md-0">
             <button
+              className="btn btn-outline-dark fw-bold button-NavBar dropdown-toggle button"
               type="button"
-              className="btn btn-outline-dark fw-bold button-NavBar"
-             
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
-              Categorías
+              Categorias
             </button>
+            <ul className="dropdown-menu">
+              <li>
+                <a className="dropdown-item" href="#">
+                  Raciones
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Accesorios
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Juguetes
+                </a>
+              </li>
+            </ul>
           </div>
+
           <div className="col-12 col-md-8 d-flex flex-wrap justify-content-center gap-2">
-            <button
-              type="button"
-              className="btn btn-outline-dark fw-bold px-3 button-NavBar"
-              
-            >
-              Perros
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-dark fw-bold px-3 button-NavBar"
-              
-            >
-              Gatos
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-dark fw-bold px-3 button-NavBar"
-              
-            >
-              Roedores
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-dark fw-bold px-3 button-NavBar"
-              
-            >
-              Aves
-            </button>
+
+            <div className="dropdown">
+              <button
+                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Perros
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Raciones
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Accesorios
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Juguetes
+                  </a>
+                </li>
+             
+              </ul>
+            </div>
+
+
+            <div className="dropdown">
+              <button
+                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Gatos
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Raciones
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Accesorios
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Juguetes
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="dropdown">
+              <button
+                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Roedores
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Raciones
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Accesorios
+                  </a>
+                </li>
+ 
+              </ul>
+            </div>
+
+
+            <div className="dropdown">
+              <button
+                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Aves
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Raciones
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Accesorios
+                  </a>
+                </li>
+
+              </ul>
+            </div>
           </div>
           <div className="col-2 d-none d-md-block" />
         </div>
