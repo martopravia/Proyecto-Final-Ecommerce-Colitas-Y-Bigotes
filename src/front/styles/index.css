@@ -38,12 +38,12 @@
 }
 
 .small-card {
-  width: 180px;
+  width: 200px;
   font-size: 0.8rem;
 }
 
 .small-card img {
-  height: 150px;
+  height: 180px;
   object-fit: cover;
 }
 
