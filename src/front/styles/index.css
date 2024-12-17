@@ -58,7 +58,7 @@
   max-width: 1200px;
 }
 
-.button-NavBar{
+.button-NavBar {
   border-width: 2px;
   text-transform: uppercase;
 }
@@ -66,4 +66,13 @@
 .photoCart {
   height: 200px;
   width: 200px;
+}
+
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
+.inputCart {
+  width: 40%;
 }
