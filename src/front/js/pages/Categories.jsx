@@ -1,30 +1,25 @@
-import React from 'react'
+import React from "react";
+import CardCategory from "../component/CardCategory.jsx";
 
 const Categories = () => {
   return (
-    <div className="container-fluid mt-4">
-    <h1>Comida</h1>
-    <h3>Comida húmeda</h3>
-    <div>
-      <div className="card product-card small-card">
-        <img
-          src="https://picsum.photos/id/237/100/150"
-          className="card-img-top"
-          alt="Producto"
-        />
-        <div className="card-body">
-          <h5 className="card-title">Nombre del Producto</h5>
-          <p className="card-text">
-            Esta es una breve descripción del producto. Aca hay q poner más info.
-          </p>
-          <a href="#" className="btn btn-primary">
-            Agregar al carro
-          </a>
-        </div>
+    <div className="container-fluid mt-4 p-5">
+      <h1>Comida</h1>
+      <h3>Comida húmeda</h3>
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+        <CardCategory />
+        <CardCategory />
+        <CardCategory />
+        <CardCategory />
+        <CardCategory />
+        <CardCategory />
+        <CardCategory />
+        <CardCategory />
+        <CardCategory />
+        <CardCategory />
       </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;

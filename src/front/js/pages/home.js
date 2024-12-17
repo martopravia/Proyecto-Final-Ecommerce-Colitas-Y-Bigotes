@@ -12,12 +12,11 @@ export const Home = () => {
     <>
       <Carousel />
       <div className="product-cards-container">
-        {/* se agregan cards*/}
         <ProductCard />
         <ProductCard />
         <ProductCard />
         <ProductCard />
-        </div>
+      </div>
     </>
   );
 };

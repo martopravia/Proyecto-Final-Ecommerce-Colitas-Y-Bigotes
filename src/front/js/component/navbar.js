@@ -5,7 +5,7 @@ import logo from "./../../img/logo.png";
 export const Navbar = () => {
   return (
     <>
-      <nav className="navbar bg-light py-2">
+      <nav className="navbar bg-light py-2 p-5">
         <div className="container-fluid d-flex align-items-center">
           <a className="navbar-brand" href="#">
             <img
@@ -41,7 +41,7 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
-      <div className="container-fluid mt-2">
+      <div className="container-fluid mt-2 p-5">
         <div className="row align-items-center">
           <div className="col-2">
             <button

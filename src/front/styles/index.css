@@ -38,11 +38,11 @@
 }
 
 .small-card {
-  width: 80px;
+  width: 180px;
   font-size: 0.8rem;
 }
 
 .small-card img {
-  height: 100px;
+  height: 150px;
   object-fit: cover;
 }
