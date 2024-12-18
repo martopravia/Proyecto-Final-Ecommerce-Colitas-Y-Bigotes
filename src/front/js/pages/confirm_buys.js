@@ -2,16 +2,18 @@ import React from 'react'
 import ProductCard from '../component/cards.jsx'
 
 
-const Confirm_buys = () => {
+const ConfirmBuys = () => {
     return (
-        <>
+        <div className="container-fluid">
+            <h2 className='pt-5 ps-5'>Confirmar tus datos aqui <i class="fa-solid fa-cart-arrow-down"></i></h2>
             <form action="#" method='GET'>
-                <section className='row  mt-2 p-5'>
-                    <h2>Confirmar tus datos aqui <i class="fa-solid fa-cart-arrow-down"></i></h2>
-
+                <section className='row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 p-5'>
                     <section className='col d-flex flex-column'>
                         <input type='text' placeholder='ingrese su domicilio de entrega' className='w-50 my-3' id='address_dom' />
                         <input type='text' placeholder='Número de Puerta' className='w-50 mb-3' id='address_port' />
+
+
+
                         <input type='text' placeholder='Esquina' className='w-50 mb-3' id='address_street' />
                         <input type='text' placeholder='Ingrese su ciudad' className='w-50 mb-3' id='address_city' />
                         <input type='number' placeholder='Ingrese su código postal' className='w-50 mb-3' id='address_cp' />
@@ -28,7 +30,7 @@ const Confirm_buys = () => {
                         <input type='text' placeholder='Ingrese RUT de la empresa...' className='d-block w-50 mb-3' id='rut_company' />
                         <input type='text' placeholder='Ingrese domicilio fiscal de la empresa...' className='d-block w-50 mb-3' id='address_company' />
                         <fieldset>
-                            <legend className='h5 mt-3'> Seleccione un rango de horario para el envío: </legend>
+                            <legend className='h5 pt-4'> Seleccione un rango de horario para el envío: </legend>
                             <input type='radio' className='btn-check' name='delivery_time' value="M" id='morning' />
                             <label for="morning" className='btn btn-light me-2'>De 9-13 hs</label>
                             <input type='radio' className='btn-check' name='delivery_time' value="A" id='afternoon' />
@@ -42,23 +44,19 @@ const Confirm_buys = () => {
             <section>
                 <h2 className='h2 m-3'> Se te olvidó algo ?</h2>
 
-                <div className='row'>
-                    <div className='col-3'>
-                        <ProductCard />
-                    </div>
-                    <div className='col-3'>
-                        <ProductCard />
-                    </div>
-                    <div className='col-3'>
-                        <ProductCard />
-                    </div>
-                    <div className='col-3'>
-                        <ProductCard />
-                    </div>
+                <div className='product-cards-container'>
+                    <ProductCard />
+
+                    <ProductCard />
+
+                    <ProductCard />
+
+                    <ProductCard />
+
                 </div>
             </section>
-        </>
+        </div>
     )
 }
 
-export default Confirm_buys
+export default ConfirmBuys
