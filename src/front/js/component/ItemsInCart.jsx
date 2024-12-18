@@ -35,8 +35,8 @@ const ItemsInCart = () => {
             </div>
           </div>
         </div>
-        <div className="col-6 d-flex justify-content-end">
-          <div className="product-price d-flex align-items-center ">
+        <div className="col-12 col-md-6 d-flex justify-content-start justify-content-md-end mt-3 mt-md-0">
+          <div className="product-price d-flex align-items-center  ">
             <span className="ms-2 fs-2">$3.500</span>
           </div>
         </div>
