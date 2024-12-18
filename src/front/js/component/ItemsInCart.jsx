@@ -13,14 +13,14 @@ const ItemsInCart = () => {
                 alt=""
               />
             </div>
-            <div className="item-details ">
+            <div className="item-details d-flex flex-column justify-content-between">
               <p className="ms-3 fs-4">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 Asperiores id, voluptatem iste error numquam vitae labore vero
                 culpa consequatur eos illod minima exercitationem nisi tenetur
                 repellat! Ipsum officia.
               </p>
-              <div className="bottom-0 start-0">
+              <div className="d-flex align-items-center">
                 <i className="bi bi-trash fs-4 trash-icon ms-3"></i>
                 <input
                   className="ms-3 inputCart fs-4"
