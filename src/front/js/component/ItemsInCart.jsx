@@ -5,8 +5,7 @@ const ItemsInCart = () => {
     <>
       <div className="row d-flex p-5">
         <div className="col-6">
-          <div className="items d-flex  mt-3">
-
+          <div className="items d-flex flex-md-row flex-column mt-3">
             <div className="item ">
               <img
                 className="photoCart align-items-center rounded"
@@ -14,14 +13,14 @@ const ItemsInCart = () => {
                 alt=""
               />
             </div>
-            <div className="item-details position-relative">
+            <div className="item-details ">
               <p className="ms-3 fs-4">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 Asperiores id, voluptatem iste error numquam vitae labore vero
-                culpa consequatur eos illo minima exercitationem nisi tenetur
+                culpa consequatur eos illod minima exercitationem nisi tenetur
                 repellat! Ipsum officia.
               </p>
-              <div className=" position-absolute bottom-0 start-0">
+              <div className="bottom-0 start-0">
                 <i className="bi bi-trash fs-4 trash-icon ms-3"></i>
                 <input
                   className="ms-3 inputCart fs-4"

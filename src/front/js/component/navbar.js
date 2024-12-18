@@ -28,10 +28,10 @@ export const Navbar = () => {
           </form>
           <div className="d-flex align-items-center gap-3">
             <a href="#" className="btn btn-light ">
-              <i className="fas fa-sign-in-alt fs-2" />
+              <i className="fas fa-sign-in-alt" />
             </a>
             <a href="#" className="btn btn-light">
-              <i className="fas fa-shopping-cart fs-2" />
+              <i className="fas fa-shopping-cart" />
             </a>
           </div>
         </div>

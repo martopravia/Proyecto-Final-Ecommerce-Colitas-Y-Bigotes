@@ -40,14 +40,12 @@
 .small-card {
   width: 300px;
   font-size: 0.8rem;
-  
 }
 
 .small-card img {
   height: 250px;
   object-fit: cover;
 }
-
 
 .imgNavbar {
   border-radius: 5px;
@@ -76,7 +74,7 @@ input[type="checkbox"] {
 }
 
 .inputCart {
-  width: 40%;
+  width: 80px;
 }
 
 .imgCardCategory {
