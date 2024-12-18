@@ -15,6 +15,7 @@ import { Footer } from "./component/footer";
 import Register from "./pages/register";
 import Categories from "./pages/Categories.jsx";
 import Cart from "./pages/Cart.jsx";
+import Access from "./pages/access.js";
 
 //create your first component
 const Layout = () => {
@@ -33,6 +34,7 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<Register />} path="/register" />
+                        <Route element={<Access />} path="/access" />
                         <Route element={<Categories />} path="/categories" />
                         <Route element={<Cart />} path="/cart" />
                       
