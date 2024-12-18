@@ -5,7 +5,7 @@ import ProductCard from '../component/cards.jsx'
 const ConfirmBuys = () => {
     return (
         <div className="container-fluid">
-            <h2 className='pt-5 ps-5'>Confirmar tus datos aqui <i class="fa-solid fa-cart-arrow-down"></i></h2>
+            <h2 className='pt-5 px-5'>Confirmar tus datos aqui <i class="fa-solid fa-cart-arrow-down"></i></h2>
             <form action="#" method='GET'>
                 <section className='row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 p-5'>
                     <section className='col d-flex flex-column'>
