@@ -12,8 +12,15 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+<<<<<<< HEAD
 import  Register  from "./pages/register";
 import ConfirmBuys from "./pages/confirm_buys.js";
+=======
+import Register from "./pages/register";
+import Categories from "./pages/Categories.jsx";
+import Cart from "./pages/Cart.jsx";
+import Access from "./pages/access.js";
+>>>>>>> dev
 
 //create your first component
 const Layout = () => {
@@ -34,6 +41,11 @@ const Layout = () => {
                         <Route element={<Register />} path="/register" />
                         <Route element={<ConfirmBuys />} path="/confirmbuys" />
                         <Route element={<h1>Not found!</h1>} />
+                        <Route element={<Access />} path="/access" />
+                        <Route element={<Categories />} path="/categories" />
+                        <Route element={<Cart />} path="/cart" />
+                      
+                        <Route element={<h1>404: Not Found</h1>} path="*" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
