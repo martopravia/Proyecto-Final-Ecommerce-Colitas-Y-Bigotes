@@ -12,15 +12,11 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-<<<<<<< HEAD
-import  Register  from "./pages/register";
 import ConfirmBuys from "./pages/confirm_buys.js";
-=======
 import Register from "./pages/register";
 import Categories from "./pages/Categories.jsx";
 import Cart from "./pages/Cart.jsx";
 import Access from "./pages/access.js";
->>>>>>> dev
 
 //create your first component
 const Layout = () => {
