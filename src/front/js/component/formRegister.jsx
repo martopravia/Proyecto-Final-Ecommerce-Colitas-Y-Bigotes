@@ -1,6 +1,6 @@
 import React from 'react'
 
-const formRegister = () => {
+const FormRegister = () => {
     return (
         <>
             <form className="register-form d-flex flex-column bg-light aling-items-center text-center mx-auto my-5" action="#" method="GET">
@@ -17,4 +17,4 @@ const formRegister = () => {
     )
 }
 
-export default formRegister
+export default FormRegister
