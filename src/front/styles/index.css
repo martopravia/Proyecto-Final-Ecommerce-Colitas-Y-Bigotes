@@ -38,18 +38,18 @@
 }
 
 .small-card {
-  width: 200px;
+  width: 300px;
   font-size: 0.8rem;
 }
 
 .small-card img {
-  height: 180px;
+  height: 250px;
   object-fit: cover;
 }
 
 .imgNavbar {
   border-radius: 5px;
-  height: 60px;
+  height: 80px;
   width: auto;
 }
 
@@ -74,5 +74,11 @@ input[type="checkbox"] {
 }
 
 .inputCart {
-  width: 40%;
+  width: 80px;
+}
+
+.imgCardCategory {
+  object-fit: cover;
+  height: 180px;
+  width: 150 px;
 }
