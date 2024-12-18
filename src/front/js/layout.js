@@ -17,7 +17,7 @@ import Register from "./pages/register";
 import Categories from "./pages/Categories.jsx";
 import Cart from "./pages/Cart.jsx";
 import Access from "./pages/access.js";
-
+import OrderView from "./pages/order.js";
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -40,7 +40,9 @@ const Layout = () => {
                         <Route element={<Access />} path="/access" />
                         <Route element={<Categories />} path="/categories" />
                         <Route element={<Cart />} path="/cart" />
-                      
+                        <Route element={<OrderView />} path="/order" />
+
+
                         <Route element={<h1>404: Not Found</h1>} path="*" />
                     </Routes>
                     <Footer />
