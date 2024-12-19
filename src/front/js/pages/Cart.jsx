@@ -5,8 +5,9 @@ import ItemsInCart from "../component/ItemsInCart.jsx";
 const Cart = () => {
   return (
     <>
-      <div className="container-fluid ">
-        <div className="row d-flex mt-5 px-5 pt-5 pb-3">
+      <div className="container-fluid">
+       
+        <div className="row d-flex mt-5 px-3 px-md-5 pt-5 pb-3">
           <div className="titles d-flex align-items-center">
             <h1 className="d-inline-block">Carrito de compras</h1>
             <span className="ms-2">
@@ -19,32 +20,36 @@ const Cart = () => {
           <hr className="mt-4" />
           <ItemsInCart />
           <ItemsInCart />
-
           <hr />
-          <div className="px-5 py-1 text-end fs-5">
+          <div className="px-3 px-md-5 py-1 text-end fs-3">
             Total (4 productos): $3.500
           </div>
-          <div className="px-5 py-2 text-end">
+          <div className="px-3 px-md-5 py-2 text-end">
             <button
-              className="btn btn-outline-dark fw-bold button"
+              className="btn btn-outline-dark fw-bold button fs-3"
               type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
             >
               Continuar al pago
             </button>
           </div>
         </div>
+
+        
         <div className="row">
-          <div className="col-12 px-md-5">
-            <h3>Se te olvidó algo?</h3>
+          <div className="col-12 px-3 px-md-5 pb-4">
+            <h2>¿Se te olvidó algo?</h2>
           </div>
-          <div className="px-md-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-            <CardCategory />
-            <CardCategory />
-            <CardCategory />
-            <CardCategory />
-            <CardCategory />
+          <div className="container px-3 px-md-5">
+            <div
+              className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 
+              justify-content-between g-4"
+            >
+              <CardCategory />
+              <CardCategory />
+              <CardCategory />
+              <CardCategory />
+              <CardCategory />
+            </div>
           </div>
         </div>
       </div>
