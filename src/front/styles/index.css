@@ -76,3 +76,12 @@ input[type="checkbox"] {
 .inputCart {
   width: 40%;
 }
+
+/*esto es de preguntas frecuentes*/
+.btn-outline-dark:hover,
+.btn-outline-dark:focus,
+.btn-outline-dark.active {
+  color: white !important;
+  background-color: black !important; 
+  border-color: black !important; 
+}
