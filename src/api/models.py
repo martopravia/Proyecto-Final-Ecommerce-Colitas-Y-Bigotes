@@ -1,14 +1,19 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, Boolean, Text, Float, DateTime, ForeignKey, Table
 
 db = SQLAlchemy()
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    _tablename_ = "users"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(120), nullable=False)
+    lastname = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    # is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
-    def __repr__(self):
+    def _repr_(self):
         return f'<User {self.email}>'
 
     def serialize(self):
@@ -17,3 +22,46 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+        
+class Order(db.Model):
+     _tablename_ = "orders"
+     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+     date = db.Column(db.DateTime, default=datetime.now, nullable=False)
+     amount = db.Column(db.Float, nullable=False)
+     address = db.Column(db.String(180), nullable=False)
+     deliver_address = db.Column(db.String(180), nullable=False)
+     status = db.Column(db.String(180), nullable=False)
+     user_id = db.Column(db.Integer, ForeignKey("users.id"))
+     
+class Order_Detail(db.Model):
+    __tablename__ = "order_detail"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False) 
+    order_id = db.Column(db.Integer, ForeignKey("orders.id"), primary_key=True, nullable=False)
+    product_id = db.Column(db.Integer, ForeignKey("products.id"), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False) 
+    amount = db.Column(db.Float, nullable=False)
+
+class Product(db.Model):
+    __tablename__ = "products"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    photo = db.Column(db.String(200), nullable=False)
+    amount = db.Column(db.Float, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    category_id = db.Column(db.Integer, ForeignKey("categories.id"), nullable=False)
+    subcategory_id = db.Column(db.Integer, ForeignKey("subcategories.id"), nullable=False)
+
+class Category(db.Model):
+    __tablename__ = "categories"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    
+class Subcategory(db.Model):
+    __tablename__ = "subcategories"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    category_id = db.Column(db.Integer, ForeignKey("categories.id"), nullable=False)
+    
+
+     
+     
