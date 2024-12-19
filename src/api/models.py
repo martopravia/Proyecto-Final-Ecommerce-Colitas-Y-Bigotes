@@ -51,11 +51,12 @@ class Product(db.Model):
     name = db.Column(db.String(120), nullable=False)
     photo = db.Column(db.String(200), nullable=False)
     amount = db.Column(db.Float, nullable=False)
-    quantity = db.Column(db.Integer, nullable=False)
     category_id = db.Column(db.Integer, ForeignKey("categories.id"), nullable=False)
     subcategory_id = db.Column(db.Integer, ForeignKey("subcategories.id"), nullable=False)
     order_detail = db.relationship("OrderDetail", backref="product")
-
+    stock = db.relationship("Stock", backref="product")
+    
+    
 class Category(db.Model):
     __tablename__ = "categories"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
@@ -70,5 +71,10 @@ class Subcategory(db.Model):
     category_id = db.Column(db.Integer, ForeignKey("categories.id"), nullable=False)
     product =db.relationship("Product", backref="subcategory")
 
-     
+class Stock(db.Model):
+    __tablename__ = "stock"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    products_id = db.Column(db.Integer, ForeignKey("products.id"), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    date_in = db.Column(db.DateTime, default=datetime.now, nullable=False)
      
