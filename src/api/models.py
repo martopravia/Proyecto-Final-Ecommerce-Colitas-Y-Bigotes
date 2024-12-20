@@ -53,6 +53,16 @@ class Product(db.Model):
     order_detail = db.relationship("OrderDetail", backref="product")
     stock = db.relationship("Stock", backref="product")
     
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "photo": self.photo,
+            "amount": self.amount,
+            "category_id": self.category_id,
+            "subcategory_id": self.subcategory_id
+            
+        }
     
 class Category(db.Model):
     __tablename__ = "categories"
@@ -61,12 +71,27 @@ class Category(db.Model):
     product = db.relationship("Product", backref="category")
     subcategory = db.relationship("Subcategory", backref="category")
     
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+                    
+        }
+    
 class Subcategory(db.Model):
     __tablename__ = "subcategories"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(120), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), nullable=False)
     product =db.relationship("Product", backref="subcategory")
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "category_id" : self.category_id
+                    
+        }
+
 
 class Stock(db.Model):
     __tablename__ = "stock"
@@ -77,8 +102,7 @@ class Stock(db.Model):
      
     def serialize(self):
         return {
-            "id": self.id,
-            "email": self.email,
+            
             # do not serialize the password, its a security breach
         }
         
