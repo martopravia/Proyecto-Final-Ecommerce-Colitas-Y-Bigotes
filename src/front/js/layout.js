@@ -29,26 +29,29 @@ const Layout = () => {
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
-        <div>
+        <div className="d-flex flex-column min-vh-100">
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-                    <Navbar />
-                    <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Profile />} path="/profile" />
-                        <Route element={<Register />} path="/register" />
-                        <Route element={<ConfirmBuys />} path="/confirmbuys" />
-                        <Route element={<h1>Not found!</h1>} />
-                        <Route element={<Access />} path="/access" />
-                        <Route element={<Categories />} path="/categories" />
-                        <Route element={<Cart />} path="/cart" />
-                        <Route element={<QuestionsAnswer />} path="/questionsAnswer" />
-                        <Route element={<RecoverPassword />} path="/recoverPassword" />
-                        <Route element={<OrderView />} path="/order" />
+
+                    <div className="flex-grow-1">
+                        <Navbar />
+                        <Routes>
+                            <Route element={<Home />} path="/" />
+                            <Route element={<Profile />} path="/profile" />
+                            <Route element={<Register />} path="/register" />
+                            <Route element={<ConfirmBuys />} path="/confirmbuys" />
+                            <Route element={<h1>Not found!</h1>} />
+                            <Route element={<Access />} path="/access" />
+                            <Route element={<Categories />} path="/categories" />
+                            <Route element={<Cart />} path="/cart" />
+                            <Route element={<QuestionsAnswer />} path="/questionsAnswer" />
+                            <Route element={<RecoverPassword />} path="/recoverPassword" />
+                            <Route element={<OrderView />} path="/order" />
 
 
-                        <Route element={<h1>404: Not Found</h1>} path="*" />
-                    </Routes>
+                            <Route element={<h1>404: Not Found</h1>} path="*" />
+                        </Routes>
+                    </div>
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
