@@ -7,6 +7,11 @@
   margin: 5px;
 }
 
+.footer-text {
+  background-color: #191919;
+  color: white;
+}
+
 .carouselImg {
   height: 600px;
   object-fit: cover;
@@ -88,6 +93,6 @@ input[type="checkbox"] {
 .btn-outline-dark:focus,
 .btn-outline-dark.active {
   color: white !important;
-  background-color: black !important; 
-  border-color: black !important; 
+  background-color: black !important;
+  border-color: black !important;
 }
