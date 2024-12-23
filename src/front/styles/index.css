@@ -7,14 +7,9 @@
   margin: 5px;
 }
 
-a:visited {
-  text-decoration: none;
-}
-
 .footer-text {
   background-color: #191919;
   color: white;
-  font-size: larger;
 }
 
 .carouselImg {
