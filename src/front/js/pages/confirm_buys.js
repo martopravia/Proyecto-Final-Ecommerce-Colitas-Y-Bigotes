@@ -1,9 +1,108 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ProductCard from '../component/cards.jsx'
 import CardCategory from '../component/CardCategory.jsx'
 
 
 const ConfirmBuys = () => {
+    useEffect(() => {
+
+    }, [])
+    const handleSubmit = e => {
+        e.preventDefault()
+        console.log(e.target.elements)
+        const soloNumeros = /^\+[0-9]{9,}$/
+        const {
+            address_dom,
+            address_port,
+            address_street,
+            address_city,
+            address_cp,
+            address_phone,
+            comments_order,
+            company,
+            morning,
+            afternoon,
+            razon_social,
+            rut_company,
+            address_company,
+        } = e.target
+        if (address_dom.value == "") {
+            address_dom.classList.add("is-invalid")
+        } else {
+            address_dom.classList.remove("is-invalid")
+        }
+        if (address_port.value == "") {
+            address_port.classList.add("is-invalid")
+        } else {
+            address_port.classList.remove("is-invalid")
+        }
+        if (address_street.value == "") {
+            address_street.classList.add("is-invalid")
+        } else {
+            address_street.classList.remove("is-invalid")
+        }
+        if (address_city.value == "") {
+            address_city.classList.add("is-invalid")
+        } else {
+            address_city.classList.remove("is-invalid")
+        }
+        if (address_cp.value == "") {
+            address_cp.classList.add("is-invalid")
+        } else {
+            address_cp.classList.remove("is-invalid")
+        }
+        if (address_phone.value == "") {
+            address_phone.classList.add("is-invalid")
+        } else if (!soloNumeros.test(address_phone.value)) {
+            address_phone.classList.add("is-invalid")
+        } else {
+            address_phone.classList.remove("is-invalid")
+        }
+        if (company.checked) {
+            if (razon_social.value == "") {
+                razon_social.classList.add("is-invalid")
+            } else {
+                razon_social.classList.remove("is-invalid")
+            }
+            if (rut_company.value == "") {
+                rut_company.classList.add("is-invalid")
+            } else if (!Fn.validaRut(rut_company.value)) {
+                rut_company.classList.add("is-invalid")
+            } else {
+                rut_company.classList.remove("is-invalid")
+            }
+            if (address_company.value == "") {
+                address_company.classList.add("is-invalid")
+            } else {
+                address_company.classList.remove("is-invalid")
+            }
+
+        } else {
+            company.classList.remove("is-invalid")
+        }
+    }
+
+    const Fn = {
+        // Valida el rut con su cadena completa "XXXXXXXX-X"
+        // alert( Fn.validaRut('11111111-1') ? 'Valido' : 'inválido');
+        validaRut: function (rutCompleto) {
+            if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto))
+                return false;
+            var tmp = rutCompleto.split('-');
+            var digv = tmp[1];
+            var rut = tmp[0];
+            if (digv == 'K') digv = 'k';
+            return (Fn.dv(rut) == digv);
+        },
+        dv: function (T) {
+            const M = 0, S = 1;
+            for (; T; T = Math.floor(T / 10))
+                S = (S + T % 10 * (9 - M++ % 6)) % 11;
+            return S ? S - 1 : 'k';
+        }
+
+    }
+
     return (
         <div className="container-fluid">
             <div className='row'>
@@ -12,12 +111,12 @@ const ConfirmBuys = () => {
                     <h2 className='pt-5 px-5'>Confirmar tus datos aqui <i class="fa-solid fa-cart-arrow-down"></i></h2>
                 </div>
             </div>
-            <form action="#" method='GET'>
+            <form onSubmit={handleSubmit}>
                 <div className='row pb-2'>
 
                     <div className='col-md-4 offset-md-1 col-sm-12 col-12'>
                         <div className='form-group mb-3'>
-                            <input type='text' placeholder='ingrese su domicilio de entrega' className='form-control  my-3' id='address_dom' />
+                            <input type='text' placeholder='Ingrese su domicilio de entrega' className='form-control  my-3' id='address_dom' />
                         </div>
                         <div className='form-group mb-3'>
                             <input type='text' placeholder='Número de Puerta' className='form-control  mb-3' id='address_port' />
@@ -32,7 +131,7 @@ const ConfirmBuys = () => {
                             <input type='number' placeholder='Ingrese su código postal' className='form-control  mb-3' id='address_cp' />
                         </div>
                         <div className='form-group mb-3'>
-                            <input type='text' placeholder='Teléfono de contacto' className='form-control  mb-3' id='address_phone' />
+                            <input type='text' placeholder='Ingrese su teléfono. Ej: +99999999' className='form-control  mb-3' id='address_phone' />
                         </div>
                         <div className='form-group mb-3'>
                             <div class="form-floating">
@@ -71,7 +170,7 @@ const ConfirmBuys = () => {
                                 <label for="afternoon" className='btn btn-light'>De 13-21 hs</label>
                             </fieldset>
                         </div>
-                        <button className="btn btn-dark mt-5" type=''> Continuar al pago </button>
+                        <button id="sendForm" className="btn btn-dark mt-5" type=''> Continuar al pago </button>
                     </div>
                 </div>
             </form>
