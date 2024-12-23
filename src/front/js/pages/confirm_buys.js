@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductCard from '../component/cards.jsx'
+import CardCategory from '../component/CardCategory.jsx'
 
 
 const ConfirmBuys = () => {
@@ -75,20 +76,23 @@ const ConfirmBuys = () => {
                 </div>
             </form>
             <hr />
-            <section>
-                <h2 className='h2 m-3'> Se te olvidó algo ?</h2>
-
-                <div className='product-cards-container'>
-                    <ProductCard />
-
-                    <ProductCard />
-
-                    <ProductCard />
-
-                    <ProductCard />
-
+            <div className="row">
+                <div className="col-12 px-3 px-md-5 pb-4">
+                    <h2>¿Se te olvidó algo?</h2>
                 </div>
-            </section>
+                <div className="container px-3 px-md-5">
+                    <div
+                        className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 
+              justify-content-between g-4"
+                    >
+                        <CardCategory />
+                        <CardCategory />
+                        <CardCategory />
+                        <CardCategory />
+                        <CardCategory />
+                    </div>
+                </div>
+            </div>
         </div >
     )
 }
