@@ -27,12 +27,12 @@ export const Navbar = () => {
             </div>
           </form>
           <div className="d-flex align-items-center gap-3">
-            <a href="#" className="btn btn-light ">
+            <Link to="/access" className="btn btn-light ">
               <i className="fas fa-sign-in-alt" />
-            </a>
-            <a href="#" className="btn btn-light">
+            </Link>
+            <Link to="/cart" className="btn btn-light">
               <i className="fas fa-shopping-cart" />
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
@@ -93,7 +93,7 @@ export const Navbar = () => {
                     Juguetes
                   </a>
                 </li>
-             
+
               </ul>
             </div>
 
@@ -146,7 +146,7 @@ export const Navbar = () => {
                     Accesorios
                   </a>
                 </li>
- 
+
               </ul>
             </div>
 
