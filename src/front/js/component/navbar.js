@@ -7,9 +7,9 @@ export const Navbar = () => {
     <>
       <nav className="navbar bg-light py-2 px-3 px-md-5">
         <div className="container-fluid d-flex flex-wrap align-items-center justify-content-between">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" href="/">
             <img src={logo} alt="Logo" className="me-2 imgNavbar" />
-          </a>
+          </Link>
           <form className="mx-auto mx-2 mx-md-4 formNavbar" role="search">
             <div className="input-group">
               <input
@@ -49,19 +49,19 @@ export const Navbar = () => {
             </button>
             <ul className="dropdown-menu">
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/categories">
                   Raciones
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/categories">
                   Accesorios
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/categories">
                   Juguetes
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -79,19 +79,19 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/categories">
                     Raciones
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/categories">
                     Accesorios
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/categories">
                     Juguetes
-                  </a>
+                  </Link>
                 </li>
 
               </ul>
@@ -109,19 +109,19 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/categories">
                     Raciones
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/categories">
                     Accesorios
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/categories">
                     Juguetes
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -137,17 +137,17 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/categories">
                     Raciones
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/categories">
                     Accesorios
-                  </a>
+                  </Link>
                 </li>
 
-               </ul>
+              </ul>
             </div>
 
 
@@ -162,14 +162,14 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/categories">
                     Raciones
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/categories">
                     Accesorios
-                  </a>
+                  </Link>
                 </li>
 
               </ul>
