@@ -1,12 +1,13 @@
 import React from "react";
 import CardCategory from "../component/CardCategory.jsx";
 import ItemsInCart from "../component/ItemsInCart.jsx";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   return (
     <>
       <div className="container-fluid">
-       
+
         <div className="row d-flex mt-5 px-3 px-md-5 pt-5 pb-3">
           <div className="titles d-flex align-items-center">
             <h1 className="d-inline-block">Carrito de compras</h1>
@@ -25,16 +26,17 @@ const Cart = () => {
             Total (4 productos): $3.500
           </div>
           <div className="px-3 px-md-5 py-2 text-end">
-            <button
+            <Link
+              to="/confirmbuys"
               className="btn btn-outline-dark fw-bold button fs-3"
               type="button"
             >
               Continuar al pago
-            </button>
+            </Link>
           </div>
         </div>
 
-        
+
         <div className="row">
           <div className="col-12 px-3 px-md-5 pb-4">
             <h2>¿Se te olvidó algo?</h2>
