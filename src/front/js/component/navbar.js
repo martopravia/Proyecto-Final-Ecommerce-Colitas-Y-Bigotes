@@ -147,7 +147,7 @@ export const Navbar = () => {
                   </a>
                 </li>
 
-              </ul>
+               </ul>
             </div>
 
 
