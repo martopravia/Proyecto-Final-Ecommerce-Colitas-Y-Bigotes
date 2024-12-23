@@ -1,26 +1,27 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
 	return (
-		<div className="container-fluid">
+		<div className="container-fluid mt-5">
 			<footer className="row p-3 footer-text">
-				<section className="col-md-4 col-12 col-sm-12 mb-sm-2">
+				<section className="col-md-4 col-12 col-sm-12 mb-sm-4">
 					<h4 className="mb-4">Colitas y Bigotes</h4>
-					<p> <i className="fa-solid fa-phone fs-5"> </i> +10101010101 </p>
-					<p> <i className="fa-solid fa-envelope fs-5"> </i> correo@gmail.com </p>
-					<p> <i className="fa-solid fa-map-pin fs-5"></i> Tienda Online</p>
-					<p> <i className="fa-regular fa-clock fs-5"> </i> Lunes a viernes</p>
-					<i className="fa-brands fa-facebook icon"></i>
-					<i className="fa-brands fa-instagram icon"></i>
-					<i className="fa-brands fa-linkedin icon"></i>
+					<p> <i className="fa-solid fa-phone fs-5 me-2"> </i> +10101010101 </p>
+					<p> <i className="fa-solid fa-envelope fs-5 me-2"> </i> Correo@gmail.com </p>
+					<p> <i className="fa-solid fa-map-pin fs-5 me-2"></i> Tienda Online</p>
+					<p> <i className="fa-regular fa-clock fs-5 me-2"> </i> Lunes a Viernes</p>
+					<i className="fa-brands fa-facebook fs-2 me-2"></i>
+					<i className="fa-brands fa-instagram fs-2 me-2"></i>
+					<i className="fa-brands fa-linkedin fs-2 me-2"></i>
 				</section>
 				<section className="col-md-4 col-12 col-sm-12">
 					<h4 className="mb-4">FAQs</h4>
-					<p className="fs-5 ">¿Quienes somos?</p>
-					<p className="fs-5 ">Registro</p>
-					<p className="fs-5">Pedidos y Compras</p>
-					<p className="fs-5">Envios</p>
-					<p>Cambios y devoluciones</p>
+					<Link to="/"> <a className="text-decoration-none"> ¿Quienes somos? </a> </Link>
+					<p>Registro</p>
+					<p>Pedidos y Compras</p>
+					<p>Envios</p>
+					<p>Cambios y Devoluciones</p>
 				</section>
 				<section className="col-md-4 col-12 col-sm-12">
 					<h4 className="mb-4"> Contactanos</h4>
