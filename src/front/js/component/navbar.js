@@ -7,7 +7,7 @@ export const Navbar = () => {
     <>
       <nav className="navbar bg-light py-2 px-3 px-md-5">
         <div className="container-fluid d-flex flex-wrap align-items-center justify-content-between">
-          <Link className="navbar-brand" href="/">
+          <Link className="navbar-brand" to="/">
             <img src={logo} alt="Logo" className="me-2 imgNavbar" />
           </Link>
           <form className="mx-auto mx-2 mx-md-4 formNavbar" role="search">
