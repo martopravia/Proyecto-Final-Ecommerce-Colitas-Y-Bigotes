@@ -28,10 +28,10 @@ export const Navbar = () => {
           </form>
           <div className="d-flex align-items-center gap-3">
             <Link to="/access" className="btn btn-light ">
-              <i className="fas fa-sign-in-alt" />
+              <i className="fas fa-sign-in-alt fs-3" />
             </Link>
             <Link to="/cart" className="btn btn-light">
-              <i className="fas fa-shopping-cart" />
+              <i className="fas fa-shopping-cart fs-3" />
             </Link>
           </div>
         </div>
@@ -40,7 +40,7 @@ export const Navbar = () => {
         <div className="row align-items-center justify-content-center">
           <div className="dropdown col-md-2 mb-2 mb-md-0">
             <button
-              className="btn btn-outline-dark fw-bold button-NavBar dropdown-toggle button"
+              className="btn btn-outline-dark fw-bold button-NavBar dropdown-toggle button fs-5"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -49,17 +49,17 @@ export const Navbar = () => {
             </button>
             <ul className="dropdown-menu">
               <li>
-                <Link className="dropdown-item" to="/categories">
+                <Link className="dropdown-item fs-5" to="/categories">
                   Raciones
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="/categories">
+                <Link className="dropdown-item fs-5" to="/categories">
                   Accesorios
                 </Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="/categories">
+                <Link className="dropdown-item fs-5" to="/categories">
                   Juguetes
                 </Link>
               </li>
@@ -70,7 +70,7 @@ export const Navbar = () => {
 
             <div className="dropdown">
               <button
-                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -79,17 +79,17 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories">
                     Raciones
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories">
                     Accesorios
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories">
                     Juguetes
                   </Link>
                 </li>
@@ -100,7 +100,7 @@ export const Navbar = () => {
 
             <div className="dropdown">
               <button
-                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -109,17 +109,17 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories">
                     Raciones
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories">
                     Accesorios
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories">
                     Juguetes
                   </Link>
                 </li>
@@ -128,7 +128,7 @@ export const Navbar = () => {
 
             <div className="dropdown">
               <button
-                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -137,12 +137,12 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories">
                     Raciones
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories">
                     Accesorios
                   </Link>
                 </li>
@@ -153,7 +153,7 @@ export const Navbar = () => {
 
             <div className="dropdown">
               <button
-                className="btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -162,12 +162,12 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories">
                     Raciones
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories">
                     Accesorios
                   </Link>
                 </li>

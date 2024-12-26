@@ -11,12 +11,14 @@ export const Home = () => {
   return (
     <>
       <Carousel />
-      <div className="container-fluid mt-3">
-        <div className="row gx-4 gy-4">
+      <div className="container-fluid p-5">
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
           <ProductCard />
           <ProductCard />
           <ProductCard />
           <ProductCard />
+          <ProductCard />
+          
         </div>
       </div>
     </>

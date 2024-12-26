@@ -2,27 +2,24 @@ import React from 'react';
 
 const CardCategory = () => {
   return (
-    <div className="col mt-3">
-      <div className="card h-100 shadow-sm">
-        <img
-          src="https://picsum.photos/200/150"
-          className="card-img-top img-fluid imgCardCategory"
-          alt="Producto"
-         
-        />
-        <div className="card-body d-flex flex-column p-3">
-          <h6 className="card-title text-center text-md-start mb-2">Card title</h6>
-          <p className="card-text text-center text-md-start mb-3">
-            Breve descripción del producto. Aquí va un poco de información lorem.
-          </p>
-          <div className="mt-auto text-center">
-            <a href="#" className="btn btn-primary w-100 w-md-auto">
-              Agregar
-            </a>
-          </div>
-        </div>
+    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-2 mt-3">
+    <div className="card product-card text-center h-100">
+      <img
+        src="https://picsum.photos/id/237/200/300"
+        className="card-img-top"
+        alt="Producto"
+      />
+      <div className="card-body">
+        <h5 className="card-title">Nombre del Producto</h5>
+        <p className="card-text">
+          Esta es una breve descripción del producto. Aca hay q poner mas info.
+        </p>
+        <a href="#" className="btn btn-primary">
+          Agregar al carro
+        </a>
       </div>
     </div>
+  </div>
   );
 };
 

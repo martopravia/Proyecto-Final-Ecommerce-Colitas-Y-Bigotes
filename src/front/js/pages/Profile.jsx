@@ -86,7 +86,7 @@ const Profile = () => {
     <>
       <div className="container">
         <div className="row text-center mt-4 fs-1">
-          <div className="col">Profile</div>
+          <div className="col"><h1>Profile</h1></div>
         </div>
         {message && (
           <div className={`alert alert-${styleMessage}`} role="alert">
@@ -112,7 +112,7 @@ const Profile = () => {
             <div className="col-md-4">
               <div className="mb-3">
                 <label htmlFor="inputName" className="form-label">
-                  Nombre
+                  <h4>Nombre</h4>
                 </label>
                 <input
                   type="text"
@@ -121,7 +121,7 @@ const Profile = () => {
                   placeholder="Ingrese su nombre..."
                 />
                 <label htmlFor="inputLastName" className="form-label mt-5">
-                  Apellido
+                  <h4>Apellido</h4>
                 </label>
                 <input
                   type="text"
@@ -135,7 +135,7 @@ const Profile = () => {
             <div className="col-md-4">
               <div className="mb-3">
                 <label htmlFor="inputPhone" className="form-label">
-                  Celular
+                  <h4>Celular</h4>
                 </label>
                 <input
                   type="tel"
@@ -144,7 +144,7 @@ const Profile = () => {
                   placeholder="Ingrese su celular..."
                 />
                 <label htmlFor="inputAddress" className="form-label mt-5">
-                  Domicilio completo
+                 <h4>Domicilio completo</h4> 
                 </label>
                 <input
                   type="text"
@@ -159,9 +159,9 @@ const Profile = () => {
           <div className="row mt-3">
             <div className="col-md-7 offset-md-3">
               <div className="border p-2 text-center d-flex flex-column justify-content-center">
-                <div className="fs-4 fw-bold">Change Password</div>
+                <div className="fs-4 fw-bold"><h2>Change Password</h2></div>
                 <label htmlFor="inputPassword" className="form-label my-2">
-                  Contraseña actual
+                  <h4>Contraseña actual</h4>
                 </label>
                 <input
                   type="password"
@@ -170,7 +170,7 @@ const Profile = () => {
                   placeholder="Ingrese su contraseña..."
                 />
                 <label htmlFor="inputNewPassword" className="form-label m-2">
-                  Nueva contraseña
+                  <h4>Nueva contraseña</h4>
                 </label>
                 <input
                   type="password"
@@ -182,7 +182,7 @@ const Profile = () => {
                   htmlFor="reconfirmNewPassword"
                   className="form-label my-2"
                 >
-                  Confirme su nueva contraseña
+                  <h4>Confirme su nueva contraseña</h4> 
                 </label>
                 <input
                   type="password"
@@ -193,7 +193,7 @@ const Profile = () => {
               </div>
               <div className="d-flex justify-content-center mt-3 mb-5">
                 <button type="submit" className="btn btn-secondary">
-                  Confirmar cambios
+                  <h5>Confirmar cambios</h5>
                 </button>
               </div>
             </div>

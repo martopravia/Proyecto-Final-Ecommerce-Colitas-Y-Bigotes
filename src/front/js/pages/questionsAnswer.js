@@ -12,27 +12,27 @@ const QuestionsAnswer = () => {
           <div className="col-lg-4 col-md-5 col-sm-12">
             <Nav variant="pills" className="flex-column" style={{ fontSize: "1.2rem" }}>
               <Nav.Item>
-                <Nav.Link eventKey="first" className="btn btn-outline-dark text-dark py-3 my-2">
+                <Nav.Link eventKey="first" className="fs-4 btn btn-outline-dark text-dark py-3 my-2">
                   ¿Quiénes somos?
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="second" className="btn btn-outline-dark text-dark py-3 my-2">
+                <Nav.Link eventKey="second" className="fs-4 btn btn-outline-dark text-dark py-3 my-2">
                   ¿Para qué me registro?
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="third" className="btn btn-outline-dark text-dark py-3 my-2">
+                <Nav.Link eventKey="third" className="fs-4 btn btn-outline-dark text-dark py-3 my-2">
                   Pedidos y Compras
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="fourth" className="btn btn-outline-dark text-dark py-3 my-2">
+                <Nav.Link eventKey="fourth" className="fs-4 btn btn-outline-dark text-dark py-3 my-2">
                   Envíos
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="fifth" className="btn btn-outline-dark text-dark py-3 my-2">
+                <Nav.Link eventKey="fifth" className="fs-4 btn btn-outline-dark text-dark py-3 my-2">
                   Cambios y Devoluciones
                 </Nav.Link>
               </Nav.Item>
