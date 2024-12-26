@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 
 const Profile = () => {
 
@@ -90,8 +90,8 @@ const Profile = () => {
         </div>
         {message && (
           <div className={`alert alert-${styleMessage}`} role="alert">
-          {message}
-        </div>
+            {message}
+          </div>
         )}
         <form onSubmit={handleSubmit}>
           <div className="row mt-3">
