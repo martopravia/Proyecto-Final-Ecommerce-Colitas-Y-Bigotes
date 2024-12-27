@@ -9,18 +9,23 @@ class User(db.Model):
     name = db.Column(db.String(120), nullable=False)
     lastname = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
+    password = db.Column(db.String(250), unique=False, nullable=False)
+    salt = db.Column(db.String(180), nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), default=db.func.now(), nullable=False)
     # is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     orders = db.relationship("Order", backref="user")
     
-    def _repr_(self):
+    def __repr__(self):
         return f'<User {self.email}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
+            "name" : self.name,
+            "lastname" : self.lastname,
+            "email": self.email            
             # do not serialize the password, its a security breach
+            
         }
         
 class Order(db.Model):
