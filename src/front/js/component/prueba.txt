@@ -1,0 +1,10 @@
+git restore src/front/js/pages/Cart.jsx
+git restore src/front/js/pages/Categories.jsx
+git restore src/front/js/pages/Profile.jsx
+git restore src/front/js/pages/access.js
+git restore src/front/js/pages/confirm_buys.js
+git restore src/front/js/pages/home.js
+git restore src/front/js/pages/order.js
+git restore src/front/js/pages/questionsAnswer.js
+git restore src/front/js/pages/recoverPass.js
+git restore src/front/js/pages/register.js

@@ -19,7 +19,8 @@ import Cart from "./pages/Cart.jsx";
 import Access from "./pages/access.js";
 import QuestionsAnswer from "./pages/questionsAnswer.js";
 import RecoverPassword from "./pages/recoverPass.js";
-import OrderView from "./pages/order.js";
+import OrderView from "./pages/orderview.js";
+import Product from "./pages/product.js";
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -47,7 +48,7 @@ const Layout = () => {
                             <Route element={<QuestionsAnswer />} path="/questionsAnswer" />
                             <Route element={<RecoverPassword />} path="/recoverPassword" />
                             <Route element={<OrderView />} path="/order" />
-
+                            <Route element={<Product />} path="/product" />
 
                             <Route element={<h1>404: Not Found</h1>} path="*" />
                         </Routes>
