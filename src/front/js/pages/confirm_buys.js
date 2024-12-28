@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import ProductCard from '../component/cards.jsx'
+
 import CardCategory from '../component/CardCategory.jsx'
 
 
@@ -108,7 +108,7 @@ const ConfirmBuys = () => {
             <div className='row'>
 
                 <div className='col-md-12'>
-                    <h2 className='pt-5 px-5'>Confirmar tus datos aqui <i class="fa-solid fa-cart-arrow-down"></i></h2>
+                    <h1 className='pt-5 px-5'>Confirmar tus datos aqui <i class="fa-solid fa-cart-arrow-down"></i></h1>
                 </div>
             </div>
             <form onSubmit={handleSubmit}>
@@ -119,10 +119,10 @@ const ConfirmBuys = () => {
                             <input type='text' placeholder='Ingrese su domicilio de entrega' className='form-control  my-3' id='address_dom' />
                         </div>
                         <div className='form-group mb-3'>
-                            <input type='text' placeholder='Número de Puerta' className='form-control  mb-3' id='address_port' />
+                            <input type='text' placeholder='Ingrese su número de Puerta' className='form-control  mb-3' id='address_port' />
                         </div>
                         <div className='form-group mb-3'>
-                            <input type='text' placeholder='Esquina' className='form-control mb-3' id='address_street' />
+                            <input type='text' placeholder='Ingrese su Esquina' className='form-control mb-3' id='address_street' />
                         </div>
                         <div className='form-group mb-3'>
                             <input type='text' placeholder='Ingrese su ciudad' className='form-control mb-3' id='address_city' />
@@ -143,9 +143,9 @@ const ConfirmBuys = () => {
                     <div className='d-none d-md-block col-md-1'></div>
                     <div className='col-md-4'>
                         <div className='form-group mb-3 px-2'>
-                            <label for='company' className='form-label'>
+                            <label for='company' className='form-label fs-4'>
                                 <input type='checkbox' id="company" className='form-label me-2 my-3' />
-                                Hacer click en caso de empresas
+                                Hacer click en caso de empresa
                             </label>
 
                         </div>
@@ -163,14 +163,14 @@ const ConfirmBuys = () => {
                         </div>
                         <div className='form-group'>
                             <fieldset>
-                                <legend className='h5 pt-4'> Seleccione un rango de horario para el envío: </legend>
+                                <legend className='h5 pt-4 fs-4'> Seleccione un rango de horario para el envío: </legend>
                                 <input type='radio' className='btn-check' name='delivery_time' value="M" id='morning' />
-                                <label for="morning" className='btn btn-light me-2'>De 9-13 hs</label>
+                                <label for="morning" className='btn btn-light me-2 fs-4 mt-2'>De 9-13 hs</label>
                                 <input type='radio' className='btn-check' name='delivery_time' value="A" id='afternoon' />
-                                <label for="afternoon" className='btn btn-light'>De 13-21 hs</label>
+                                <label for="afternoon" className='btn btn-light fs-4 mt-2'>De 13-21 hs</label>
                             </fieldset>
                         </div>
-                        <button id="sendForm" className="btn btn-dark mt-5" type=''> Continuar al pago </button>
+                        <button id="sendForm" className="btn btn-dark mt-5 fs-4" type=''> Continuar al pago </button>
                     </div>
                 </div>
             </form>

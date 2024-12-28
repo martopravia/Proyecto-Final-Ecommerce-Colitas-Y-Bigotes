@@ -5,6 +5,9 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Product, Category, Subcategory
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
+from werkzeug.security import generate_password_hash, check_password_hash
+import os
+from base64 import b64encode
 
 api = Blueprint('api', __name__)
 
@@ -125,3 +128,66 @@ def delete_subcategory():
     pass
 # falta completar
 
+@api.route('/register', methods=["POST"])
+def register():
+    body = request.json
+    name = body.get("name", None)
+    lastname = body.get("lastname", None)
+    email = body.get("email", None)
+    password = body.get("password", None)
+    
+    if email is None or password is None or name is None or lastname is None:
+        return jsonify({"message": "Los campos email, name, lastname y password son obligatorios"}), 400
+    else:
+        user = User()
+        user_exist = User.query.filter_by(email=email).one_or_none()
+        
+        if user_exist is not None:
+            return jsonify({"message": "El usuario ya se encuentra registrado"}), 400
+        
+        salt = b64encode(os.urandom(32)).decode("utf-8")
+        password = generate_password_hash(f"{password}{salt}")
+        
+        user.name = name
+        user.lastname = lastname
+        user.email = email
+        user.password = password
+        user.salt = salt
+        db.session.add(user)
+        
+        try:
+            db.session.commit()
+            return jsonify({"message": "Usuario registrado con éxito"}), 201
+        except Exception as err:
+            db.session.rollback()
+            return jsonify({"message": f"Error:{err.args}"}),500
+    
+@api.route('/get_users', methods=["GET"])
+def get_users():
+    users = User.query.all()
+    users_serialized = [user.serialize() for user in users]
+    return jsonify(users_serialized), 200
+
+@api.route('/login', methods=["POST"])
+def login():
+    body = request.get_json()
+    email = body.get("email", None)
+    password = body.get("password", None)
+    
+    required_fields = {"email", "password"}
+    missing_field = {field for field in required_fields if not body.get(field)}
+    
+    if missing_field:
+        return jsonify({"message" : f"Estos campos son requeridos {', '.join(missing_field)}"}), 400
+    else:
+        user = User.query.filter_by(email=email).one_or_none()
+        if user is None:
+            return jsonify({"message" : "Alguno de los datos no es correcto"}), 400
+        else: 
+            if check_password_hash(user.password, f"{password}{user.salt}"):
+                token = 12341234
+                return jsonify({"token" : token}), 200
+            else:
+                return jsonify({"message":"Sus credenciales no son correctas"}),400
+
+        
