@@ -3,7 +3,6 @@ import ProductCard from './cards.jsx'
 
 const Products = ({ name, price, categorys, descripción }) => {
     return (
-        <>
             <div className="container">
                 <div className='row p-4'>
                     <div className='col-md-5 offset-1'>
@@ -12,7 +11,7 @@ const Products = ({ name, price, categorys, descripción }) => {
                     <div className='col-md-5 '>
                         <h1> {name} Lorem ipsum dolor sit amet. </h1>
                         <h4 className='mb-4'>{price} Lorem, ipsum dolor.</h4>
-                        <div class="btn-group me-4" role="group" aria-label="Basic example">
+                        <div class="btn-group me-4 mb-md-2" role="group" aria-label="Basic example">
                             <button type="button" class="btn btn-outline-dark">-</button>
                             <button type="button" class="btn btn-outline-dark" disabled>1</button>
                             <button type="button" class="btn btn-outline-dark">+</button>
@@ -21,6 +20,7 @@ const Products = ({ name, price, categorys, descripción }) => {
                         <hr className='my-4' />
                         <h3> Descripción </h3>
                         <p>
+                            {descripción}
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta,
                             debitis ratione. Eveniet quia numquam facilis eligendi corrupti, tenetur optio nulla quae, et,
                             exercitationem perferendis. Architecto pariatur temporibus magnam modi mollitia?
@@ -46,7 +46,6 @@ const Products = ({ name, price, categorys, descripción }) => {
                 </div>
 
             </div>
-        </>
     )
 }
 
