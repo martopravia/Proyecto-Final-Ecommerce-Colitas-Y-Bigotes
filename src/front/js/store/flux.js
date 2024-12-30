@@ -55,6 +55,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+
+			checkUser: () => {
+				const token = sessionStorage.getItem("token")
+				if(token) {
+					setStore({
+						token: token,
+						isLogged: true,
+					})
+				}
+
+			},
 			handleSubmit: async (e) => {
 				e.preventDefault();
 				try {
@@ -70,9 +81,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						const data = await response.json();
 						console.log("Token:", data.token);
-						localStorage.setItem("token", data.token);
+						sessionStorage.setItem("token", data.token);
 						setStore({
-							token: data.token, isLogged: true
+							token: data.token, isLogged: true, currentUser: {email: email.value, admin: data.admin || false },
 						})
 						email.value = ""
 						password.value = ""
