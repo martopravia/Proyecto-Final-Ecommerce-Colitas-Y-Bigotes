@@ -12,6 +12,7 @@ class User(db.Model):
     password = db.Column(db.String(250), unique=False, nullable=False)
     salt = db.Column(db.String(180), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), default=db.func.now(), nullable=False)
+    admin = db.Column(db.Boolean, default=False )
     # is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     orders = db.relationship("Order", backref="user")
     

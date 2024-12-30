@@ -10,6 +10,7 @@ const injectContext = PassedComponent => {
 	const StoreWrapper = props => {
 		//this will be passed as the contenxt value
 		const [state, setState] = useState(
+			
 			getState({
 				getStore: () => state.store,
 				getActions: () => state.actions,

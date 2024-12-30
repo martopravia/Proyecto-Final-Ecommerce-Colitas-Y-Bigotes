@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
@@ -8,7 +8,7 @@ import Profile from "./pages/Profile.jsx"
 
 
 
-import injectContext from "./store/appContext";
+import injectContext, { Context } from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -22,9 +22,11 @@ import RecoverPassword from "./pages/recoverPass.js";
 import OrderView from "./pages/orderview.js";
 import Product from "./pages/product.js";
 import Crud from "./pages/crud.js";
+import ProtectedRoute from "./pages/ProtectedRoute.jsx";
 
 //create your first component
 const Layout = () => {
+    const { store, actions } = useContext(Context)
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
@@ -40,7 +42,11 @@ const Layout = () => {
                         <Navbar />
                         <Routes>
                             <Route element={<Home />} path="/" />
-                            <Route element={<Profile />} path="/profile" />
+                            <Route element={
+                                <ProtectedRoute isLogged={store.isLogged}>
+                                    <Profile />
+                                </ProtectedRoute>
+                            } path="/profile" />
                             <Route element={<Register />} path="/register" />
                             <Route element={<ConfirmBuys />} path="/confirmbuys" />
 
@@ -52,7 +58,11 @@ const Layout = () => {
                             <Route element={<OrderView />} path="/order" />
                             <Route element={<Product />} path="/product" />
 
-                            <Route element={<Crud />} path="/CRUD" />
+                            <Route element={
+                                <ProtectedRoute isLogged={store.isLogged} adminrequired={true} admin={store?.currentUser?.admin}>
+                                    <Crud />
+                                </ProtectedRoute>
+                            } path="/CRUD" />
                             <Route element={<h1>404: Not Found</h1>} path="*" />
                         </Routes>
                     </div>
