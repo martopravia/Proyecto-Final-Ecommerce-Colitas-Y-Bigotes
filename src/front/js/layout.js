@@ -32,9 +32,7 @@ const Layout = () => {
   if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "")
     return <BackendURL />;
 
-  useEffect(() => {
-    actions.checkUser();
-  }, [actions]);
+
   
   return (
     <div className="d-flex flex-column min-vh-100">

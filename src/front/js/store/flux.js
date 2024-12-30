@@ -3,11 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			token: null,
-			currentUser: {
-				email: "usuario.admin@gmail.com",
-				admin: true,
-
-			},
+			currentUser: null,
 			isLogged: false,
 
 			demo: [
@@ -58,10 +54,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			checkUser: () => {
 				const token = sessionStorage.getItem("token")
-				if(token) {
+				if (token) {
 					setStore({
 						token: token,
 						isLogged: true,
+						currentUser: JSON.parse(sessionStorage.getItem("currentUser"))
 					})
 				}
 
@@ -80,10 +77,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 
 						const data = await response.json();
+						const currentUser = {
+							email: email.value,
+							admin: data.admin || false,
+							name: data.name,
+							lastname: data.lastname,
+							photo: data.photo
+						};
+
 						console.log("Token:", data.token);
 						sessionStorage.setItem("token", data.token);
+						sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
 						setStore({
-							token: data.token, isLogged: true, currentUser: {email: email.value, admin: data.admin || false },
+							token: data.token,
+							isLogged: true,
+							currentUser
 						})
 						email.value = ""
 						password.value = ""
