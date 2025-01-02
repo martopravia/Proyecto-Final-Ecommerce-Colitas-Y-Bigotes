@@ -21,6 +21,7 @@ import OrderView from "./pages/orderview.js";
 import Product from "./pages/product.js";
 import Crud from "./pages/crud.js";
 import ProtectedRoute from "./pages/ProtectedRoute.jsx";
+import AdminForm from "./component/adminForm.jsx";
 
 //create your first component
 const Layout = () => {
@@ -60,6 +61,8 @@ const Layout = () => {
               <Route element={<RecoverPassword />} path="/recoverPassword" />
               <Route element={<OrderView />} path="/order" />
               <Route element={<Product />} path="/product" />
+              <Route element={<AdminForm />} path="/adminForm" />
+              
 
               <Route
                 element={
