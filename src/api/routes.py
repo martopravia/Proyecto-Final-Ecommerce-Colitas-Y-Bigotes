@@ -179,7 +179,14 @@ def login():
             if check_password_hash(user.password, f"{password}{user.salt}"):
                 expire_at = datetime.timedelta(days=3)
                 token = create_access_token(identity=user.id, expires_delta=expire_at)
-                return jsonify({"token" : token}), 200
+                return jsonify({
+                    "token" : token,
+                    "name" : user.name,
+                    "lastname": user.lastname,
+                    "email": user.email,
+                    "photo": None,
+                    "admin": user.admin,
+                    }), 200
             else:
                 return jsonify({"message":"Sus credenciales no son correctas"}),400
 

@@ -2,12 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			currentUser: {
-				email: "usuario.admin@gmail.com",
-				admin: true,
-				token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczNTU2NzM5OSwianRpIjoiNzVmYzExMzAtMDA5YS00ZWE0LWIzMzItYTMwZDI2ZTY5YmY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTAsIm5iZiI6MTczNTU2NzM5OSwiY3NyZiI6IjgyODQ5NTMyLTJlYzEtNDU5NS05NDA4LTIxZjNlZGQ2YzllOSIsImV4cCI6MTczNTgyNjU5OX0.vt5juDY1FqFfqUKw2Cd8Frmi4vjiMTwsieXi4wbd-vE",
-
-			},
+			token: null,
+			currentUser: null,
 			isLogged: false,
 
 			demo: [
@@ -54,6 +50,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+			checkUser: () => {
+				const token = sessionStorage.getItem("token")
+				if (token) {
+					setStore({
+						token: token,
+						isLogged: true,
+						currentUser: JSON.parse(sessionStorage.getItem("currentUser"))
+					})
+				}
+
+			},
+			handleSubmit: async (e) => {
+				e.preventDefault();
+				try {
+					const { email, password } = e.target
+					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/login", {
+						method: "POST",
+						headers: {
+							"Content-type": "application/json"
+						},
+						body: JSON.stringify({ email: email.value, password: password.value })
+					})
+					if (response.ok) {
+
+						const data = await response.json();
+						const currentUser = {
+							email: email.value,
+							admin: data.admin || false,
+							name: data.name,
+							lastname: data.lastname,
+							photo: data.photo
+						};
+
+						console.log("Token:", data.token);
+						sessionStorage.setItem("token", data.token);
+						sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+						setStore({
+							token: data.token,
+							isLogged: true,
+							currentUser
+						})
+						email.value = ""
+						password.value = ""
+
+					}
+				} catch (error) {
+					console.error("Error al realizar el fetch: ", error)
+				}
+
 			}
 		}
 	};

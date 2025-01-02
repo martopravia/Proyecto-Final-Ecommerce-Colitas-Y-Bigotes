@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "./../../img/logo.png";
+import { useContext } from "react";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+  const { store, actions } = useContext(Context);
+
   return (
     <>
       <nav className="navbar bg-light py-2 px-3 px-md-5">
@@ -26,13 +30,66 @@ export const Navbar = () => {
               </button>
             </div>
           </form>
-          <div className="d-flex align-items-center gap-3">
-            <Link to="/access" className="btn btn-light ">
-              <i className="fas fa-sign-in-alt fs-3" />
-            </Link>
-            <Link to="/cart" className="btn btn-light">
-              <i className="fas fa-shopping-cart fs-3" />
-            </Link>
+          <div className="d-flex align-items-end gap-3">
+            {store.isLogged ? (
+              <>
+                <div className="d-flex gap-3">
+                 
+                  <Link to="/cart" className="btn btn-light">
+                    <i className="fas fa-shopping-cart fs-3" />
+                  </Link>
+                </div>
+                <div className="dropdown">
+                  <button
+                    className="btn btn-light dropdown-toggle d-flex align-items-center"
+                    type="button"
+                    id="userMenu"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src={
+                        store.currentUser?.photo ||
+                        "https://picsum.photos/200/300"
+                      }
+                      alt="User"
+                      className="rounded-circle me-2 photoAvatarLogin"
+                    />
+                    <span className="fs-5 fw-bold">
+                      {store.currentUser?.name}
+                    </span>
+                  </button>
+                  <ul className="dropdown-menu" aria-labelledby="userMenu">
+                    <li>
+                      <Link className="dropdown-item" to="/profile">
+                        Perfil
+                      </Link>
+                    </li>
+
+                    <li>
+                      <button
+                        className="dropdown-item"
+                        onClick={() => {
+                          sessionStorage.removeItem("token");
+                          actions.logout();
+                        }}
+                      >
+                        Cerrar sesión
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <div className="d-flex gap-3">
+                <Link to="/access" className="btn btn-light">
+                  <i className="fas fa-sign-in-alt fs-3" />
+                </Link>
+                <Link to="/cart" className="btn btn-light">
+                  <i className="fas fa-shopping-cart fs-3" />
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </nav>
@@ -45,7 +102,7 @@ export const Navbar = () => {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Categorias
+              Categorías
             </button>
             <ul className="dropdown-menu">
               <li>
@@ -67,7 +124,6 @@ export const Navbar = () => {
           </div>
 
           <div className="col-12 col-md-8 d-flex flex-wrap justify-content-center gap-2">
-
             <div className="dropdown">
               <button
                 className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
@@ -93,10 +149,8 @@ export const Navbar = () => {
                     Juguetes
                   </Link>
                 </li>
-
               </ul>
             </div>
-
 
             <div className="dropdown">
               <button
@@ -146,10 +200,8 @@ export const Navbar = () => {
                     Accesorios
                   </Link>
                 </li>
-
               </ul>
             </div>
-
 
             <div className="dropdown">
               <button
@@ -171,7 +223,6 @@ export const Navbar = () => {
                     Accesorios
                   </Link>
                 </li>
-
               </ul>
             </div>
           </div>
