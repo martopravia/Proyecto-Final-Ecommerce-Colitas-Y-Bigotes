@@ -5,6 +5,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null,
 			currentUser: null,
 			isLogged: false,
+			photoGal: null,
+			title: "",
+			active: false,
+			description: "",
+			position: 0,
+
+
+
 
 			demo: [
 				{
@@ -112,6 +120,54 @@ const getState = ({ getStore, getActions, setStore }) => {
 					currentUser: null,
 				});
 				window.location.href = "/";
+			},
+			setPhoto: (e) => {
+				setStore({ photo: e.target.files[0] })
+			},
+			handleChange: e => {
+				const { name, value } = e.target
+				setStore({
+					[name]: value
+				})
+			},
+			createProduct: async (e) => {
+				try {
+					e.preventDefault()
+					const { title, photoGal, active, description, position } = getStore()
+
+					const formData = new FormData();
+					formData.append("title", title);
+					formData.append("photoGal", photoGal);
+					formData.append("active", active);
+					formData.append("description", description)
+					formData.append("position", position)
+
+					const cloudinaryResponse = await fetch (
+						"https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products",
+						{
+							method: "POST",
+							body: formData,
+						}
+					);
+					if(!cloudinaryResponse.ok) {
+						throw new Error("Error al subir el producto")
+					}
+					const data = await response.json()
+					console.log("Se ha creado el producto", data)
+
+					setStore({
+						photoGal: null,
+						title: "",
+						active: false,
+						description: "",
+						position: 0,
+					})
+					
+				}
+				catch (error) {
+					console.log("Error creando el producto", error.message)
+					alert(error.message)
+				}
 			}
 
 		}

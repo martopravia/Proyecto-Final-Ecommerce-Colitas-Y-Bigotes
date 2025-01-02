@@ -28,7 +28,12 @@ def get_products():
 @api.route('/products', methods=['POST'])
 def add_products():
     body = request.form
-    
+    print(body)
+ 
+
+
+    if 'photo' not in request.files:
+        return jsonify({"error": "photo required"}), 400
     if 'name' not in body:         
         return jsonify({"error": "name required"}), 400  
     if 'amount' not in body:

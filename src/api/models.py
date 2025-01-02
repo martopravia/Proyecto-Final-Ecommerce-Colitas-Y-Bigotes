@@ -112,3 +112,32 @@ class Stock(db.Model):
             # do not serialize the password, its a security breach
         }
         
+class Gallery(db.Model):
+    __tablename__ = "gallery"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False )
+    title = db.Column(db.String(120), nullable=False)
+    photoGal = db.Column(db.String(200), nullable=False)
+    active = db.Column(db.Boolean, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    position = db.Column(db.Integer)
+    
+    def serialize(self):
+        return{
+            "id": self.id,
+            "title": self.title,
+            "photoGal": self.photo,
+            "active": self.active,
+            "description": self.description,
+            "position": self.position
+
+        }
+    def save(self):
+        db.session.add(self)
+        db.session.commit(self)
+    
+    def update(self):
+        db.session.commit()
+        
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
