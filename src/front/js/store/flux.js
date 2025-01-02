@@ -101,7 +101,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error al realizar el fetch: ", error)
 				}
 
+			},
+
+			logout: () => {
+				sessionStorage.removeItem("token");
+				sessionStorage.removeItem("currentUser");
+				setStore({
+					token: null,
+					isLogged: false,
+					currentUser: null,
+				});
+				window.location.href = "/";
 			}
+
 		}
 	};
 };

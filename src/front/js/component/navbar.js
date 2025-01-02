@@ -34,7 +34,7 @@ export const Navbar = () => {
             {store.isLogged ? (
               <>
                 <div className="d-flex gap-3">
-                 
+
                   <Link to="/cart" className="btn btn-light">
                     <i className="fas fa-shopping-cart fs-3" />
                   </Link>
@@ -70,7 +70,6 @@ export const Navbar = () => {
                       <button
                         className="dropdown-item"
                         onClick={() => {
-                          sessionStorage.removeItem("token");
                           actions.logout();
                         }}
                       >
