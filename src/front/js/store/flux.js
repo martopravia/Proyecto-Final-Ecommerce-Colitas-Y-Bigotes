@@ -5,11 +5,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null,
 			currentUser: null,
 			isLogged: false,
-			photoGal: null,
-			title: "",
+			photo: null,
+			name: "",
 			active: false,
 			description: "",
-			position: 0,
+			position: "",
+			price: "",
+			amount: "",
+			products: null,
+			category_id: "",
+			subcategory_id: "",
+
 
 
 
@@ -133,42 +139,84 @@ const getState = ({ getStore, getActions, setStore }) => {
 			createProduct: async (e) => {
 				try {
 					e.preventDefault()
-					const { title, photoGal, active, description, position } = getStore()
+					const { name, photo, active, description, position, price, amount, category_id, subcategory_id } = getStore()
 
 					const formData = new FormData();
-					formData.append("title", title);
-					formData.append("photoGal", photoGal);
+					formData.append("name", name);
+					formData.append("photo", photo);
 					formData.append("active", active);
-					formData.append("description", description)
-					formData.append("position", position)
+					formData.append("description", description);
+					formData.append("position", position);
+					formData.append("price", price);
+					formData.append("amount", amount);
+					formData.append("category_id", category_id);
+					formData.append("subcategory_id", subcategory_id);
 
-					const cloudinaryResponse = await fetch (
+
+					const cloudResponse = await fetch(
 						"https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products",
 						{
 							method: "POST",
 							body: formData,
 						}
 					);
-					if(!cloudinaryResponse.ok) {
-						throw new Error("Error al subir el producto")
+					if (!cloudResponse.ok) {
+						throw new Error("Error al subir el producto, error 400")
 					}
-					const data = await response.json()
+					const data = await cloudResponse.json()
 					console.log("Se ha creado el producto", data)
+					alert("Producto creado correctamente")
+
+
 
 					setStore({
-						photoGal: null,
-						title: "",
+						name: "",
+						photo: null,
 						active: false,
 						description: "",
-						position: 0,
+						position: "",
+						price: "",
+						amount: "",
+						category_id: "",
+						subcategory_id: "",
+
 					})
-					
+
 				}
 				catch (error) {
 					console.log("Error creando el producto", error.message)
 					alert(error.message)
 				}
+			},
+			deleteProduct: async (id) => {
+				try {
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/${id}`, {
+						method: 'DELETE',
+						headers: {
+							"Content-Type": "application/json"
+						}
+					});
+					if (response.ok) {
+						alert("Producto eliminado con éxito")
+						getActions().fetchProducts()
+					} else {
+						throw new Error("Error eliminando el producto");
+					}
+				}
+				catch (error) {
+					console.error("Problemas eliminando el producto", error)
+				}
+			},
+			fetchProducts: async () => {
+				try {
+					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products"); //poner api
+					const data = await response.json();
+					setStore({ products: data });
+				} catch (error) {
+					console.error("Error al cargar productos:", error);
+				}
 			}
+
 
 		}
 	};

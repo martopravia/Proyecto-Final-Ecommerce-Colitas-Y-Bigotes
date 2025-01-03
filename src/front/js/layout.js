@@ -19,9 +19,12 @@ import QuestionsAnswer from "./pages/questionsAnswer.js";
 import RecoverPassword from "./pages/recoverPass.js";
 import OrderView from "./pages/orderview.js";
 import Product from "./pages/product.js";
-import Crud from "./pages/crud.js";
+import ProductList from "./component/products/ProductList.jsx";
 import ProtectedRoute from "./pages/ProtectedRoute.jsx";
-import AdminForm from "./component/adminForm.jsx";
+import Panel from "./component/Panel.jsx";
+import ProductPanel from "./component/products/ProductPanel.jsx";
+import ProductEdit from "./component/products/ProductEdit.jsx";
+import ProductCreate from "./component/products/ProductCreate.jsx";
 
 //create your first component
 const Layout = () => {
@@ -34,7 +37,7 @@ const Layout = () => {
     return <BackendURL />;
 
 
-  
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <BrowserRouter basename={basename}>
@@ -61,8 +64,8 @@ const Layout = () => {
               <Route element={<RecoverPassword />} path="/recoverPassword" />
               <Route element={<OrderView />} path="/order" />
               <Route element={<Product />} path="/product" />
-              <Route element={<AdminForm />} path="/adminForm" />
               
+
 
               <Route
                 element={
@@ -71,11 +74,23 @@ const Layout = () => {
                     adminrequired={true}
                     admin={store?.currentUser?.admin}
                   >
-                    <Crud />
+
+                    <Panel />
+
                   </ProtectedRoute>
                 }
-                path="/CRUD"
-              />
+                path="/panel"
+              >
+                <Route index element={<ProductPanel />} />
+                <Route path="products" element={<ProductPanel />}>
+                  <Route index element={<ProductList />} />
+                  <Route path="edit/:id" element={<ProductEdit />} />
+                  <Route path="create" element={<ProductCreate />} />
+
+                </Route>
+              </Route>
+
+
               <Route element={<h1>404: Not Found</h1>} path="*" />
             </Routes>
           </div>

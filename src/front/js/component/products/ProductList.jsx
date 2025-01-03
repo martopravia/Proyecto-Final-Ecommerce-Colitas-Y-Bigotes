@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+import Product from '../../pages/product';
+import { Context } from '../../store/appContext';
+import { Button } from 'react-bootstrap';
 
-const Crud = () => {
+const ProductList = () => {
+
     const [products, setProducts] = useState([]); // lista de productos
     const [search, setSearch] = useState(""); // valor del buscador
+    const { store, actions } = useContext(Context)
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch(""); //poner api
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error("Error al cargar productos:", error);
-            }
-        };
 
-        fetchProducts();
+
+        actions.fetchProducts();
+
     }, []);
 
     const deleteProduct = (id) => {
@@ -55,26 +54,25 @@ const Crud = () => {
             <table className="table table-striped table-hover">
                 <thead className="table-dark">
                     <tr>
-                        <th scope="col">Producto</th>
                         <th scope="col">ID</th>
+                        <th scope="col">Producto</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredProducts.map((product) => (
+                    {store.products == null ? (
+                        <h1>Loading...</h1>
+                    ) : store.products.map((product) => (
                         <tr key={product.id}>
-                            <td>{product.name}</td>
                             <td>{product.id}</td>
+                            <td>{product.name}</td>
                             <td>
-                                <button className="btn btn-primary btn-sm me-2" onClick={() => viewProduct(product.id)}>
-                                    Ver
-                                </button>
-                                <button className="btn btn-warning btn-sm me-2" onClick={() => editProduct(product.id)}>
+                                <Link className="btn btn-warning btn-sm me-2" to={"/panel/products/edit/" + product.id}>
                                     Modificar
-                                </button>
-                                <button className="btn btn-danger btn-sm" onClick={() => deleteProduct(product.id)}>
+                                </Link>
+                                <Button className="btn btn-danger btn-sm"  onClick={() => actions.deleteProduct(product.id)}>
                                     Eliminar
-                                </button>
+                                </Button>
                             </td>
                         </tr>
                     ))}
@@ -82,12 +80,12 @@ const Crud = () => {
             </table>
 
             <div className="text-end">
-                <button className="btn btn-success" onClick={addProduct}>
+                <Link className="btn btn-success" to="/panel/products/create ">
                     Add Item
-                </button>
+                </Link>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Crud;
+export default ProductList

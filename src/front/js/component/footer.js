@@ -34,7 +34,7 @@ export const Footer = () => {
 						<div className="form-floating mb-2">
 							<textarea className="form-control" placeholder="Leave a comment here" id="contact_textArea">
 							</textarea>
-							<label for="floatingTextarea2">Comments</label>
+							<label htmlFor="floatingTextarea2">Comments</label>
 						</div>
 					</form>
 				</section>

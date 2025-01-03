@@ -60,6 +60,15 @@ export const Navbar = () => {
                     </span>
                   </button>
                   <ul className="dropdown-menu" aria-labelledby="userMenu">
+                    {
+                      store.currentUser?.admin && (
+                        <li>
+                          <Link className="dropdown-item" to="/panel">
+                            Crud
+                          </Link>
+                        </li>
+                      )
+                    }
                     <li>
                       <Link className="dropdown-item" to="/profile">
                         Perfil

@@ -52,8 +52,10 @@ class Product(db.Model):
     __tablename__ = "products"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(120), nullable=False)
+    public_id = db.Column(db.String(200), nullable=False)
     photo = db.Column(db.String(200), nullable=False)
     amount = db.Column(db.Float, nullable=False)
+    price= db.Column(db.Float, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), nullable=False)
     subcategory_id = db.Column(db.Integer, db.ForeignKey("subcategories.id"), nullable=False)
     order_detail = db.relationship("OrderDetail", backref="product")
@@ -66,7 +68,8 @@ class Product(db.Model):
             "photo": self.photo,
             "amount": self.amount,
             "category_id": self.category_id,
-            "subcategory_id": self.subcategory_id
+            "subcategory_id": self.subcategory_id,
+            "price": self.price
             
         }
     

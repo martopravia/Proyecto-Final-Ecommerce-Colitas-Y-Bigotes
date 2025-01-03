@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os, datetime
 from base64 import b64encode
 from flask_jwt_extended import create_access_token
+import cloudinary.uploader
 
 api = Blueprint('api', __name__)
 
@@ -30,6 +31,7 @@ def add_products():
     body = request.form
     print(body)
  
+ 
 
 
     if 'photo' not in request.files:
@@ -42,16 +44,26 @@ def add_products():
         return jsonify({"error": "category_id required"}), 400 
     if 'subcategory_id' not in body:
         return jsonify({"error": "subcategory_id required"})
+    if 'price' not in body:
+        return jsonify({"error": "price required"})
     subcategory_exist = Subcategory.query.filter_by(name=body['name']).first()     
     if subcategory_exist:
         return jsonify({"error" : "subcategory name already exist"}), 400 
     
+    file = request.files["photo"]
+    resp = cloudinary.uploader.upload(file, folder="mygallery")
+    if not resp: 
+        return jsonify({"error": "error uploading photo"}), 400
+    
+    
     new_product = Product(
         name=body['name'],
-        photo=request.files['photo'].filename,
+        photo= resp["secure_url"], 
+        public_id= resp["public_id"],
         amount=body['amount'],
         category_id=body['category_id'],
-        subcategory_id=body['subcategory_id']
+        subcategory_id=body['subcategory_id'],
+        price=body['price']
                   
         )
     db.session.add(new_product)
@@ -60,8 +72,16 @@ def add_products():
 
 @api.route('/products/<int:id>', methods=['DELETE'])
 def delete_product(id):
-    pass
-# falta completar 
+    try:
+        product = Product.query.get(id)
+        if not product:
+            return jsonify({"message" : "No existe producto"}),400
+        db.session.delete(product)
+        db.session.commit()
+        return jsonify({"message" : "Producto eliminado correctamente"}),200
+    except Exception as e:
+        db.session.rollback()
+ 
 
 @api.route('/categories', methods=['GET'])
 def get_categories():
