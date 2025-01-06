@@ -117,7 +117,7 @@ def add_category():
 @api.route('/categories/<int:id>', methods=['DELETE'])
 def delete_category():
     pass
-# falta completar
+
 
 @api.route('/subcategories', methods=['GET'])
 def get_subcategories():

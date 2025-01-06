@@ -27,11 +27,7 @@ const SubNavbar = () => {
                                     Subcategorias
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/panel/products" >
-                                    Precios
-                                </Link>
-                            </li>
+
                         </ul>
                     </div>
                 </div>

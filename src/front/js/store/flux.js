@@ -15,6 +15,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			products: null,
 			category_id: "",
 			subcategory_id: "",
+			lastname: "",
+			email: "",
+			password: "",
+			password2: "",
+
 
 
 
@@ -319,7 +324,54 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			}
+			},
+			handleSubmitRegister: async (e) => {
+				e.preventDefault();
+				try {
+					const { email, password, name, lastname, password2 } = getStore()
+					if (password !== password2){
+						alert("Las contraseñas no coinciden") 
+						return;
+					}
+					console.log({ email: email, password: password, name: name, lastname: lastname  })
+					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/register", {
+						method: "POST",
+						headers: {
+							"Content-type": "application/json"
+						},
+						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname  })
+					})
+					if (response.ok) {
+
+						const data = await response.json();
+						const currentUser = {
+							email: data.email,
+							name: data.name,
+							lastname: data.lastname,
+
+						};
+						sessionStorage.setItem("token", data.token);
+						sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+						setStore({
+							token: data.token,
+							isLogged: true,
+							email: "",
+							name: "",
+							lastname: "",
+							password: "",
+							password2: "",
+							currentUser
+						})
+						alert("Usuario creado correctamente")
+
+
+					}
+				} catch (error) {
+					console.error("Error al realizar el fetch: ", error)
+				}
+
+			},
+	
 		}
 	};
 };
