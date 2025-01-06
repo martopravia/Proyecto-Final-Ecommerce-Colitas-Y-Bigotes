@@ -113,21 +113,16 @@ export const Navbar = () => {
               Categorías
             </button>
             <ul className="dropdown-menu">
-              <li>
-                <Link className="dropdown-item fs-5" to="/categories">
-                  Raciones
-                </Link>
-              </li>
-              <li>
-                <Link className="dropdown-item fs-5" to="/categories">
-                  Accesorios
-                </Link>
-              </li>
-              <li>
-                <Link className="dropdown-item fs-5" to="/categories">
-                  Juguetes
-                </Link>
-              </li>
+              {
+                !!store.categories && store.categories.map(category => (
+                  <li key={category.id} >
+                    <Link className="dropdown-item fs-5" to={`/categories/${category.id}`}>
+                      {category && category?.name}
+                    </Link>
+                  </li>
+                ))
+              }
+
             </ul>
           </div>
 
@@ -143,17 +138,17 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item fs-5" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories/perros/raciones">
                     Raciones
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item fs-5" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories/perros/accesorios">
                     Accesorios
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item fs-5" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories/perros/juguetes">
                     Juguetes
                   </Link>
                 </li>
@@ -171,17 +166,17 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item fs-5" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories/gatos/raciones">
                     Raciones
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item fs-5" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories/gatos/accesorios">
                     Accesorios
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item fs-5" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories/gatos/juguetes">
                     Juguetes
                   </Link>
                 </li>
@@ -199,12 +194,12 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item fs-5" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories/roedores/raciones">
                     Raciones
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item fs-5" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories/roedores/accesorios">
                     Accesorios
                   </Link>
                 </li>
@@ -222,12 +217,12 @@ export const Navbar = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item fs-5" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories/aves/raciones">
                     Raciones
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item fs-5" to="/categories">
+                  <Link className="dropdown-item fs-5" to="/categories/aves/accesorios">
                     Accesorios
                   </Link>
                 </li>

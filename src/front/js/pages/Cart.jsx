@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import CardCategory from "../component/CardCategory.jsx";
 import ItemsInCart from "../component/ItemsInCart.jsx";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext.js";
 
 const Cart = () => {
+  const {store, actions} = useContext(Context)
+
+  useEffect(() =>{
+    actions.addToCart()
+  },[])
   return (
     <>
       <div className="container-fluid">
@@ -30,6 +36,7 @@ const Cart = () => {
               to="/confirmbuys"
               className="btn btn-outline-dark fw-bold button fs-3"
               type="button"
+              
             >
               Continuar al pago
             </Link>

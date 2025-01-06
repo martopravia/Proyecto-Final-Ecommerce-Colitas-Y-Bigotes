@@ -58,13 +58,15 @@ const Layout = () => {
               <Route element={<ConfirmBuys />} path="/confirmbuys" />
 
               <Route element={<Access />} path="/access" />
-              <Route element={<Categories />} path="/categories" />
+              <Route element={<Categories />} path="/categories/:category" />
+              <Route element={<Categories />} path="/categories/:category/:subcategory" />
+
               <Route element={<Cart />} path="/cart" />
               <Route element={<QuestionsAnswer />} path="/questionsAnswer" />
               <Route element={<RecoverPassword />} path="/recoverPassword" />
               <Route element={<OrderView />} path="/order" />
               <Route element={<Product />} path="/product" />
-              
+
 
 
               <Route

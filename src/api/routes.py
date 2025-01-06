@@ -30,8 +30,25 @@ def get_products_by_id(id):
     if not product: 
         return jsonify({"message" : "Producto no encontrado"}), 404
     return jsonify(product.serialize()), 200
+
+# ruta solo filtrado de producto por categoria   
+@api.route('/products/categories/<int:category_id>', methods=['GET'])
+def get_products_by_category(category_id):
+    products = Product.query.filter_by(category_id=category_id).all()
+    if not products: 
+        return jsonify({"message" : "Producto no encontrado"}), 404
+    return jsonify([product.serialize() for product in products]), 200  
    
-    
+   
+# ruta para filtro de productos por categoria y subcategoria   
+@api.route('/products/categories/<int:category_id>/subcategories/<int:subcategory_id>', methods=['GET'])
+def get_products_by_category_and_subcategory(category_id, subcategory_id):
+    products = Product.query.filter_by(category_id=category_id, subcategory_id=subcategory_id).all()
+    if not products: 
+        return jsonify({"message" : "Producto no encontrado"}), 404
+    return jsonify([product.serialize() for product in products]), 200  
+   
+       
 @api.route('/products', methods=['POST'])
 def add_products():
     body = request.form

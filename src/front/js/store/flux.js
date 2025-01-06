@@ -19,6 +19,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			email: "",
 			password: "",
 			password2: "",
+			cart: [],
+			categories: null,
 
 
 
@@ -329,17 +331,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				e.preventDefault();
 				try {
 					const { email, password, name, lastname, password2 } = getStore()
-					if (password !== password2){
-						alert("Las contraseñas no coinciden") 
+					if (password !== password2) {
+						alert("Las contraseñas no coinciden")
 						return;
 					}
-					console.log({ email: email, password: password, name: name, lastname: lastname  })
+					console.log({ email: email, password: password, name: name, lastname: lastname })
 					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/register", {
 						method: "POST",
 						headers: {
 							"Content-type": "application/json"
 						},
-						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname  })
+						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname })
 					})
 					if (response.ok) {
 
@@ -371,7 +373,48 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			},
-	
+			addToCart: (id, name, photo, price) => {
+				const store = getStore()
+				const newCartItem = { id, name, photo, price }
+				setStore({
+					cart: [{ ...store.cart, newCartItem }]
+
+				})
+				console.log("Producto añadido al carrito: ", newCartItem)
+				console.log("carrito actualizado: ", getStore().cart)
+
+			},
+			loadProducts: async () => {
+				try {
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
+					if (!response.ok)
+						throw new Error("Error en el fetch");
+
+					const products = await response.json();
+
+
+				}
+
+				catch (error) {
+					console.error("Error en el fetch1:", error);
+				}
+			},
+			getCategories: async () => {
+				try {
+					const response = await fetch('https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/categories')
+					const data = await response.json()
+					setStore({
+						categories: data
+					})
+				} catch (error) {
+					console.log(error)
+
+
+				}
+			}
+
+
+
 		}
 	};
 };
