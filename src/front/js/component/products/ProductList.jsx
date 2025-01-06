@@ -6,8 +6,8 @@ import { Button } from 'react-bootstrap';
 
 const ProductList = () => {
 
-    const [products, setProducts] = useState([]); // lista de productos
-    const [search, setSearch] = useState(""); // valor del buscador
+    const [products, setProducts] = useState([]);
+    const [search, setSearch] = useState("");
     const { store, actions } = useContext(Context)
 
     useEffect(() => {
@@ -67,10 +67,10 @@ const ProductList = () => {
                             <td>{product.id}</td>
                             <td>{product.name}</td>
                             <td>
-                                <Link className="btn btn-warning btn-sm me-2" to={"/panel/products/edit/" + product.id}>
+                                <Link className="btn btn-warning btn-sm me-2" to={`/panel/products/edit/${product.id}`}>
                                     Modificar
                                 </Link>
-                                <Button className="btn btn-danger btn-sm"  onClick={() => actions.deleteProduct(product.id)}>
+                                <Button className="btn btn-danger btn-sm" onClick={() => actions.deleteProduct(product.id)}>
                                     Eliminar
                                 </Button>
                             </td>

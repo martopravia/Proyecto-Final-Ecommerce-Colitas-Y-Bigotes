@@ -215,4 +215,35 @@ def login():
             else:
                 return jsonify({"message":"Sus credenciales no son correctas"}),400
 
+@api.route('/products/<int:id>', methods=['PUT'])
+def update_product(id):
+    try:
+        product = Product.query.get(id)
+        if not product:
+            return jsonify({"error": "Product not found"}), 404
+
+        body = request.form
+        file = request.files.get("photo")
+
+        product.name = body.get('name', product.name)
+        product.public_id = body.get('public_id', product.public_id)
+        product.photo = body.get('photo', product.photo)
+        product.amount = body.get('amount', product.amount)
+        product.price = body.get('price', product.price)
+        product.category_id = body.get('category_id', product.category_id)
+        product.subcategory_id = body.get('subcategory_id', product.subcategory_id)
+
+        if file:
+            resp = cloudinary.uploader.upload(file, folder="mygallery")
+            product.photo = resp["secure_url"]
+            product.public_id = resp["public_id"]
+            
+        db.session.commit()
+
+        return jsonify({"message": "Producto modificado correctamente", "product": product.serialize()}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+
         

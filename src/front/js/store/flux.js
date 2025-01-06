@@ -20,6 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
+
 			demo: [
 				{
 					title: "FIRST",
@@ -209,15 +210,102 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			fetchProducts: async () => {
 				try {
-					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products"); //poner api
+					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products"); 
 					const data = await response.json();
 					setStore({ products: data });
 				} catch (error) {
 					console.error("Error al cargar productos:", error);
 				}
+			},
+			editProduct: async (e, id) => {
+				try {
+					e.preventDefault()
+					const { name, photo, active, description, position, price, amount, category_id, subcategory_id } = getStore()
+
+					const formData = new FormData();
+					formData.append("name", name);
+					formData.append("photo", photo);
+					formData.append("active", active);
+					formData.append("description", description);
+					formData.append("position", position);
+					formData.append("price", price);
+					formData.append("amount", amount);
+					formData.append("category_id", category_id);
+					formData.append("subcategory_id", subcategory_id);
+
+
+					const cloudResponse = await fetch(
+						"https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/" + id,
+						{
+							method: "PUT",
+							body: formData,
+						}
+					);
+					if (!cloudResponse.ok) {
+						throw new Error("Error al actualizar el producto, error 400")
+					}
+					const data = await cloudResponse.json()
+					console.log("Se ha actualizado  el producto", data)
+					alert("Producto actualizado correctamente")
+
+
+
+					setStore({
+						name: "",
+						photo: null,
+						active: false,
+						description: "",
+						position: "",
+						price: "",
+						amount: "",
+						category_id: "",
+						subcategory_id: "",
+
+					})
+
+				}
+				catch (error) {
+					console.log("Error creando el producto", error.message)
+					alert(error.message)
+				}
+			},
+			fetchProductById: async (id) => {
+				try {
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/${id}`);
+					if (!response.ok) 
+						throw new Error("Error en el fetch");
+					const product = await response.json();
+					setStore({ productToEdit: product });
+				} catch (error) {
+					console.error("Error en el fetch:", error);
+				}
+				fetchProductById();
+			},
+			updateProduct: async (id, updatedProduct) => {
+				try {
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/${id}`, {
+						method: "PUT",
+						body: formData,
+					});
+					if (!response.ok) throw new Error("Error al actualizar producto");
+					const data = await response.json();
+
+					
+					const store = getStore();
+					const updatedProducts = store.products.map((product) =>
+						product.id === id ? data.product : product
+					);
+					setStore({ products: updatedProducts });
+
+					return true; 
+				} catch (error) {
+					console.error("Error actualizando producto:", error);
+					return false; 
+				}
+
+
+
 			}
-
-
 		}
 	};
 };
