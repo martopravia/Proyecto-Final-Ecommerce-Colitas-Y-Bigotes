@@ -24,6 +24,12 @@ def get_products():
     products_serialized = [product.serialize() for product in products]
     return jsonify(products_serialized), 200
 
+@api.route('/products/<int:id>', methods=['GET'])
+def get_products_by_id(id):
+    product = Product.query.get(id)
+    if not product: 
+        return jsonify({"message" : "Producto no encontrado"}), 404
+    return jsonify(product.serialize()), 200
    
     
 @api.route('/products', methods=['POST'])

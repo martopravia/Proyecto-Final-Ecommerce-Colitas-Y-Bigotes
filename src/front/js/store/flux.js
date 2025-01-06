@@ -210,7 +210,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			fetchProducts: async () => {
 				try {
-					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products"); 
+					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products");
 					const data = await response.json();
 					setStore({ products: data });
 				} catch (error) {
@@ -269,17 +269,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert(error.message)
 				}
 			},
-			fetchProductById: async (id) => {
+			getProductById: async (id) => {
 				try {
 					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/${id}`);
-					if (!response.ok) 
+					if (!response.ok)
 						throw new Error("Error en el fetch");
+
 					const product = await response.json();
-					setStore({ productToEdit: product });
+					console.log(product)
+					setStore({
+						name: product.name,
+						photo: product.photo,
+						active: product.active,
+						description: product.description,
+						position: product.position,
+						price: product.price,
+						amount: product.amount,
+						category_id: product.category_id,
+						subcategory_id: product.subcategory_id,
+						order: product.order,
+
+					})
 				} catch (error) {
-					console.error("Error en el fetch:", error);
+					console.error("Error en el fetch1:", error);
 				}
-				fetchProductById();
+
 			},
 			updateProduct: async (id, updatedProduct) => {
 				try {
@@ -290,17 +304,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (!response.ok) throw new Error("Error al actualizar producto");
 					const data = await response.json();
 
-					
+
 					const store = getStore();
 					const updatedProducts = store.products.map((product) =>
 						product.id === id ? data.product : product
 					);
 					setStore({ products: updatedProducts });
 
-					return true; 
+					return true;
 				} catch (error) {
 					console.error("Error actualizando producto:", error);
-					return false; 
+					return false;
 				}
 
 

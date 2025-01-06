@@ -21,12 +21,36 @@ const ProductCreate = () => {
                 </div>
 
                 <div className='my-3'>
-                    <label htmlFor="descriptionProduct" className="form-label">Category</label>
-                    <input type='text' className='form-control' id="descriptionProduct" name='category_id' value={store.category_id} onChange={actions.handleChange} />
+                    <label htmlFor="category_id" className="form-label">Category</label>
+                    <select
+                        className="form-select"
+                        id="category_id"
+                        name='category_id'
+                        value={store.category_id}
+                        onChange={actions.handleChange}
+                    >
+                        <option value="" disabled>Seleccione una categoria</option>
+                        <option value="1">Perros</option>
+                        <option value="2">Gatos</option>
+                        <option value="3">Roedores</option>
+                        <option value="4">Aves</option>
+                    </select>
                 </div>
                 <div className='my-3'>
-                    <label htmlFor="descriptionProduct" className="form-label">Subcategory</label>
-                    <input type='text' className='form-control' id="descriptionProduct" name='subcategory_id' value={store.subcategory_id} onChange={actions.handleChange} />
+                    <label htmlFor="subcategory_id" className="form-label">Subcategory</label>
+                    <select
+                        className="form-select"
+                        id="subcategory_id"
+                        name='subcategory_id'
+                        value={store.subcategory_id}
+                        onChange={actions.handleChange}
+                    >
+                        <option value="" disabled>Seleccione una subcategoria</option>
+                        <option value="1">Raciones</option>
+                        <option value="2">Accesorios</option>
+                        <option value="3">Juguetes</option>
+
+                    </select>
                 </div>
                 <div className='my-3'>
                     <label htmlFor="formFile" className="form-label">Subir archivo</label>
