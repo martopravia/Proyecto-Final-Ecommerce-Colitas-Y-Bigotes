@@ -127,107 +127,32 @@ export const Navbar = () => {
           </div>
 
           <div className="col-12 col-md-8 d-flex flex-wrap justify-content-center gap-2">
-            <div className="dropdown">
-              <button
-                className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Perros
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item fs-5" to="/categories/perros/raciones">
-                    Raciones
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item fs-5" to="/categories/perros/accesorios">
-                    Accesorios
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item fs-5" to="/categories/perros/juguetes">
-                    Juguetes
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            {!!store.categories && store.categories.map((category) => (
 
-            <div className="dropdown">
-              <button
-                className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Gatos
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item fs-5" to="/categories/gatos/raciones">
-                    Raciones
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item fs-5" to="/categories/gatos/accesorios">
-                    Accesorios
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item fs-5" to="/categories/gatos/juguetes">
-                    Juguetes
-                  </Link>
-                </li>
-              </ul>
-            </div>
 
-            <div className="dropdown">
-              <button
-                className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Roedores
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item fs-5" to="/categories/roedores/raciones">
-                    Raciones
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item fs-5" to="/categories/roedores/accesorios">
-                    Accesorios
-                  </Link>
-                </li>
-              </ul>
-            </div>
+              <div key={category.id} className="dropdown">
+                <button
+                  className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {category && category?.name}
+                </button>
+                <ul className="dropdown-menu">
+                  {!!store.subcategories && store.subcategories.map((subcategory) => (
+                    <li key={subcategory.id}>
+                      <Link className="dropdown-item fs-5" to={`/categories/${category.id}/${subcategory.id}`}>
+                        {subcategory && subcategory?.name}
+                      </Link>
+                    </li>
+                  ))}
 
-            <div className="dropdown">
-              <button
-                className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Aves
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item fs-5" to="/categories/aves/raciones">
-                    Raciones
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item fs-5" to="/categories/aves/accesorios">
-                    Accesorios
-                  </Link>
-                </li>
-              </ul>
-            </div>
+
+
+                </ul>
+              </div>
+            ))}
           </div>
           <div className="col-2 d-none d-md-block" />
         </div>

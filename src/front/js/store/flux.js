@@ -21,6 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			password2: "",
 			cart: [],
 			categories: null,
+			subcategories: null,
 
 
 
@@ -411,7 +412,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 				}
-			}
+			},
+			getSubCategories: async () => {
+				try {
+					const store = getStore()
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/subcategories`)
+					const data = await response.json()
+					setStore({
+						subcategories: data
+					})
+				} catch (error) {
+					console.log(error)
+
+
+				}
+			},
 
 
 

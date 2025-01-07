@@ -44,8 +44,6 @@ def get_products_by_category(category_id):
 @api.route('/products/categories/<int:category_id>/subcategories/<int:subcategory_id>', methods=['GET'])
 def get_products_by_category_and_subcategory(category_id, subcategory_id):
     products = Product.query.filter_by(category_id=category_id, subcategory_id=subcategory_id).all()
-    if not products: 
-        return jsonify({"message" : "Producto no encontrado"}), 404
     return jsonify([product.serialize() for product in products]), 200  
    
        
