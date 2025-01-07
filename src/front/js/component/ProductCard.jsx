@@ -1,9 +1,11 @@
-import React, { useContext } from "react"; 
+import React, { useContext, useEffect } from "react"; 
 import "../../styles/cards.css";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({id, name, photo, description, price, quantity}) => {
   const {store, actions} = useContext(Context)
+ 
 
   return (
     <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-2">
@@ -14,7 +16,8 @@ const ProductCard = ({id, name, photo, description, price, quantity}) => {
           alt="Producto"
         />
         <div className="card-body">
-          <h5 className="card-title">{name}</h5>
+          <Link to={`/product/${id}`} className="text-dark text-decoration-none"><h5 className="card-title">{name}</h5></Link>
+          
           <p className="card-text">
             {description}
           </p>

@@ -65,7 +65,7 @@ const Layout = () => {
               <Route element={<QuestionsAnswer />} path="/questionsAnswer" />
               <Route element={<RecoverPassword />} path="/recoverPassword" />
               <Route element={<OrderView />} path="/order" />
-              <Route element={<Product />} path="/product" />
+              <Route element={<Product />} path="/product/:dinamicId" />
 
 
 

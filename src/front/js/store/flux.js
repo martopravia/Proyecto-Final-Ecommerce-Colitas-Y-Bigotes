@@ -1,3 +1,5 @@
+import { Card } from "react-bootstrap";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -287,6 +289,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const product = await response.json();
 					console.log(product)
 					setStore({
+						id: product.id,
 						name: product.name,
 						photo: product.photo,
 						active: product.active,
@@ -297,6 +300,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						category_id: product.category_id,
 						subcategory_id: product.subcategory_id,
 						order: product.order,
+						category: product.category,
+						subcategory: product.subcategory,
 
 					})
 				} catch (error) {
@@ -377,21 +382,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			addToCart: (id, name, photo, description, price, quantity = 1) => {
 				const store = getStore()
-				const newCartItem = { id, name, photo, description, price, quantity }
-				const updatedCart = [...store.cart, newCartItem]
-				console.log("Carrito antes de actualizar:", store.cart);
-				console.log("Nuevo producto:", newCartItem);
-				const newCartTotal = store.cartTotal + price
-				setStore({
-					cart: updatedCart,
-					cartTotal: newCartTotal
+				if (store.cart.find(item => item.id == id)) {
+					const updatedCart = [...store.cart]
+					const cartItem = updatedCart.find(item => item.id == id)
+					cartItem.quantity += 1
+					const total = updatedCart.reduce((total, item) => total += item.price * item.quantity, 0)
+					setStore({
+						cart: updatedCart,
+						cartTotal: total
+					})
 
-				})
-
-				console.log("Producto añadido al carrito: ", newCartItem)
-				console.log("carrito actualizado: ", getStore().cart)
-				console.log("total del carrito $: ", store.cartTotal)
-
+				} else {
+					const newCartItem = { id, name, photo, description, price, quantity }
+					const updatedCart = [...store.cart, newCartItem]
+					const total = updatedCart.reduce((total, item) => total += item.price * item.quantity, 0)
+					setStore({
+						cart: updatedCart,
+						cartTotal: total
+					})
+				}
 			},
 			loadProducts: async () => {
 				try {
@@ -449,9 +458,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const newCart = [...store.cart]
 				const updatedCart = newCart.find((item) => item.id == id)
 				updatedCart.quantity = quantity
-				// updatedCart.price = updatedCart.price * quantity
+
 				const total = newCart.reduce((total, item) => total += item.price * item.quantity, 0)
-				
+
 				setStore({
 					cart: newCart,
 					cartTotal: total

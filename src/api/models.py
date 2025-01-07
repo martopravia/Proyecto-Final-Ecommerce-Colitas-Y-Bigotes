@@ -69,7 +69,9 @@ class Product(db.Model):
             "amount": self.amount,
             "category_id": self.category_id,
             "subcategory_id": self.subcategory_id,
-            "price": self.price
+            "price": self.price,
+            "category": self.category.name,
+            "subcategory": self.subcategory.name,
             
         }
     

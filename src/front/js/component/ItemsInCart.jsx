@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
-const ItemsInCart = ({id, name, photo, description, price, quantity = 1}) => {
-  const {store, actions} = useContext(Context)
- 
+const ItemsInCart = ({ id, name, photo, description, price, quantity = 1 }) => {
+  const { store, actions } = useContext(Context)
+
   return (
     <>
       <div className="row d-flex p-5">
@@ -30,7 +30,7 @@ const ItemsInCart = ({id, name, photo, description, price, quantity = 1}) => {
                   id=""
                   min="1"
                   max="10"
-                  defaultValue="1"
+                  value={quantity}
                   onChange={(e) => actions.updateCart(id, e.target.value)}
                 />
               </div>
