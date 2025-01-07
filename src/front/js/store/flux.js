@@ -22,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cart: [],
 			categories: null,
 			subcategories: null,
+			cartTotal: 0,
 
 
 
@@ -374,15 +375,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			},
-			addToCart: (id, name, photo, price) => {
+			addToCart: (id, name, photo, description, price, quantity = 1) => {
 				const store = getStore()
-				const newCartItem = { id, name, photo, price }
+				const newCartItem = { id, name, photo, description, price, quantity }
+				const updatedCart = [...store.cart, newCartItem]
+				console.log("Carrito antes de actualizar:", store.cart);
+				console.log("Nuevo producto:", newCartItem);
+				const newCartTotal = store.cartTotal + price
 				setStore({
-					cart: [{ ...store.cart, newCartItem }]
+					cart: updatedCart,
+					cartTotal: newCartTotal
 
 				})
+
 				console.log("Producto añadido al carrito: ", newCartItem)
 				console.log("carrito actualizado: ", getStore().cart)
+				console.log("total del carrito $: ", store.cartTotal)
 
 			},
 			loadProducts: async () => {
@@ -427,6 +435,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				}
 			},
+			removeFromCart: (id) => {
+				const store = getStore();
+				const updatedCart = store.cart.filter((item) => item.id !== id)
+				const total = updatedCart.reduce((total, item) => total += item.price * item.quantity, 0)
+				setStore({
+					cart: updatedCart,
+					cartTotal: total
+				})
+			},
+			updateCart: (id, quantity) => {
+				const store = getStore();
+				const newCart = [...store.cart]
+				const updatedCart = newCart.find((item) => item.id == id)
+				updatedCart.quantity = quantity
+				// updatedCart.price = updatedCart.price * quantity
+				const total = newCart.reduce((total, item) => total += item.price * item.quantity, 0)
+				
+				setStore({
+					cart: newCart,
+					cartTotal: total
+				})
+			},
+
+
 
 
 

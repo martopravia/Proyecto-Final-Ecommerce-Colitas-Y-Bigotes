@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 
-const ItemsInCart = () => {
+const ItemsInCart = ({id, name, photo, description, price, quantity = 1}) => {
+  const {store, actions} = useContext(Context)
+ 
   return (
     <>
       <div className="row d-flex p-5">
@@ -9,19 +12,17 @@ const ItemsInCart = () => {
             <div className="item ">
               <img
                 className="photoCart align-items-center rounded"
-                src="https://picsum.photos/200/300"
-                alt=""
+                src={photo}
+                alt={name}
               />
             </div>
             <div className="item-details d-flex flex-column justify-content-between">
-              <p className="ms-3 fs-4">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Asperiores id, voluptatem iste error numquam vitae labore vero
-                culpa consequatur eos illod minima exercitationem nisi tenetur
-                repellat! Ipsum officia.
-              </p>
+              <h3 className="ms-3 display-5">
+                {name}
+              </h3>
+              <p className="ms-3 fs-4">{description}</p>
               <div className="d-flex align-items-center">
-                <i className="bi bi-trash fs-4 trash-icon ms-3"></i>
+                <button className="border border-0 bg-white" onClick={() => actions.removeFromCart(id)}><i className="bi bi-trash fs-4 trash-icon ms-3"></i></button>
                 <input
                   className="ms-3 inputCart fs-4"
                   type="number"
@@ -30,6 +31,7 @@ const ItemsInCart = () => {
                   min="1"
                   max="10"
                   defaultValue="1"
+                  onChange={(e) => actions.updateCart(id, e.target.value)}
                 />
               </div>
             </div>
@@ -37,7 +39,7 @@ const ItemsInCart = () => {
         </div>
         <div className="col-12 col-md-6 d-flex justify-content-start justify-content-md-end mt-3 mt-md-0">
           <div className="product-price d-flex align-items-center  ">
-            <span className="ms-2 fs-2">$3.500</span>
+            <span className="ms-2 fs-2">${price * quantity}</span>
           </div>
         </div>
       </div>

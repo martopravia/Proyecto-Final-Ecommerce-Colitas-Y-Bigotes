@@ -64,6 +64,7 @@ const Categories = () => {
 
            <ProductCard
             key={product.id}
+            id={product.id}
             product={product}
             name={product.name}
             price={product.price}

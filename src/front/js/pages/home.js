@@ -18,9 +18,9 @@ export const Home = () => {
       if (!response.ok)
         throw new Error("Error en el fetch");
 
-      const products = await response.json();
+      const productsCharge = await response.json();
 
-      setProducts(products)
+      setProducts(productsCharge)
       console.log(products)
 
     }
@@ -39,6 +39,7 @@ export const Home = () => {
 
             return <ProductCard
               key={product.id}
+              id={product.id}
               product={product}
               name={product.name}
               price={product.price}

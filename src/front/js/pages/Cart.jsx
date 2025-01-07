@@ -1,19 +1,17 @@
-import React, { useContext, useEffect } from "react";
-import CardCategory from "../component/CardCategory.jsx";
+import React, { useContext, useEffect, useState } from "react";
+
 import ItemsInCart from "../component/ItemsInCart.jsx";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 
 const Cart = () => {
-  const {store, actions} = useContext(Context)
-
-  useEffect(() =>{
-    actions.addToCart()
-  },[])
+  const { store, actions } = useContext(Context);
+  const {total, setTotal} = useState(0);
+  
+  useEffect(() => {}, []);
   return (
     <>
       <div className="container-fluid">
-
         <div className="row d-flex mt-5 px-3 px-md-5 pt-5 pb-3">
           <div className="titles d-flex align-items-center">
             <h1 className="d-inline-block">Carrito de compras</h1>
@@ -25,24 +23,37 @@ const Cart = () => {
             </span>
           </div>
           <hr className="mt-4" />
-          <ItemsInCart />
-          <ItemsInCart />
+
+          {Array.isArray(store.cart) && store.cart.length > 0 ? (
+            store.cart.map((item, index) => (
+              <ItemsInCart
+                key={index}
+                id={item.id}
+                name={item.name}
+                photo={item.photo}
+                description={item.description}
+                price={item.price}
+                quantity={item.quantity}
+              />
+            ))
+          ) : (
+            <p>No hay productos en el carrito</p>
+          )}
+
           <hr />
           <div className="px-3 px-md-5 py-1 text-end fs-3">
-            Total (4 productos): $3.500
+            Total ({store.cart.length} productos): $ {store.cartTotal}
           </div>
           <div className="px-3 px-md-5 py-2 text-end">
             <Link
               to="/confirmbuys"
               className="btn btn-outline-dark fw-bold button fs-3"
               type="button"
-              
             >
               Continuar al pago
             </Link>
           </div>
         </div>
-
 
         <div className="row">
           <div className="col-12 px-3 px-md-5 pb-4">
@@ -52,17 +63,10 @@ const Cart = () => {
             <div
               className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 
               justify-content-between g-4 mb-5"
-            >
-              <CardCategory />
-              <CardCategory />
-              <CardCategory />
-              <CardCategory />
-              <CardCategory />
-            </div>
+            ></div>
           </div>
         </div>
       </div>
-      
     </>
   );
 };

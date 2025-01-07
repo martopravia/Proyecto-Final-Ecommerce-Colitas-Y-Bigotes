@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import ProductCard from './ProductCard.jsx'
 import { Context } from '../store/appContext.js'
 
-const Products = ({ id, photo, name, price, categorys, descripción, addToCart }) => {
+const Products = ({ id, photo, name, price, categorys, descripción, quantity = 1 }) => {
     const { store, actions } = useContext(Context)
     return (
         <div className="container">
@@ -15,7 +15,7 @@ const Products = ({ id, photo, name, price, categorys, descripción, addToCart }
                     <h4 className='mb-4'>{price} Lorem, ipsum dolor.</h4>
                     <div class="btn-group me-4 mb-md-2" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-outline-dark">-</button>
-                        <button type="button" class="btn btn-outline-dark" disabled>1</button>
+                        <button type="button" class="btn btn-outline-dark" disabled>{quantity}</button>
                         <button type="button" class="btn btn-outline-dark">+</button>
                     </div>
                     <button className='btn btn-outline-dark' onClick={() => actions.addToCart(id, name, photo, price)} >Añadir al carro <i className="fa-solid fa-cart-shopping"></i> </button>

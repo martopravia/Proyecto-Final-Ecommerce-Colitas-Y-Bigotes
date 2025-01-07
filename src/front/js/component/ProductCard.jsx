@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "../../styles/cards.css";
 import { Context } from "../store/appContext";
 
-const ProductCard = ({id, name, photo, description, price}) => {
+const ProductCard = ({id, name, photo, description, price, quantity}) => {
   const {store, actions} = useContext(Context)
 
   return (
@@ -10,7 +10,7 @@ const ProductCard = ({id, name, photo, description, price}) => {
       <div className="card product-card text-center h-100">
         <img
           src={photo}
-          className="card-img-top"
+          className="object-fit-cover"
           alt="Producto"
         />
         <div className="card-body">
@@ -21,9 +21,9 @@ const ProductCard = ({id, name, photo, description, price}) => {
           <p className="card-text">
             $ {price}
           </p>
-          <a href="#" className="btn btn-primary">
+          <button  className="btn btn-primary" onClick={() => {actions.addToCart(id, name, photo, description, price)}}>
             Agregar al carro
-          </a>
+          </button>
         </div>
       </div>
     </div>

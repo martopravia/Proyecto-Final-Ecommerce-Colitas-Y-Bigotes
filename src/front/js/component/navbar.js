@@ -37,6 +37,7 @@ export const Navbar = () => {
 
                   <Link to="/cart" className="btn btn-light">
                     <i className="fas fa-shopping-cart fs-3" />
+                    <span className="ms-2 fs-4" >{store.cart.length}</span>
                   </Link>
                 </div>
                 <div className="dropdown">
@@ -95,6 +96,7 @@ export const Navbar = () => {
                 </Link>
                 <Link to="/cart" className="btn btn-light">
                   <i className="fas fa-shopping-cart fs-3" />
+                  <span className="ms-2 fs-4" >{store.cart.length}</span>
                 </Link>
               </div>
             )}
