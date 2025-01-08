@@ -530,9 +530,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})	
 					
 					const data = await response.json()
-					currentUser.name = data?.profile?.name
-					currentUser.lastname = data?.profile?.lastname
-					sessionStorage.setItem('currentUser', JSON.stringify(currentUser))
+					
 					
 					setStore({
 						currentUser
