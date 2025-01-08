@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import {Context} from "../store/appContext.js"
+
 
 const Profile = () => {
 
 
   const [message, setMessage] = useState(null)
   const [styleMessage, setStyleMessage] = useState(null)
+  const {store, actions} = useContext(Context)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -14,8 +17,7 @@ const Profile = () => {
     const {
       inputName,
       inputLastName,
-      inputPhone,
-      inputAddress,
+      inputEmail,
       inputPassword,
       inputNewPassword,
       reconfirmNewPassword
@@ -35,18 +37,13 @@ const Profile = () => {
     } else {
       inputLastName.classList.remove("is-invalid")
     }
-    if (inputPhone.value == "") {
-      inputPhone.classList.add("is-invalid")
+    if (inputEmail.value == "") {
+      inputEmail.classList.add("is-invalid")
       errorForm = true;
     } else {
-      inputPhone.classList.remove("is-invalid")
+      inputEmail.classList.remove("is-invalid")
     }
-    if (inputAddress.value == "") {
-      inputAddress.classList.add("is-invalid")
-      errorForm = true;
-    } else {
-      inputAddress.classList.remove("is-invalid")
-    }
+   
     if (inputPassword.value !== "") {
       if (inputNewPassword.value == "") {
         inputNewPassword.classList.add("is-invalid")
@@ -93,7 +90,7 @@ const Profile = () => {
             {message}
           </div>
         )}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={actions.updateProfile}>
           <div className="row mt-3">
             <div className="col-md-3 text-center d-flex flex-column align-items-center">
               <img
@@ -111,51 +108,55 @@ const Profile = () => {
 
             <div className="col-md-4">
               <div className="mb-3">
-                <label htmlFor="inputName" className="form-label">
+                <label htmlFor="name" className="form-label">
                   <h4>Nombre</h4>
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="inputName"
+                  id="name"
                   placeholder="Ingrese su nombre..."
+                  defaultValue={store.currentUser?.name}
                 />
-                <label htmlFor="inputLastName" className="form-label mt-5">
+                <label htmlFor="lastname" className="form-label mt-5">
                   <h4>Apellido</h4>
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="inputLastName"
+                  id="lastname"
                   placeholder="Ingrese su apellido..."
+                  defaultValue={store.currentUser?.lastname}
                 />
               </div>
             </div>
 
             <div className="col-md-4">
-              <div className="mb-3">
-                <label htmlFor="inputPhone" className="form-label">
-                  <h4>Celular</h4>
+              <div className="mb-5">
+                <label htmlFor="inputEmail" className="form-label">
+                  <h4>Email</h4>
                 </label>
                 <input
-                  type="tel"
-                  className="form-control"
-                  id="inputPhone"
-                  placeholder="Ingrese su celular..."
+                  type="email"
+                  className="form-control disabled"
+                  id="inputEmail"
+                  placeholder="Ingrese su email..."
+                  defaultValue={store.currentUser?.email}
+                  readOnly
+                  disabled
+
                 />
-                <label htmlFor="inputAddress" className="form-label mt-5">
-                 <h4>Domicilio completo</h4> 
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputAddress"
-                  placeholder="Ingrese su domicilio completo..."
-                />
+                <div className="mt-5 mt-2-sm pt-5">
+                <button type="submit" className="btn btn-secondary" >Actualizar cambios</button>
+                </div>
+                
+                
               </div>
             </div>
           </div>
 
+        </form>
+        <form onSubmit={actions.updatePassword}>
           <div className="row mt-3">
             <div className="col-md-7 offset-md-3">
               <div className="border p-2 text-center d-flex flex-column justify-content-center">
@@ -166,7 +167,7 @@ const Profile = () => {
                 <input
                   type="password"
                   className="form-control my-2 w-50 mx-auto"
-                  id="inputPassword"
+                  id="current_password"
                   placeholder="Ingrese su contraseña..."
                 />
                 <label htmlFor="inputNewPassword" className="form-label m-2">
@@ -175,7 +176,7 @@ const Profile = () => {
                 <input
                   type="password"
                   className="form-control my-2 w-50 mx-auto"
-                  id="inputNewPassword"
+                  id="new_password"
                   placeholder="Ingrese su nueva contraseña..."
                 />
                 <label
@@ -187,7 +188,7 @@ const Profile = () => {
                 <input
                   type="password"
                   className="form-control my-2 w-50 mx-auto"
-                  id="reconfirmNewPassword"
+                  id="confirm_password"
                   placeholder="Confirme su nueva contraseña..."
                 />
               </div>

@@ -21,7 +21,7 @@ export const Home = () => {
       const productsCharge = await response.json();
 
       setProducts(productsCharge)
-      console.log(products)
+      
 
     }
 

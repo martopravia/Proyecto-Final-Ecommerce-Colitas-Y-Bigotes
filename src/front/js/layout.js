@@ -26,6 +26,7 @@ import ProductPanel from "./component/products/ProductPanel.jsx";
 import ProductEdit from "./component/products/ProductEdit.jsx";
 import ProductCreate from "./component/products/ProductCreate.jsx";
 import ConfirmBuys from "./pages/confirm_buys.js"
+import Pay from "./pages/Pay.jsx"
 
 //create your first component
 const Layout = () => {
@@ -63,6 +64,7 @@ const Layout = () => {
               <Route element={<Categories />} path="/categories/:category/:subcategory" />
 
               <Route element={<Cart />} path="/cart" />
+              <Route element={<Pay />} path="/pay" />
               <Route element={<QuestionsAnswer />} path="/questionsAnswer" />
               <Route element={<RecoverPassword />} path="/recoverPassword" />
               <Route element={<OrderView />} path="/order" />

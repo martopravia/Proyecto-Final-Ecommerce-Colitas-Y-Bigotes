@@ -475,7 +475,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						throw new Error("Error en el fetch");
 
 					const products = await response.json();
-					
+
 					console.log(products)
 					setStore({
 						relatedProducts: products
@@ -483,6 +483,68 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				} catch (error) {
 					console.error("Error en el fetch:", error);
+				}
+			},
+			updateProfile: async (e) => {
+				e.preventDefault()
+				const{name, lastname} = e.target
+				try {
+					const { currentUser, token } = getStore()
+					const response = await fetch('https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/profile', {
+						method: "PUT",
+						body: JSON.stringify({name: name.value, lastname: lastname.value}),
+						headers: {
+							"Content-Type" : "application/json",
+							"Authorization" : "Bearer " + token
+						}
+					})	
+					
+					const data = await response.json()
+					currentUser.name = data?.profile?.name
+					currentUser.lastname = data?.profile?.lastname
+					sessionStorage.setItem('currentUser', JSON.stringify(currentUser))
+					setStore({
+						currentUser
+					})
+					alert(data?.message)
+				} catch (error) {
+
+				}
+			},
+			updatePassword: async (e) => {
+				e.preventDefault()
+				const{current_password, new_password, confirm_password} = e.target
+				if (new_password.value !== confirm_password.value) {
+					alert("Las contraseñas no coinciden")
+					return;
+				}
+				try {
+					const { currentUser, token } = getStore()
+					const response = await fetch('https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/update-password', {
+						method: "PUT",
+						body: JSON.stringify({current_password: current_password.value, new_password: new_password.value}),
+						headers: {
+							"Content-Type" : "application/json",
+							"Authorization" : "Bearer " + token
+						}
+					})	
+					
+					const data = await response.json()
+					currentUser.name = data?.profile?.name
+					currentUser.lastname = data?.profile?.lastname
+					sessionStorage.setItem('currentUser', JSON.stringify(currentUser))
+					
+					setStore({
+						currentUser
+					})
+					alert(data?.message)
+				} catch (error) {
+
+				}
+				finally{
+					current_password.value = ""
+					new_password.value = ""
+					confirm_password.value = ""
 				}
 			}
 

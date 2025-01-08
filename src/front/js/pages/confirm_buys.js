@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 import CardCategory from '../component/CardCategory.jsx'
+import { Link } from 'react-router-dom'
 
 
 const ConfirmBuys = () => {
@@ -170,21 +171,22 @@ const ConfirmBuys = () => {
                                 <label htmlFor="afternoon" className='btn btn-light fs-4 mt-2'>De 13-21 hs</label>
                             </fieldset>
                         </div>
-                        <button id="sendForm" className="btn btn-dark mt-5 fs-4" type=''> Continuar al pago </button>
+                        <Link id="sendForm" className="btn btn-dark mt-5 fs-4" type='' to="/pay"> Continuar al pago </Link>
                     </div>
                 </div>
             </form>
             <hr />
             <div className="row">
                 <div className="col-12 px-3 px-md-5 pb-4">
-                    <h2>¿Se te olvidó algo?</h2>
+
+                    <Link to="/" className="btn btn-dark mt-5 fs-4" >¿Se te olvidó algo?</Link>
                 </div>
                 <div className="container px-3 px-md-5">
                     <div
                         className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 
               justify-content-between g-4 mb-5"
                     >
-                       
+
                     </div>
                 </div>
             </div>

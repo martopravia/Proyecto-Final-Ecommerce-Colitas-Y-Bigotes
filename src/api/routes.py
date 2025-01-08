@@ -8,7 +8,7 @@ from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import os, datetime
 from base64 import b64encode
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 import cloudinary.uploader
 from random import sample
 api = Blueprint('api', __name__)
@@ -235,7 +235,7 @@ def login():
         else: 
             if check_password_hash(user.password, f"{password}{user.salt}"):
                 expire_at = datetime.timedelta(days=3)
-                token = create_access_token(identity=user.id, expires_delta=expire_at)
+                token = create_access_token(identity=str(user.id), expires_delta=expire_at)
                 return jsonify({
                     "token" : token,
                     "name" : user.name,
@@ -278,4 +278,56 @@ def update_product(id):
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
 
+@api.route('/profile', methods=["PUT"])
+@jwt_required()
+def update_profile():
+    try:
+        id = get_jwt_identity()
+        profile = User.query.get(id)
+        body = request.json
         
+        
+        
+        profile.name = body.get('name', profile.name)
+        profile.lastname = body.get('lastname', profile.lastname)
+        profile.email = body.get('email', profile.email)
+        
+        db.session.commit()          
+        return jsonify({"message": "Perfil modificado correctamente", "profile": profile.serialize()}), 200
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500    
+    
+    
+  
+
+@api.route('/update-password', methods=["PUT"])
+@jwt_required()
+def change_password():
+    try:
+        id = get_jwt_identity()
+        profile = User.query.get(id)
+        body = request.json
+        current_password = body.get("current_password")
+        new_password= body.get("new_password")
+        
+        if current_password is None or new_password is None:
+            return jsonify({"message" : "Los campos contraseña actual y nueva contraseña son obligatorios"}), 400
+       
+        if not check_password_hash(profile.password, f"{current_password}{profile.salt}"):
+            return jsonify({"message" : "La constraseña actual no es correcta"}), 400
+        
+        salt = b64encode(os.urandom(32)).decode("utf-8")
+        new_password = generate_password_hash(f"{new_password}{salt}")
+     
+        profile.password = new_password
+        profile.salt = salt
+        
+        db.session.commit()
+        return jsonify({"message" : "Contraseña actualizada correctamente"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500     
+    
+              
