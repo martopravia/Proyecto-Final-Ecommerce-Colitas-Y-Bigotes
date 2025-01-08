@@ -50,7 +50,7 @@ def get_products_by_category_and_subcategory(category_id, subcategory_id):
 @api.route('/products/related/<int:category_id>', methods=['GET'])
 def get_randomProduct_by_category(category_id):
     
-    products = Product.query.filter(Product.category_id == category_id).order_by(db.func.random()).limit(5).all()
+    products = Product.query.filter(Product.category_id == category_id).order_by(db.func.random()).limit(4).all()
     products_ids = (prod.id for prod in products)
     ramdom_products = Product.query.filter(Product.id.in_(products_ids)).all()
 

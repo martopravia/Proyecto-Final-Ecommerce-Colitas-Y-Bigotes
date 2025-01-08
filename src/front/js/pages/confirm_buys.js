@@ -108,7 +108,7 @@ const ConfirmBuys = () => {
             <div className='row'>
 
                 <div className='col-md-12'>
-                    <h1 className='pt-5 px-5'>Confirmar tus datos aqui <i class="fa-solid fa-cart-arrow-down"></i></h1>
+                    <h1 className='pt-5 px-5'>Confirmar tus datos aqui <i className="fa-solid fa-cart-arrow-down"></i></h1>
                 </div>
             </div>
             <form onSubmit={handleSubmit}>
@@ -134,16 +134,16 @@ const ConfirmBuys = () => {
                             <input type='text' placeholder='Ingrese su teléfono. Ej: +99999999' className='form-control  mb-3' id='address_phone' />
                         </div>
                         <div className='form-group mb-3'>
-                            <div class="form-floating">
+                            <div className="form-floating">
                                 <textarea className="form-control" placeholder="Leave a comment here" id="comments_order" rows='10'></textarea>
-                                <label className="w-50" for="comments_order">Ingrese comentarios para el envío...</label>
+                                <label className="w-50" htmlFor="comments_order">Ingrese comentarios para el envío...</label>
                             </div>
                         </div>
                     </div>
                     <div className='d-none d-md-block col-md-1'></div>
                     <div className='col-md-4'>
                         <div className='form-group mb-3 px-2'>
-                            <label for='company' className='form-label fs-4'>
+                            <label htmlFor='company' className='form-label fs-4'>
                                 <input type='checkbox' id="company" className='form-label me-2 my-3' />
                                 Hacer click en caso de empresa
                             </label>
@@ -165,9 +165,9 @@ const ConfirmBuys = () => {
                             <fieldset>
                                 <legend className='h5 pt-4 fs-4'> Seleccione un rango de horario para el envío: </legend>
                                 <input type='radio' className='btn-check' name='delivery_time' value="M" id='morning' />
-                                <label for="morning" className='btn btn-light me-2 fs-4 mt-2'>De 9-13 hs</label>
+                                <label htmlFor="morning" className='btn btn-light me-2 fs-4 mt-2'>De 9-13 hs</label>
                                 <input type='radio' className='btn-check' name='delivery_time' value="A" id='afternoon' />
-                                <label for="afternoon" className='btn btn-light fs-4 mt-2'>De 13-21 hs</label>
+                                <label htmlFor="afternoon" className='btn btn-light fs-4 mt-2'>De 13-21 hs</label>
                             </fieldset>
                         </div>
                         <button id="sendForm" className="btn btn-dark mt-5 fs-4" type=''> Continuar al pago </button>
@@ -184,11 +184,7 @@ const ConfirmBuys = () => {
                         className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 
               justify-content-between g-4 mb-5"
                     >
-                        <CardCategory />
-                        <CardCategory />
-                        <CardCategory />
-                        <CardCategory />
-                        <CardCategory />
+                       
                     </div>
                 </div>
             </div>
@@ -196,4 +192,4 @@ const ConfirmBuys = () => {
     )
 }
 
-export default ConfirmBuys
+export default ConfirmBuys;

@@ -469,16 +469,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loadProductByCategoryRelated: async (category) => {
 				try {
 					const store = getStore()
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/categories/${category}`);
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/related/${category}`);
+					console.log(response)
 					if (!response.ok)
 						throw new Error("Error en el fetch");
 
 					const products = await response.json();
-
+					
+					console.log(products)
 					setStore({
 						relatedProducts: products
 					})
-
 
 				} catch (error) {
 					console.error("Error en el fetch:", error);

@@ -10,7 +10,7 @@ import injectContext, { Context } from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import ConfirmBuys from "./pages/confirm_buys.js";
+
 import Register from "./pages/register";
 import Categories from "./pages/Categories.jsx";
 import Cart from "./pages/Cart.jsx";
@@ -25,6 +25,7 @@ import Panel from "./component/Panel.jsx";
 import ProductPanel from "./component/products/ProductPanel.jsx";
 import ProductEdit from "./component/products/ProductEdit.jsx";
 import ProductCreate from "./component/products/ProductCreate.jsx";
+import ConfirmBuys from "./pages/confirm_buys.js"
 
 //create your first component
 const Layout = () => {
@@ -55,8 +56,8 @@ const Layout = () => {
                 path="/profile"
               />
               <Route element={<Register />} path="/register" />
-              <Route element={<ConfirmBuys />} path="/confirmbuys" />
-
+              <Route element={<ConfirmBuys/>} path="/confirmbuys" />
+             
               <Route element={<Access />} path="/access" />
               <Route element={<Categories />} path="/categories/:category" />
               <Route element={<Categories />} path="/categories/:category/:subcategory" />
