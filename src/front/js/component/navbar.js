@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "./../../img/logo.png";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
@@ -7,10 +7,13 @@ import { Context } from "../store/appContext";
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const [searchWord, setSearchWord] = useState("")
+  const navigate = useNavigate()
 
   const handleSearch = (e) => {
     e.preventDefault()
     actions.getProductByName(searchWord)
+    navigate(`/?search=${searchWord}`)
+
   }
   return (
     <>
