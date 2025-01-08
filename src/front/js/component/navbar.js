@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "./../../img/logo.png";
 import { useContext } from "react";
@@ -6,7 +6,12 @@ import { Context } from "../store/appContext";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
+  const [searchWord, setSearchWord] = useState("")
 
+  const handleSearch = (e) => {
+    e.preventDefault()
+    actions.getProductByName(searchWord)
+  }
   return (
     <>
       <nav className="navbar bg-light py-2 px-3 px-md-5">
@@ -14,13 +19,14 @@ export const Navbar = () => {
           <Link className="navbar-brand" to="/">
             <img src={logo} alt="Logo" className="me-2 imgNavbar" />
           </Link>
-          <form className="mx-auto mx-2 mx-md-4 formNavbar" role="search">
+          <form className="mx-auto mx-2 mx-md-4 formNavbar" role="search" onSubmit={handleSearch}>
             <div className="input-group">
               <input
                 type="search"
                 className="form-control rounded-pill"
                 placeholder="Buscador"
                 aria-label="Buscar"
+                onChange={(e) => setSearchWord(e.target.value)}
               />
               <button
                 className="btn btn-outline-secondary rounded-circle ms-2"

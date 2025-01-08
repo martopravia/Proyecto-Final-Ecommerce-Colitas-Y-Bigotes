@@ -26,6 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			subcategories: null,
 			cartTotal: 0,
 			relatedProducts: [],
+			filteredProducts: [],
 
 
 
@@ -544,7 +545,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 					new_password.value = ""
 					confirm_password.value = ""
 				}
-			}
+			},
+			getProductByName: async (search) => {
+				try {
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/search?q=${search}`);
+					if (!response.ok)
+						throw new Error("Error en el fetch");
+
+					const data = await response.json();
+					console.log(data)
+
+					setStore({
+						products: data,
+								
+
+					})
+				} catch (error) {
+					console.error("Error en el fetch:", error);
+				}
+
+			},
+			loadProducts: async () => {
+				try {
+				  const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
+				  if (!response.ok)
+					throw new Error("Error en el fetch");
+			
+				  const productsCharge = await response.json();
+			
+				  setStore({
+					products : productsCharge
+				  })
+				  
+			
+				}
+			
+				catch (error) {
+				  console.error("Error en el fetch1:", error);
+				}
+			  }
+			
+			
 
 
 

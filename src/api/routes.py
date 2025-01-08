@@ -330,4 +330,16 @@ def change_password():
         db.session.rollback()
         return jsonify({"error": str(e)}), 500     
     
+
+@api.route('/products/search', methods=["GET"])
+def search_products():
+    search_word = request.args.get("q")
+    if not search_word:
+        products = Product.query.all()
+        products_serialized = [product.serialize() for product in products]
+        return jsonify(products_serialized), 200  
+     
               
+    products = Product.query.filter(Product.name.ilike(f"%{search_word}%"))
+    products = [prod.serialize() for prod in products] 
+    return jsonify(products), 200
