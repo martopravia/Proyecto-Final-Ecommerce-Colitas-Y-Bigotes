@@ -10,9 +10,10 @@ const Products = () => {
     const [quantity, setQuantity] = useState(1)
 
     useEffect(() => {
-        actions.getProductById(dinamicId)
-
+        actions.getProductById(dinamicId);
+        actions.loadProductByCategoryRelated(dinamicId)
     }, [])
+
     return (
         <div className="container">
             <div className='row p-4'>
@@ -51,11 +52,46 @@ const Products = () => {
             <div className='row'>
                 <h4 className='my-3'> Productos relacionados con este artículo: </h4>
 
-                <ProductCard addToCart={actions.addToCart} />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                {store.relatedProducts && store.relatedProducts.length > 0 ? (
+                    store.relatedProducts.slice(0, 5).map(product => (
+                        <div className="col-md-4" key={product.id}>
+                            <ProductCard 
+                                 id={product.id}
+                                 product={product}
+                                 name={product.name}
+                                 price={product.price}
+                                 description={product.description}
+                                 photo={product.photo} />
+                        </div>
+                    ))
+                ) : (
+                    <p>No hay productos relacionados disponibles.</p>
+                )}
             </div>
+
+            {/* <div className='row'>
+                <h4 className='my-3'> Productos relacionados con este artículo: </h4>
+
+                {
+                
+                store.relatedProducts.slice(0, 5).map(product => {
+
+                        return(
+                            <div className='col-md-4' key={product.id}>
+                                <ProductCard
+                                    id={product.id}
+                                    product={product}
+                                    name={product.name}
+                                    price={product.price}
+                                    description={product.description}
+                                    photo={product.photo} />
+                                <div/>
+                            )
+                    })
+                         
+                }    
+                        </div > */}
+
 
         </div>
     )

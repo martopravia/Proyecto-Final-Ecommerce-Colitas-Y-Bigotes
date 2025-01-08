@@ -10,7 +10,7 @@ import os, datetime
 from base64 import b64encode
 from flask_jwt_extended import create_access_token
 import cloudinary.uploader
-
+from random import sample
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
@@ -46,6 +46,17 @@ def get_products_by_category_and_subcategory(category_id, subcategory_id):
     products = Product.query.filter_by(category_id=category_id, subcategory_id=subcategory_id).all()
     return jsonify([product.serialize() for product in products]), 200  
    
+
+@api.route('/products/related/<int:category_id>', methods=['GET'])
+def get_randomProduct_by_category(category_id):
+    
+    products = Product.query.filter(Product.category_id == category_id).order_by(db.func.random()).limit(5).all()
+    products_ids = (prod.id for prod in products)
+    ramdom_products = Product.query.filter(Product.id.in_(products_ids)).all()
+
+    return jsonify([product.serialize() for product in ramdom_products]), 200 
+
+
        
 @api.route('/products', methods=['POST'])
 def add_products():

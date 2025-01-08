@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			categories: null,
 			subcategories: null,
 			cartTotal: 0,
-
+			relatedProducts: [],
 
 
 
@@ -466,8 +466,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					cartTotal: total
 				})
 			},
+			loadProductByCategoryRelated: async (category) => {
+				try {
+					const store = getStore()
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/categories/${category}`);
+					if (!response.ok)
+						throw new Error("Error en el fetch");
+
+					const products = await response.json();
+
+					setStore({
+						relatedProducts: products
+					})
 
 
+				} catch (error) {
+					console.error("Error en el fetch:", error);
+				}
+			}
 
 
 
