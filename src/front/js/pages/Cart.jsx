@@ -57,7 +57,7 @@ const Cart = () => {
 
         <div className="row">
           <div className="col-12 px-3 px-md-5 pb-4">
-            <h2>¿Se te olvidó algo?</h2>
+             <Link to="/" className="btn btn-dark mt-5 fs-4" >Seguir comprando</Link>
           </div>
           <div className="container px-3 px-md-5">
             <div

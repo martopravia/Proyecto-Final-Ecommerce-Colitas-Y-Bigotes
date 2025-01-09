@@ -333,8 +333,7 @@ def change_password():
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500     
-    
-
+  
 @api.route('/products/search', methods=["GET"])
 def search_products():
     search_word = request.args.get("q")
