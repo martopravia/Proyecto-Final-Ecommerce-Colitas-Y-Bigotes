@@ -544,6 +544,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					new_password.value = ""
 					confirm_password.value = ""
 				}
+			}, 
+			searchProduct: async (name) => {
+				try {
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/${name}`);
+					
+					if (!response.ok)
+						throw new Error("Error en el fetch");
+
+					const product = await response.json();
+					const search = product.filter(item => item.name == name)
+
+					console.log(product)
+					return search
+					
+					
+				} catch (error) {
+					console.error("Error en el fetch1:", error);
+				}
+
 			}
 
 

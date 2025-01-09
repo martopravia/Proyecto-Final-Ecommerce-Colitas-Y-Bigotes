@@ -178,17 +178,9 @@ const ConfirmBuys = () => {
             <hr />
             <div className="row">
                 <div className="col-12 px-3 px-md-5 pb-4">
-
-                    <Link to="/" className="btn btn-dark mt-5 fs-4" >¿Se te olvidó algo?</Link>
+                     <h3>¿Se te olvidó algo?</h3>
                 </div>
-                <div className="container px-3 px-md-5">
-                    <div
-                        className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 
-              justify-content-between g-4 mb-5"
-                    >
-
-                    </div>
-                </div>
+                
             </div>
         </div >
     )

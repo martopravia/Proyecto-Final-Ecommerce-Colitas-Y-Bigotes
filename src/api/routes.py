@@ -329,5 +329,10 @@ def change_password():
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500     
+
+@api.route('/products/<name>', methods=['GET'])
+def get_products_by_name(name):
+    product = Product.query.get(name)
     
+    return jsonify(product.serialize()), 200
               
