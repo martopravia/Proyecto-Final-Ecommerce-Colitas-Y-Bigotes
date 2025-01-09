@@ -27,6 +27,7 @@ import ProductEdit from "./component/products/ProductEdit.jsx";
 import ProductCreate from "./component/products/ProductCreate.jsx";
 import ConfirmBuys from "./pages/confirm_buys.js"
 import Pay from "./pages/Pay.jsx"
+import Forgot from "./pages/Forgot.jsx";
 
 //create your first component
 const Layout = () => {
@@ -60,6 +61,7 @@ const Layout = () => {
               <Route element={<ConfirmBuys/>} path="/confirmbuys" />
              
               <Route element={<Access />} path="/access" />
+              <Route element={<Forgot />} path="/forgot" />
               <Route element={<Categories />} path="/categories/:category" />
               <Route element={<Categories />} path="/categories/:category/:subcategory" />
 

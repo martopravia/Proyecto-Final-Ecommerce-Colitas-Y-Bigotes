@@ -349,7 +349,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						headers: {
 							"Content-type": "application/json"
 						},
-						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname, admin: admin })
+						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname })
 					})
 					if (response.ok) {
 
@@ -489,18 +489,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			updateProfile: async (e) => {
 				e.preventDefault()
-				const{name, lastname} = e.target
+				const { name, lastname } = e.target
 				try {
 					const { currentUser, token } = getStore()
 					const response = await fetch('https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/profile', {
 						method: "PUT",
-						body: JSON.stringify({name: name.value, lastname: lastname.value}),
+						body: JSON.stringify({ name: name.value, lastname: lastname.value }),
 						headers: {
-							"Content-Type" : "application/json",
-							"Authorization" : "Bearer " + token
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + token
 						}
-					})	
-					
+					})
+
 					const data = await response.json()
 					currentUser.name = data?.profile?.name
 					currentUser.lastname = data?.profile?.lastname
@@ -515,7 +515,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			updatePassword: async (e) => {
 				e.preventDefault()
-				const{current_password, new_password, confirm_password} = e.target
+				const { current_password, new_password, confirm_password } = e.target
 				if (new_password.value !== confirm_password.value) {
 					alert("Las contraseñas no coinciden")
 					return;
@@ -524,16 +524,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const { currentUser, token } = getStore()
 					const response = await fetch('https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/update-password', {
 						method: "PUT",
-						body: JSON.stringify({current_password: current_password.value, new_password: new_password.value}),
+						body: JSON.stringify({ current_password: current_password.value, new_password: new_password.value }),
 						headers: {
-							"Content-Type" : "application/json",
-							"Authorization" : "Bearer " + token
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + token
 						}
-					})	
-					
+					})
+
 					const data = await response.json()
-					
-					
+
+
 					setStore({
 						currentUser
 					})
@@ -541,7 +541,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 
 				}
-				finally{
+				finally {
 					current_password.value = ""
 					new_password.value = ""
 					confirm_password.value = ""
@@ -558,7 +558,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					setStore({
 						products: data,
-								
+
 
 					})
 				} catch (error) {
@@ -568,25 +568,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadProducts: async () => {
 				try {
-				  const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
-				  if (!response.ok)
-					throw new Error("Error en el fetch");
-			
-				  const productsCharge = await response.json();
-			
-				  setStore({
-					products : productsCharge
-				  })
-				  
-			
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
+					if (!response.ok)
+						throw new Error("Error en el fetch");
+
+					const productsCharge = await response.json();
+
+					setStore({
+						products: productsCharge
+					})
+
+
 				}
-			
+
 				catch (error) {
-				  console.error("Error en el fetch1:", error);
+					console.error("Error en el fetch:", error);
 				}
-			  }
-			
-			
+			},
+			sendEmail: async (e) => {
+				e.preventDefault()
+				try {
+					const {email} = e.target
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/send-email`, {
+						method: "POST",
+						body: JSON.stringify({ email: email.value}),
+						headers: {
+							"Content-Type": "application/json",
+						}
+					}
+					
+					);
+					if (!response.ok)
+						throw new Error("Error en el fetch");
+
+					const productsCharge = await response.json();
+
+					setStore({
+						products: productsCharge
+					})
+
+
+				}
+
+				catch (error) {
+					console.error("Error en el fetch:", error);
+				}
+			},
+		
+
+
 
 
 

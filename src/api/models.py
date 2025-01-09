@@ -117,6 +117,7 @@ class Stock(db.Model):
             # do not serialize the password, its a security breach
         }
         
+       
 class Gallery(db.Model):
     __tablename__ = "gallery"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False )
@@ -146,3 +147,29 @@ class Gallery(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+class RecoverPassword(db.Model):
+    __tablename__ = "recover_password"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    otp = db.Column(db.String(120), nullable=False)
+    active = db.Column(db.Boolean, default=True)
+    
+    def serialize(self):
+        return{
+            "id": self.id,
+            "email": self.email,
+            "otp": self.otp,
+            "active": self.active,
+        }
+    def save(self):
+        db.session.add(self)
+        db.session.commit(self)
+    
+    def update(self):
+        db.session.commit()
+        
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+    

@@ -32,7 +32,7 @@ export const Access = () => {
                         <input type="checkbox" id="remember_me" />
                         <label htmlFor="remember_me" className="ms-1 fs-5">Recuérdame</label>
                     </div>
-                    <a href="#" className="text-decoration-none fs-5">¿Olvidaste tu contraseña?</a>
+                    <Link  className="text-decoration-none fs-5" to={'/forgot'}>¿Olvidaste tu contraseña?</Link>
                 </div>
             </form>
 
