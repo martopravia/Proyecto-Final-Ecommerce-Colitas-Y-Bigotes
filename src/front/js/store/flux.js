@@ -349,7 +349,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						headers: {
 							"Content-type": "application/json"
 						},
-						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname })
+						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname, admin: admin })
 					})
 					if (response.ok) {
 
@@ -358,6 +358,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							email: data.email,
 							name: data.name,
 							lastname: data.lastname,
+							admin: data.admin || false,
 
 						};
 						sessionStorage.setItem("token", data.token);
