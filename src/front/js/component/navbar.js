@@ -12,7 +12,8 @@ export const Navbar = () => {
   const handleSearch = (e) => {
     e.preventDefault()
     actions.getProductByName(searchWord)
-    navigate(`/?search=${searchWord}`)
+    navigate(`/?search=` + actions.getProductByName(searchWord) )
+  
 
   }
   return (
