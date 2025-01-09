@@ -26,6 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			subcategories: null,
 			cartTotal: 0,
 			relatedProducts: [],
+			filteredProducts: [],
 
 
 
@@ -348,7 +349,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						headers: {
 							"Content-type": "application/json"
 						},
-						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname })
+						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname, admin: admin })
 					})
 					if (response.ok) {
 
@@ -357,6 +358,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							email: data.email,
 							name: data.name,
 							lastname: data.lastname,
+							admin: data.admin || false,
 
 						};
 						sessionStorage.setItem("token", data.token);
@@ -544,26 +546,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 					new_password.value = ""
 					confirm_password.value = ""
 				}
-			}, 
-			searchProduct: async (name) => {
+			},
+			getProductByName: async (search) => {
 				try {
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/${name}`);
-					
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/search?q=${search}`);
 					if (!response.ok)
 						throw new Error("Error en el fetch");
 
-					const product = await response.json();
-					const search = product.filter(item => item.name == name)
+					const data = await response.json();
+					console.log(data)
 
-					console.log(product)
-					return search
-					
-					
+					setStore({
+						products: data,
+								
+
+					})
 				} catch (error) {
-					console.error("Error en el fetch1:", error);
+					console.error("Error en el fetch:", error);
 				}
 
-			}
+			},
+			loadProducts: async () => {
+				try {
+				  const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
+				  if (!response.ok)
+					throw new Error("Error en el fetch");
+			
+				  const productsCharge = await response.json();
+			
+				  setStore({
+					products : productsCharge
+				  })
+				  
+			
+				}
+			
+				catch (error) {
+				  console.error("Error en el fetch1:", error);
+				}
+			  }
+			
+			
 
 
 

@@ -184,6 +184,7 @@ def register():
     lastname = body.get("lastname", None)
     email = body.get("email", None)
     password = body.get("password", None)
+    admin = body.get("admin, False")
     
     if email is None or password is None or name is None or lastname is None:
         return jsonify({"message": "Los campos email, name, lastname y password son obligatorios"}), 400
@@ -202,6 +203,7 @@ def register():
         user.email = email
         user.password = password
         user.salt = salt
+        user.admin = admin
         db.session.add(user)
         
         try:
@@ -329,10 +331,16 @@ def change_password():
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500     
-
-@api.route('/products/<name>', methods=['GET'])
-def get_products_by_name(name):
-    product = Product.query.get(name)
-    
-    return jsonify(product.serialize()), 200
+  
+@api.route('/products/search', methods=["GET"])
+def search_products():
+    search_word = request.args.get("q")
+    if not search_word:
+        products = Product.query.all()
+        products_serialized = [product.serialize() for product in products]
+        return jsonify(products_serialized), 200  
+     
               
+    products = Product.query.filter(Product.name.ilike(f"%{search_word}%"))
+    products = [prod.serialize() for prod in products] 
+    return jsonify(products), 200
