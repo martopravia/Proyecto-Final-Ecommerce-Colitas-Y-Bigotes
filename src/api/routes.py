@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Product, Category, Subcategory
+from api.models import db, User, Product, Category, Subcategory, RecoverPassword
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -12,6 +12,7 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 import cloudinary.uploader
 from random import sample
 import requests, random
+
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
@@ -353,10 +354,11 @@ def send_email():
     service_id = "service_stxowqj"
     template_id = "template_5mwhnfj"
     user_id = "XoMyv80WhFK9_e27p"
-    user = User.query.filter_by(email = data.get("email"))
+    user = User.query.filter_by(email = data.get("email")).first()
     if not user:
         return jsonify({"message" : "Usuario no registrado"}),400
     
+       
     email_data = {
         "service_id": service_id,
         "template_id": template_id,
@@ -364,7 +366,7 @@ def send_email():
         "template_params": {
             "to_name": f"{user.name} {user.lastname}",
             "from_name":"Colitas y Bigotes",
-            "otp": generate_otp(),
+            "otp": generate_otp,
             "to_email": data.get("email")
         }
     }
@@ -373,7 +375,10 @@ def send_email():
     if response.status_code == 200:
         return jsonify({"message": "Correo enviado exitosamente."}), 200
     else:
-        return jsonify({"error": "Error al enviar el correo.", "details": response.json()}), response.status_code
-    
+        return jsonify({
+            "error": "Error al enviar el correo.",
+            "details": response.text  
+        }), response.status_code
+        
 def generate_otp():
     return str(random.randint(100000, 999999))
