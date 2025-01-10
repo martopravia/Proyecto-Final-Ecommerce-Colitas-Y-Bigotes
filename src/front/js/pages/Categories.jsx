@@ -109,38 +109,4 @@ const Categories = () => {
 };
 
 export default Categories;
-      {/* <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-        {products.length > 0 ? (
-        products.map(product => (
-
-           <ProductCard
-            key={product.id}
-            id={product.id}
-            product={product}
-            name={product.name}
-            price={product.price}
-            description={product.description}
-            photo={product.photo} 
-            />
-        ))
-        ):(
-          <div className="container">
-            <div className="row">
-            <div className="col-12">
-            <h3 className="text-center">No tenemos disponible estos productos</h3>
-            <img src={photo} alt="foto perro triste" className="img-fluid" />
-            </div>
-            </div>
-             
-
-          </div>
-        )
-      }
-
-
-      </div>
-    </div>
-  );
-};
-
-export default Categories; */}
+      

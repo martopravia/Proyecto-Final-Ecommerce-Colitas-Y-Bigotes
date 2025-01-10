@@ -14,7 +14,7 @@ const Products = () => {
 
 
     }, [])
-    useEffect(() => {
+    useEffect((dinamicId) => {
 
         actions.loadProductByCategoryRelated(store.category_id)
 

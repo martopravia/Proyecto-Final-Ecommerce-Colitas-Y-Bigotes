@@ -175,13 +175,7 @@ const ConfirmBuys = () => {
                     </div>
                 </div>
             </form>
-            <hr />
-            <div className="row">
-                <div className="col-12 px-3 px-md-5 pb-4">
-                     <h3>¿Se te olvidó algo?</h3>
-                </div>
-                
-            </div>
+
         </div >
     )
 }

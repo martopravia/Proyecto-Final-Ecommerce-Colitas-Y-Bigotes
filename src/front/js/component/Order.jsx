@@ -18,7 +18,7 @@ const Order = () => {
             </div>
             <div className='row w-50 text-center m-auto p-5'>
                 <div className="col-12">
-                <Link to="/"><button className='btn btn-outline-dark m-auto fs-5 px-4'>  Inicio <i class="fa-solid fa-house"></i> </button> </Link>
+                <Link to="/"><button className='btn btn-outline-dark m-auto fs-5 px-4'>  Inicio <i className="fa-solid fa-house"></i> </button> </Link>
                 </div>
             </div>
 

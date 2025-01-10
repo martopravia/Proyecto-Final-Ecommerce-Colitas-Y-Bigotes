@@ -1,8 +1,9 @@
 import React from "react";
 
+
 const Carousel = () => {
   return (
-    <div id="carouselExampleIndicators" className="carousel slide mt-3">
+    <div id="carouselExampleIndicators" className="carousel slide mt-3"  data-bs-ride="carousel">
       <div className="carousel-indicators">
         <button
           type="button"
@@ -35,7 +36,7 @@ const Carousel = () => {
         </div>
         <div className="carousel-item">
           <img
-            src="https://picsum.photos/seed/picsum/1920/1080"
+            src="https://picsum.photos/id/40/1920/1080"
             className="d-block w-100 carouselImg"
            
             alt="..."
@@ -43,7 +44,7 @@ const Carousel = () => {
         </div>
         <div className="carousel-item">
           <img
-            src="https://picsum.photos/1920/1080?grayscale"
+            src="https://picsum.photos/id/1012/1920/1080"
             className="d-block w-100 carouselImg"
             
             alt="..."
