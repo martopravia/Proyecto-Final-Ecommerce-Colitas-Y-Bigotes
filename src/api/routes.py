@@ -347,37 +347,4 @@ def search_products():
     products = [prod.serialize() for prod in products] 
     return jsonify(products), 200
 
-@api.route('/send-email', methods=['POST'])
-def send_email():
-    data = request.json
-    service_id = "service_stxowqj"
-    template_id = "template_5mwhnfj"
-    user_id = "XoMyv80WhFK9_e27p"
-    user = User.query.filter_by(email = data.get("email")).first()
-    if not user:
-        return jsonify({"message" : "Usuario no registrado"}),400
-    
-       
-    email_data = {
-        "service_id": service_id,
-        "template_id": template_id,
-        "user_id": user_id,
-        "template_params": {
-            "to_name": f"{user.name} {user.lastname}",
-            "from_name":"Colitas y Bigotes",
-            "otp": generate_otp,
-            "to_email": data.get("email")
-        }
-    }
-    response = requests.post("https://api.emailjs.com/api/v1.0/email/send", json=email_data)
-    
-    if response.status_code == 200:
-        return jsonify({"message": "Correo enviado exitosamente."}), 200
-    else:
-        return jsonify({
-            "error": "Error al enviar el correo.",
-            "details": response.text  
-        }), response.status_code
-        
-def generate_otp():
-    return str(random.randint(100000, 999999))
+

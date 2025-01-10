@@ -20,7 +20,7 @@ const ItemsInCart = ({ id, name, photo, description, price, quantity = 1 }) => {
               <h3 className="ms-3 display-5">
                 {name}
               </h3>
-              <p className="ms-3 fs-4">{description}</p>
+              <p className="ms-3 fs-4">{description}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nunc felis, volutpat vel dolor non, condimentum aliquet mauris. Sed at pulvinar lectus, nec laoreet massa.</p>
               <div className="d-flex align-items-center">
                 <button className="border border-0 bg-white" onClick={() => actions.removeFromCart(id)}><i className="bi bi-trash fs-4 trash-icon ms-3"></i></button>
                 <input

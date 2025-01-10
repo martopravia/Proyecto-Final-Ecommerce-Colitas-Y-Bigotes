@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ProductCard from './ProductCard.jsx'
 import { Context } from '../store/appContext.js'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 
 const Products = () => {
@@ -49,32 +49,14 @@ const Products = () => {
                         <i className="fa-brands fa-instagram me-2"></i>
                         <i className="fa-brands fa-twitter me-2"></i>
                         <i className="fa-brands fa-whatsapp me-2"></i>
+                        
                     </p>
                 </div>
             </div>
 
             <hr />
 
-            {/* <div className='row'>
-                <h4 className='my-3'> Productos relacionados con este artículo: </h4>
-
-                {store.relatedProducts && store.relatedProducts.length > 0 ? (
-                    store.relatedProducts.slice(0, 5).map(product => (
-                        <div className="col-md-4" key={product.id}>
-                            <ProductCard 
-                                 id={product.id}
-                                 product={product}
-                                 name={product.name}
-                                 price={product.price}
-                                 description={product.description}
-                                 photo={product.photo} />
-                        </div>
-                    ))
-                ) : (
-                    <p>No hay productos relacionados disponibles.</p>
-                )}
-            </div> */}
-
+           
             <div className='row'>
                 <h4 className='my-3'> Productos relacionados con este artículo: </h4>
                 {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import CardCategory from '../component/CardCategory.jsx'
+
 import { Link } from 'react-router-dom'
 
 

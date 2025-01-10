@@ -585,36 +585,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error en el fetch:", error);
 				}
 			},
-			sendEmail: async (e) => {
-				e.preventDefault()
-				try {
-					const {email} = e.target
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/send-email`, {
-						method: "POST",
-						body: JSON.stringify({ email: email.value}),
-						headers: {
-							"Content-Type": "application/json",
-						}
-					}
-					
-					);
-					if (!response.ok)
-						throw new Error("Error en el fetch");
-
-					const productsCharge = await response.json();
-
-					setStore({
-						products: productsCharge
-					})
-
-
-				}
-
-				catch (error) {
-					console.error("Error en el fetch:", error);
-				}
-			},
-		
+			
 
 
 
