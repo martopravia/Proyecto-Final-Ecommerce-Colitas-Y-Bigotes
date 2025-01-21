@@ -83,7 +83,7 @@ const Profile = () => {
     <>
       <div className="container">
         <div className="row text-center mt-4 fs-1">
-          <div className="col"><h1>Profile</h1></div>
+          <div className="col"><h1>Perfil</h1></div>
         </div>
         {message && (
           <div className={`alert alert-${styleMessage}`} role="alert">
@@ -160,7 +160,7 @@ const Profile = () => {
           <div className="row mt-3">
             <div className="col-md-7 offset-md-3">
               <div className="border p-2 text-center d-flex flex-column justify-content-center">
-                <div className="fs-4 fw-bold"><h2>Change Password</h2></div>
+                <div className="fs-4 fw-bold"><h2>Cambiar contraseña</h2></div>
                 <label htmlFor="inputPassword" className="form-label my-2">
                   <h4>Contraseña actual</h4>
                 </label>
