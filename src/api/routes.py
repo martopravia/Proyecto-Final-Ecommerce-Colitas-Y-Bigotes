@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Product, Category, Subcategory, RecoverPassword
+from api.models import db, User, Product, Category, Subcategory, RecoverPassword, OTP
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -348,3 +348,41 @@ def search_products():
     return jsonify(products), 200
 
 
+@api.route('/verify-otp', methods=["POST"])
+def verify_otp():
+    body = request.json
+    email = body.get("email")
+    otp = body.get("otp")
+    new_password = body.get("new_password")
+
+    if not email or not otp or not new_password:
+        return jsonify({"message": "Email, OTP y nueva contraseña son requeridos"}), 400
+
+    try:
+        otp_entry = OTP.query.filter_by(email=email, otp=otp).first()
+
+        if not otp_entry:
+            return jsonify({"message": "OTP inválido"}), 400
+
+        if datetime.utcnow() > otp_entry.expires_at:
+            return jsonify({"message": "El OTP ha expirado"}), 400
+
+
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            return jsonify({"message": "Usuario no encontrado"}), 404
+
+
+        salt = b64encode(os.urandom(32)).decode("utf-8")
+        hashed_password = generate_password_hash(f"{new_password}{salt}")
+        user.password = hashed_password
+        user.salt = salt
+
+        db.session.delete(otp_entry)
+        db.session.commit()
+
+        return jsonify({"message": "Contraseña actualizada correctamente"}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500

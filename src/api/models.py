@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -172,4 +173,11 @@ class RecoverPassword(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+        
+class OTP(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), nullable=False)
+    otp = db.Column(db.String(6), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    expires_at = db.Column(db.DateTime, nullable=False)
     

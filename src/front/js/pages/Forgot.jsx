@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Context } from '../store/appContext';
 import emailjs from '@emailjs/browser'
 
+
 const Forgot = () => {
     const { store, actions } = useContext(Context)
 
@@ -16,6 +17,13 @@ const Forgot = () => {
     const generateOtp = () => {
         return Math.floor(100000 + Math.random() * 900000).toString();
     };
+    
+    const expirationTime = () => {
+        const time = new Date();
+        time.setMinutes(time.getMinutes() + 10)
+        return time;
+
+    }
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -44,8 +52,9 @@ const Forgot = () => {
             .then(
                 (response) => {
                     console.log("Correo enviado exitosamente:", response);
-
+                    const otp_send = {email: email, otp: otp, expires_at: expirationTime()}
                     setSuccess(true);
+                    console.log("Guardando OTP en base de datos", otp_send)
                 },
                 (err) => {
                     console.error("Error al enviar el correo:", err);
