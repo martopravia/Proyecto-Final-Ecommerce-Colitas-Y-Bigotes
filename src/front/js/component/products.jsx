@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ProductCard from './ProductCard.jsx'
 import { Context } from '../store/appContext.js'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 
 const Products = () => {
     const { store, actions } = useContext(Context)
     const { dinamicId } = useParams()
     const [quantity, setQuantity] = useState(1)
+    const navigate = useNavigate()
 
     useEffect(() => {
         actions.getProductById(dinamicId);
@@ -34,7 +35,8 @@ const Products = () => {
                         <button type="button" className="btn btn-outline-dark" disabled>{quantity}</button>
                         <button type="button" className="btn btn-outline-dark" onClick={() => setQuantity(quantity => quantity + 1)}>+</button>
                     </div>
-                    <button className='btn btn-outline-dark' onClick={() => actions.addToCart(store.id, store.name, store.photo, "", store.price, quantity)} >Añadir al carro <i className="fa-solid fa-cart-shopping"></i> </button>
+                    
+                    <button className='btn btn-outline-dark' onClick={() => { store.isLogged ? actions.addToCart(store.id, store.name, store.photo, "", store.price, quantity) : navigate('/access')}} >Añadir al carro <i className="fa-solid fa-cart-shopping"></i> </button>
                     <hr className='my-4' />
                     <h3> Descripción </h3>
                     <p>
