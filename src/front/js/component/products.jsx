@@ -45,18 +45,23 @@ const Products = () => {
                     </p>
                     <p className='fw-bolder my-3'>Categorias: <span className='fw-normal'>{store.category}, Subcategoria: {store.subcategory} </span> </p>
                     <p className='fw-bolder' style={{ fontSize: "18px" }}> Compartir:
-                        <i className="fa-brands fa-facebook-f mx-2 bg-body-secondary"></i>
-                        <i className="fa-brands fa-instagram me-2"></i>
-                        <i className="fa-brands fa-twitter me-2"></i>
-                        <i className="fa-brands fa-whatsapp me-2"></i>
-                        
+
+                        <a href={`//www.facebook.com/sharer.php?u=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} class="facebook"> <i className="fa-brands fa-facebook-f mx-2 bg-body-secondary"></i></a>
+
+                        <a href="https://www.instagram.com/tu_perfil/" class="instagram"> <i className="fa-brands fa-instagram me-2"></i></a>
+
+                        <a href={`//twitter.com/share?url=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} class="twitter"><i className="fa-brands fa-twitter me-2"></i></a>
+                        <a href={`https://api.whatsapp.com/send?text=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} class="whatsapp"><i className="fa-brands fa-whatsapp me-2"></i></a>
+
+
+
                     </p>
                 </div>
             </div>
 
             <hr />
 
-           
+
             <div className='row'>
                 <h4 className='my-3'> Productos relacionados con este artículo: </h4>
                 {
