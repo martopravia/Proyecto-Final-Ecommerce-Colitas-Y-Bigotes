@@ -27,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cartTotal: 0,
 			relatedProducts: [],
 			filteredProducts: [],
+			order: [],
 
 
 
@@ -585,61 +586,70 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error en el fetch:", error);
 				}
 			},
+			addToOrder: async () => {
+				const store = getStore()
+				setStore({
+					order: store.cart,
+				})
 
-			// 	agregarMiles(price) {
-			// 	const number = parseFloat(price)
-			// 	if (isNaN(number)) return "0,00";
-			// 	const rounded = number.toFixed(2)
-			// 	let [integerPart, decimalPart] = rounded.split('.')
-			// 	integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-			// 	// 	return  `${integerPart},${decimalPart}`
-			// }
-
-			// FUNCIONA PERO MAL
-			agregarMiles(price) {
-				let partesNumero = price.toString().split('.');
-				partesNumero[0] = partesNumero[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-				return partesNumero.join('.')
-
-			}
-
-			// FUNCIONA PERO MAL
-			// agregarMiles(numero, separador = '.') {
-			// 	if (typeof numero != 'number' || !Number.isInteger(numero)) {
-			// 		return null;
-			// 	}
-			// 	numero = String(numero)
-			// 	let partes = numero.replace(/\B(?=(\d{3})+(?!\d))/g, separador)
-			// 	return partes;
-			// },
+			},
+		
 
 
-			// FUNCIONA PERO MAL
-			// agregarMiles(numero){
-			// 	let numeroStr = numero.toString();
-			// 	let [parteEntera, parteDecimal] = numeroStr.split(".");
-			// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-			// 	if (parteDecimal) {
-			// 		parteDecimal = parteDecimal.substring(0, 2);
-			// 		return `${parteEntera},${parteDecimal}`;
-			// 	  }
-			// 	  return parteEntera;
-			// 	}
+		// 	agregarMiles(price) {
+		// 	const number = parseFloat(price)
+		// 	if (isNaN(number)) return "0,00";
+		// 	const rounded = number.toFixed(2)
+		// 	let [integerPart, decimalPart] = rounded.split('.')
+		// 	integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+		// 	// 	return  `${integerPart},${decimalPart}`
+		// }
 
-			// agregarMiles(numero){
-			// 	Number(numero)
-			// 	if (isNaN(numero)) return '';
-			// 	let numeroRedondeado = (Math.round(numero * 100) / 100).toFixed(2)
-			// 	let [parteEntera, parteDecimal] = numeroRedondeado.split(".");
-			// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-			// 	if (parteDecimal) {
-			// 		return `${parteEntera},${parteDecimal}`;
-			// 	  }
-			// 	  return parteEntera;z
-			// 	}	
+		// FUNCIONA PERO MAL
+		agregarMiles(price) {
+			let partesNumero = price.toString().split('.');
+			partesNumero[0] = partesNumero[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+			return partesNumero.join('.')
 
 		}
-	};
+
+		// FUNCIONA PERO MAL
+		// agregarMiles(numero, separador = '.') {
+		// 	if (typeof numero != 'number' || !Number.isInteger(numero)) {
+		// 		return null;
+		// 	}
+		// 	numero = String(numero)
+		// 	let partes = numero.replace(/\B(?=(\d{3})+(?!\d))/g, separador)
+		// 	return partes;
+		// },
+
+
+		// FUNCIONA PERO MAL
+		// agregarMiles(numero){
+		// 	let numeroStr = numero.toString();
+		// 	let [parteEntera, parteDecimal] = numeroStr.split(".");
+		// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		// 	if (parteDecimal) {
+		// 		parteDecimal = parteDecimal.substring(0, 2);
+		// 		return `${parteEntera},${parteDecimal}`;
+		// 	  }
+		// 	  return parteEntera;
+		// 	}
+
+		// agregarMiles(numero){
+		// 	Number(numero)
+		// 	if (isNaN(numero)) return '';
+		// 	let numeroRedondeado = (Math.round(numero * 100) / 100).toFixed(2)
+		// 	let [parteEntera, parteDecimal] = numeroRedondeado.split(".");
+		// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		// 	if (parteDecimal) {
+		// 		return `${parteEntera},${parteDecimal}`;
+		// 	  }
+		// 	  return parteEntera;z
+		// 	}	
+
+	}
+}
 };
 
 export default getState;

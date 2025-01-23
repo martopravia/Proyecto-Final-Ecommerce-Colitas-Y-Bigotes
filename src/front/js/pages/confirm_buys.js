@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 
 
 const ConfirmBuys = () => {
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [])
+    // }, [])
     const handleSubmit = e => {
         e.preventDefault()
         console.log(e.target.elements)

@@ -34,7 +34,7 @@ class Order(db.Model):
      __tablename__ = "orders"
      id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
      date = db.Column(db.DateTime, default=datetime.now, nullable=False)
-     amount = db.Column(db.Float, nullable=False)
+     price = db.Column(db.Float, nullable=False)
      address = db.Column(db.String(180), nullable=False)
      deliver_address = db.Column(db.String(180), nullable=False)
      status = db.Column(db.String(180), nullable=False)
@@ -46,8 +46,9 @@ class OrderDetail(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False) 
     order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), primary_key=True, nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey("products.id"), nullable=False)
+    name = db.Column(db.String(120), nullable=False)
     quantity = db.Column(db.Integer, nullable=False) 
-    amount = db.Column(db.Float, nullable=False)
+    price = db.Column(db.Float, nullable=False)
 
 class Product(db.Model):
     __tablename__ = "products"

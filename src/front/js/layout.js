@@ -28,6 +28,7 @@ import ProductCreate from "./component/products/ProductCreate.jsx";
 import ConfirmBuys from "./pages/confirm_buys.js"
 import Pay from "./pages/Pay.jsx"
 import Forgot from "./pages/Forgot.jsx";
+import Buys from "./pages/Buys.jsx";
 
 //create your first component
 const Layout = () => {
@@ -71,6 +72,7 @@ const Layout = () => {
               <Route element={<RecoverPassword />} path="/recoverPassword" />
               <Route element={<OrderView />} path="/order" />
               <Route element={<Product />} path="/product/:dinamicId" />
+              <Route element={<Buys />} path="/buys" />
 
 
 

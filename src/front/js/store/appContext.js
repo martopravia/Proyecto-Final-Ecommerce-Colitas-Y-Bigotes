@@ -35,6 +35,7 @@ const injectContext = PassedComponent => {
 			state.actions.getCategories();
 			state.actions.getSubCategories();
 			state.actions.loadProducts();
+			// state.actions.addToOrder();
 
 		}, []);
 

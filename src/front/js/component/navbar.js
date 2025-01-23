@@ -85,6 +85,11 @@ export const Navbar = () => {
                         Perfil
                       </Link>
                     </li>
+                    <li>
+                      <Link className="dropdown-item" to="/buys">
+                        Mis Compras
+                      </Link>
+                    </li>
 
                     <li>
                       <button

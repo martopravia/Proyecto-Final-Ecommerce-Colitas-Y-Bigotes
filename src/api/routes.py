@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Product, Category, Subcategory, RecoverPassword, OTP
+from api.models import db, User, Product, Category, Subcategory, RecoverPassword, OTP, Order
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -386,3 +386,19 @@ def verify_otp():
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
+    
+# @api.route('/get_order', methods=["GET"])
+# @jwt_required()
+# def get_order():
+#     try:
+#         user_id =  get_jwt_identity()
+#         data = request.json
+#         address = data.get("address_dom")
+#         deliver_address = data.get("address_dom")
+#         items = data.get("items", [])
+        
+        
+        
+        
+    # except Exception as e:
+    #     return jsonify({"error", e})
