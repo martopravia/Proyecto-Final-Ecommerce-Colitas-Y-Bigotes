@@ -34,7 +34,7 @@ const Cart = () => {
                 name={item.name}
                 photo={item.photo}
                 description={item.description}
-                price={actions.agregarMiles(item.price)}
+                price={item.price}
                 quantity={item.quantity}
               />
             ))

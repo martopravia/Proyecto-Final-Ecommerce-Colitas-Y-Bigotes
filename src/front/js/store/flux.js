@@ -635,7 +635,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	if (parteDecimal) {
 			// 		return `${parteEntera},${parteDecimal}`;
 			// 	  }
-			// 	  return parteEntera;
+			// 	  return parteEntera;z
 			// 	}	
 
 		}
