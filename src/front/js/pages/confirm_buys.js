@@ -117,26 +117,26 @@ const ConfirmBuys = () => {
 
                     <div className='col-md-4 offset-md-1 col-sm-12 col-12'>
                         <div className='form-group mb-3'>
-                            <input type='text' placeholder='Ingrese su domicilio de entrega' className='form-control  my-3' id='address_dom' />
+                            <input type='text' placeholder='Ingrese su domicilio de entrega' className='form-control  my-3' id='address_dom' name="address_dom"/>
                         </div>
                         <div className='form-group mb-3'>
-                            <input type='text' placeholder='Ingrese su número de Puerta' className='form-control  mb-3' id='address_port' />
+                            <input type='text' placeholder='Ingrese su número de Puerta' className='form-control  mb-3' id='address_port' name="address_port" />
                         </div>
                         <div className='form-group mb-3'>
-                            <input type='text' placeholder='Ingrese su Esquina' className='form-control mb-3' id='address_street' />
+                            <input type='text' placeholder='Ingrese su Esquina' className='form-control mb-3' id='address_street' name="address_street" />
                         </div>
                         <div className='form-group mb-3'>
-                            <input type='text' placeholder='Ingrese su ciudad' className='form-control mb-3' id='address_city' />
+                            <input type='text' placeholder='Ingrese su ciudad' className='form-control mb-3' id='address_city' name="address_city" />
                         </div>
                         <div className='form-group mb-3'>
-                            <input type='number' placeholder='Ingrese su código postal' className='form-control  mb-3' id='address_cp' />
+                            <input type='number' placeholder='Ingrese su código postal' className='form-control  mb-3' id='address_cp' name="address_cp" />
                         </div>
                         <div className='form-group mb-3'>
-                            <input type='text' placeholder='Ingrese su teléfono. Ej: +99999999' className='form-control  mb-3' id='address_phone' />
+                            <input type='text' placeholder='Ingrese su teléfono. Ej: +99999999' className='form-control  mb-3' id='address_phone' name="address_phone" />
                         </div>
                         <div className='form-group mb-3'>
                             <div className="form-floating">
-                                <textarea className="form-control" placeholder="Leave a comment here" id="comments_order" rows='10'></textarea>
+                                <textarea className="form-control" placeholder="Leave a comment here" id="comments_order" rows='10' name="comments_order"></textarea>
                                 <label className="w-50" htmlFor="comments_order">Ingrese comentarios para el envío...</label>
                             </div>
                         </div>
