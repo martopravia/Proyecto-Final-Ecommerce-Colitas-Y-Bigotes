@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-
-
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const ConfirmBuys = () => {
+    const navigate = useNavigate()
+    
     // useEffect(() => {
 
     // }, [])
@@ -27,59 +27,77 @@ const ConfirmBuys = () => {
             rut_company,
             address_company,
         } = e.target
+
+        let isValid= true
+
         if (address_dom.value == "") {
             address_dom.classList.add("is-invalid")
+            isValid = false
         } else {
             address_dom.classList.remove("is-invalid")
         }
         if (address_port.value == "") {
             address_port.classList.add("is-invalid")
+            isValid = false
         } else {
             address_port.classList.remove("is-invalid")
         }
         if (address_street.value == "") {
             address_street.classList.add("is-invalid")
+            isValid = false
         } else {
             address_street.classList.remove("is-invalid")
         }
         if (address_city.value == "") {
             address_city.classList.add("is-invalid")
+            isValid = false
         } else {
             address_city.classList.remove("is-invalid")
         }
         if (address_cp.value == "") {
             address_cp.classList.add("is-invalid")
+            isValid = false
         } else {
             address_cp.classList.remove("is-invalid")
         }
         if (address_phone.value == "") {
             address_phone.classList.add("is-invalid")
+            isValid = false
         } else if (!soloNumeros.test(address_phone.value)) {
             address_phone.classList.add("is-invalid")
+            isValid = false
         } else {
             address_phone.classList.remove("is-invalid")
         }
         if (company.checked) {
             if (razon_social.value == "") {
                 razon_social.classList.add("is-invalid")
+                isValid = false
             } else {
                 razon_social.classList.remove("is-invalid")
             }
             if (rut_company.value == "") {
                 rut_company.classList.add("is-invalid")
+                isValid = false
             } else if (!Fn.validaRut(rut_company.value)) {
                 rut_company.classList.add("is-invalid")
+                isValid = false
             } else {
                 rut_company.classList.remove("is-invalid")
             }
             if (address_company.value == "") {
                 address_company.classList.add("is-invalid")
+                isValid = false
             } else {
                 address_company.classList.remove("is-invalid")
             }
 
+            
         } else {
             company.classList.remove("is-invalid")
+        }
+        if (isValid) {
+            navigate("/pay")
         }
     }
 
@@ -171,7 +189,7 @@ const ConfirmBuys = () => {
                                 <label htmlFor="afternoon" className='btn btn-light fs-4 mt-2'>De 13-21 hs</label>
                             </fieldset>
                         </div>
-                        <Link id="sendForm" className="btn btn-dark mt-5 fs-4" type='' to="/pay"> Continuar al pago </Link>
+                        <button id="sendForm" className="btn btn-dark mt-5 fs-4" type='' to="/pay"> Continuar al pago </button>
                     </div>
                 </div>
             </form>
