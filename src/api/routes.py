@@ -11,7 +11,7 @@ from base64 import b64encode
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 import cloudinary.uploader
 from random import sample
-import requests, random
+
 
 api = Blueprint('api', __name__)
 

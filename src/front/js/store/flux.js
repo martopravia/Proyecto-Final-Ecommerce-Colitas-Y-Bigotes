@@ -422,7 +422,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getCategories: async () => {
 				try {
-					const response = await fetch('https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/categories')
+					const response = await fetch("https://organic-enigma-q7p9pw5g6jjw3w96-3001.app.github.dev/api/categories")
 					const data = await response.json()
 					setStore({
 						categories: data
@@ -436,7 +436,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getSubCategories: async () => {
 				try {
 					const store = getStore()
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/subcategories`)
+					const response = await fetch(`https://organic-enigma-q7p9pw5g6jjw3w96-3001.app.github.dev/api/subcategories`)
 					const data = await response.json()
 					setStore({
 						subcategories: data
@@ -569,7 +569,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadProducts: async () => {
 				try {
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
+					const response = await fetch(`https://organic-enigma-q7p9pw5g6jjw3w96-3001.app.github.dev/api/products`);
 					if (!response.ok)
 						throw new Error("Error en el fetch");
 
@@ -593,63 +593,63 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 
 			},
-		
 
 
-		// 	agregarMiles(price) {
-		// 	const number = parseFloat(price)
-		// 	if (isNaN(number)) return "0,00";
-		// 	const rounded = number.toFixed(2)
-		// 	let [integerPart, decimalPart] = rounded.split('.')
-		// 	integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-		// 	// 	return  `${integerPart},${decimalPart}`
-		// }
 
-		// FUNCIONA PERO MAL
-		agregarMiles(price) {
-			let partesNumero = price.toString().split('.');
-			partesNumero[0] = partesNumero[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-			return partesNumero.join('.')
+			// 	agregarMiles(price) {
+			// 	const number = parseFloat(price)
+			// 	if (isNaN(number)) return "0,00";
+			// 	const rounded = number.toFixed(2)
+			// 	let [integerPart, decimalPart] = rounded.split('.')
+			// 	integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+			// 	// 	return  `${integerPart},${decimalPart}`
+			// }
+
+			// FUNCIONA PERO MAL
+			agregarMiles(price) {
+				let partesNumero = price.toString().split('.');
+				partesNumero[0] = partesNumero[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+				return partesNumero.join('.')
+
+			}
+
+			// FUNCIONA PERO MAL
+			// agregarMiles(numero, separador = '.') {
+			// 	if (typeof numero != 'number' || !Number.isInteger(numero)) {
+			// 		return null;
+			// 	}
+			// 	numero = String(numero)
+			// 	let partes = numero.replace(/\B(?=(\d{3})+(?!\d))/g, separador)
+			// 	return partes;
+			// },
+
+
+			// FUNCIONA PERO MAL
+			// agregarMiles(numero){
+			// 	let numeroStr = numero.toString();
+			// 	let [parteEntera, parteDecimal] = numeroStr.split(".");
+			// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+			// 	if (parteDecimal) {
+			// 		parteDecimal = parteDecimal.substring(0, 2);
+			// 		return `${parteEntera},${parteDecimal}`;
+			// 	  }
+			// 	  return parteEntera;
+			// 	}
+
+			// agregarMiles(numero){
+			// 	Number(numero)
+			// 	if (isNaN(numero)) return '';
+			// 	let numeroRedondeado = (Math.round(numero * 100) / 100).toFixed(2)
+			// 	let [parteEntera, parteDecimal] = numeroRedondeado.split(".");
+			// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+			// 	if (parteDecimal) {
+			// 		return `${parteEntera},${parteDecimal}`;
+			// 	  }
+			// 	  return parteEntera;z
+			// 	}	
 
 		}
-
-		// FUNCIONA PERO MAL
-		// agregarMiles(numero, separador = '.') {
-		// 	if (typeof numero != 'number' || !Number.isInteger(numero)) {
-		// 		return null;
-		// 	}
-		// 	numero = String(numero)
-		// 	let partes = numero.replace(/\B(?=(\d{3})+(?!\d))/g, separador)
-		// 	return partes;
-		// },
-
-
-		// FUNCIONA PERO MAL
-		// agregarMiles(numero){
-		// 	let numeroStr = numero.toString();
-		// 	let [parteEntera, parteDecimal] = numeroStr.split(".");
-		// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-		// 	if (parteDecimal) {
-		// 		parteDecimal = parteDecimal.substring(0, 2);
-		// 		return `${parteEntera},${parteDecimal}`;
-		// 	  }
-		// 	  return parteEntera;
-		// 	}
-
-		// agregarMiles(numero){
-		// 	Number(numero)
-		// 	if (isNaN(numero)) return '';
-		// 	let numeroRedondeado = (Math.round(numero * 100) / 100).toFixed(2)
-		// 	let [parteEntera, parteDecimal] = numeroRedondeado.split(".");
-		// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-		// 	if (parteDecimal) {
-		// 		return `${parteEntera},${parteDecimal}`;
-		// 	  }
-		// 	  return parteEntera;z
-		// 	}	
-
 	}
-}
 };
 
 export default getState;
