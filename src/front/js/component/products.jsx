@@ -1,20 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ProductCard from './ProductCard.jsx'
 import { Context } from '../store/appContext.js'
-import { useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 
 const Products = () => {
     const { store, actions } = useContext(Context)
     const { dinamicId } = useParams()
     const [quantity, setQuantity] = useState(1)
+    const navigate = useNavigate()
 
     useEffect(() => {
         actions.getProductById(dinamicId);
 
 
     }, [])
-    useEffect(() => {
+    useEffect((dinamicId) => {
 
         actions.loadProductByCategoryRelated(store.category_id)
 
@@ -34,7 +35,8 @@ const Products = () => {
                         <button type="button" className="btn btn-outline-dark" disabled>{quantity}</button>
                         <button type="button" className="btn btn-outline-dark" onClick={() => setQuantity(quantity => quantity + 1)}>+</button>
                     </div>
-                    <button className='btn btn-outline-dark' onClick={() => actions.addToCart(store.id, store.name, store.photo, "", store.price, quantity)} >Añadir al carro <i className="fa-solid fa-cart-shopping"></i> </button>
+                    
+                    <button className='btn btn-outline-dark' onClick={() => { store.isLogged ? actions.addToCart(store.id, store.name, store.photo, "", store.price, quantity) : navigate('/access')}} >Añadir al carro <i className="fa-solid fa-cart-shopping"></i> </button>
                     <hr className='my-4' />
                     <h3> Descripción </h3>
                     <p>
@@ -45,35 +47,22 @@ const Products = () => {
                     </p>
                     <p className='fw-bolder my-3'>Categorias: <span className='fw-normal'>{store.category}, Subcategoria: {store.subcategory} </span> </p>
                     <p className='fw-bolder' style={{ fontSize: "18px" }}> Compartir:
-                        <i className="fa-brands fa-facebook-f mx-2 bg-body-secondary"></i>
-                        <i className="fa-brands fa-instagram me-2"></i>
-                        <i className="fa-brands fa-twitter me-2"></i>
-                        <i className="fa-brands fa-whatsapp me-2"></i>
+
+                        <a href={`//www.facebook.com/sharer.php?u=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} className="facebook text-decoration-none"><i className="fa-brands fa-facebook-f mx-2 bg-body-secondary"></i></a>
+
+                        <a href="https://www.instagram.com/tu_perfil/" className="instagram text-decoration-none"> <i className="fa-brands fa-instagram me-2"></i></a>
+
+                        <a href={`//twitter.com/share?url=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} className="twitter text-decoration-none"><i className="fa-brands fa-twitter me-2"></i></a>
+                        <a href={`https://api.whatsapp.com/send?text=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} className="whatsapp text-decoration-none"><i className="fa-brands fa-whatsapp me-2"></i></a>
+
+
+
                     </p>
                 </div>
             </div>
 
             <hr />
 
-            {/* <div className='row'>
-                <h4 className='my-3'> Productos relacionados con este artículo: </h4>
-
-                {store.relatedProducts && store.relatedProducts.length > 0 ? (
-                    store.relatedProducts.slice(0, 5).map(product => (
-                        <div className="col-md-4" key={product.id}>
-                            <ProductCard 
-                                 id={product.id}
-                                 product={product}
-                                 name={product.name}
-                                 price={product.price}
-                                 description={product.description}
-                                 photo={product.photo} />
-                        </div>
-                    ))
-                ) : (
-                    <p>No hay productos relacionados disponibles.</p>
-                )}
-            </div> */}
 
             <div className='row'>
                 <h4 className='my-3'> Productos relacionados con este artículo: </h4>

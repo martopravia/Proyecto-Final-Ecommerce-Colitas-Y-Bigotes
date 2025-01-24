@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -33,7 +34,7 @@ class Order(db.Model):
      __tablename__ = "orders"
      id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
      date = db.Column(db.DateTime, default=datetime.now, nullable=False)
-     amount = db.Column(db.Float, nullable=False)
+     price = db.Column(db.Float, nullable=False)
      address = db.Column(db.String(180), nullable=False)
      deliver_address = db.Column(db.String(180), nullable=False)
      status = db.Column(db.String(180), nullable=False)
@@ -45,8 +46,9 @@ class OrderDetail(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False) 
     order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), primary_key=True, nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey("products.id"), nullable=False)
+    name = db.Column(db.String(120), nullable=False)
     quantity = db.Column(db.Integer, nullable=False) 
-    amount = db.Column(db.Float, nullable=False)
+    price = db.Column(db.Float, nullable=False)
 
 class Product(db.Model):
     __tablename__ = "products"
@@ -117,6 +119,7 @@ class Stock(db.Model):
             # do not serialize the password, its a security breach
         }
         
+       
 class Gallery(db.Model):
     __tablename__ = "gallery"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False )
@@ -146,3 +149,36 @@ class Gallery(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+class RecoverPassword(db.Model):
+    __tablename__ = "recover_password"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    otp = db.Column(db.String(120), nullable=False)
+    active = db.Column(db.Boolean, default=True)
+    
+    def serialize(self):
+        return{
+            "id": self.id,
+            "email": self.email,
+            "otp": self.otp,
+            "active": self.active,
+        }
+    def save(self):
+        db.session.add(self)
+        db.session.commit(self)
+    
+    def update(self):
+        db.session.commit()
+        
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+        
+class OTP(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), nullable=False)
+    otp = db.Column(db.String(6), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    expires_at = db.Column(db.DateTime, nullable=False)
+    

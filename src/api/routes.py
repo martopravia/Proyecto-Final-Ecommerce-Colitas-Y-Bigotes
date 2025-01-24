@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Product, Category, Subcategory
+from api.models import db, User, Product, Category, Subcategory, RecoverPassword, OTP, Order
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -11,6 +11,8 @@ from base64 import b64encode
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 import cloudinary.uploader
 from random import sample
+import requests, random
+
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
@@ -184,7 +186,7 @@ def register():
     lastname = body.get("lastname", None)
     email = body.get("email", None)
     password = body.get("password", None)
-    admin = body.get("admin, False")
+    admin = body.get("admin", False)
     
     if email is None or password is None or name is None or lastname is None:
         return jsonify({"message": "Los campos email, name, lastname y password son obligatorios"}), 400
@@ -344,3 +346,59 @@ def search_products():
     products = Product.query.filter(Product.name.ilike(f"%{search_word}%"))
     products = [prod.serialize() for prod in products] 
     return jsonify(products), 200
+
+
+@api.route('/verify-otp', methods=["POST"])
+def verify_otp():
+    body = request.json
+    email = body.get("email")
+    otp = body.get("otp")
+    new_password = body.get("new_password")
+
+    if not email or not otp or not new_password:
+        return jsonify({"message": "Email, OTP y nueva contraseña son requeridos"}), 400
+
+    try:
+        otp_entry = OTP.query.filter_by(email=email, otp=otp).first()
+
+        if not otp_entry:
+            return jsonify({"message": "OTP inválido"}), 400
+
+        if datetime.utcnow() > otp_entry.expires_at:
+            return jsonify({"message": "El OTP ha expirado"}), 400
+
+
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            return jsonify({"message": "Usuario no encontrado"}), 404
+
+
+        salt = b64encode(os.urandom(32)).decode("utf-8")
+        hashed_password = generate_password_hash(f"{new_password}{salt}")
+        user.password = hashed_password
+        user.salt = salt
+
+        db.session.delete(otp_entry)
+        db.session.commit()
+
+        return jsonify({"message": "Contraseña actualizada correctamente"}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+    
+# @api.route('/get_order', methods=["GET"])
+# @jwt_required()
+# def get_order():
+#     try:
+#         user_id =  get_jwt_identity()
+#         data = request.json
+#         address = data.get("address_dom")
+#         deliver_address = data.get("address_dom")
+#         items = data.get("items", [])
+        
+        
+        
+        
+    # except Exception as e:
+    #     return jsonify({"error", e})

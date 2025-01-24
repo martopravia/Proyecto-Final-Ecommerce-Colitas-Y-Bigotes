@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react"; 
 import "../../styles/cards.css";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const ProductCard = ({id, name, photo, description, price, quantity}) => {
   const {store, actions} = useContext(Context)
+  const navigate = useNavigate()
  
 
   return (
@@ -24,7 +25,7 @@ const ProductCard = ({id, name, photo, description, price, quantity}) => {
           <p className="card-text">
             $ {price}
           </p>
-          <button  className="btn btn-primary" onClick={() => {actions.addToCart(id, name, photo, description, price)}}>
+          <button  className="btn btn-primary" onClick={() =>  { store.isLogged ? actions.addToCart(id, name, photo, description, price) : navigate('/access')}}>
             Agregar al carro
           </button>
         </div>

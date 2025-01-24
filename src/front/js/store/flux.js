@@ -27,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cartTotal: 0,
 			relatedProducts: [],
 			filteredProducts: [],
+			order: [],
 
 
 
@@ -349,7 +350,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						headers: {
 							"Content-type": "application/json"
 						},
-						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname, admin: admin })
+						body: JSON.stringify({ email: email, password: password, name: name, lastname: lastname })
 					})
 					if (response.ok) {
 
@@ -472,13 +473,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const store = getStore()
 					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/related/${category}`);
-					console.log(response)
+
 					if (!response.ok)
 						throw new Error("Error en el fetch");
 
 					const products = await response.json();
 
-					console.log(products)
+
 					setStore({
 						relatedProducts: products
 					})
@@ -489,18 +490,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			updateProfile: async (e) => {
 				e.preventDefault()
-				const{name, lastname} = e.target
+				const { name, lastname } = e.target
 				try {
 					const { currentUser, token } = getStore()
 					const response = await fetch('https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/profile', {
 						method: "PUT",
-						body: JSON.stringify({name: name.value, lastname: lastname.value}),
+						body: JSON.stringify({ name: name.value, lastname: lastname.value }),
 						headers: {
-							"Content-Type" : "application/json",
-							"Authorization" : "Bearer " + token
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + token
 						}
-					})	
-					
+					})
+
 					const data = await response.json()
 					currentUser.name = data?.profile?.name
 					currentUser.lastname = data?.profile?.lastname
@@ -515,7 +516,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			updatePassword: async (e) => {
 				e.preventDefault()
-				const{current_password, new_password, confirm_password} = e.target
+				const { current_password, new_password, confirm_password } = e.target
 				if (new_password.value !== confirm_password.value) {
 					alert("Las contraseñas no coinciden")
 					return;
@@ -524,16 +525,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const { currentUser, token } = getStore()
 					const response = await fetch('https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/update-password', {
 						method: "PUT",
-						body: JSON.stringify({current_password: current_password.value, new_password: new_password.value}),
+						body: JSON.stringify({ current_password: current_password.value, new_password: new_password.value }),
 						headers: {
-							"Content-Type" : "application/json",
-							"Authorization" : "Bearer " + token
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + token
 						}
-					})	
-					
+					})
+
 					const data = await response.json()
-					
-					
+
+
 					setStore({
 						currentUser
 					})
@@ -541,7 +542,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 
 				}
-				finally{
+				finally {
 					current_password.value = ""
 					new_password.value = ""
 					confirm_password.value = ""
@@ -558,7 +559,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					setStore({
 						products: data,
-								
+
 
 					})
 				} catch (error) {
@@ -568,30 +569,87 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadProducts: async () => {
 				try {
-				  const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
-				  if (!response.ok)
-					throw new Error("Error en el fetch");
-			
-				  const productsCharge = await response.json();
-			
-				  setStore({
-					products : productsCharge
-				  })
-				  
-			
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
+					if (!response.ok)
+						throw new Error("Error en el fetch");
+
+					const productsCharge = await response.json();
+
+					setStore({
+						products: productsCharge
+					})
+
+
 				}
-			
+
 				catch (error) {
-				  console.error("Error en el fetch1:", error);
+					console.error("Error en el fetch:", error);
 				}
-			  }
-			
-			
+			},
+			addToOrder: async () => {
+				const store = getStore()
+				setStore({
+					order: store.cart,
+				})
+
+			},
+		
 
 
+		// 	agregarMiles(price) {
+		// 	const number = parseFloat(price)
+		// 	if (isNaN(number)) return "0,00";
+		// 	const rounded = number.toFixed(2)
+		// 	let [integerPart, decimalPart] = rounded.split('.')
+		// 	integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+		// 	// 	return  `${integerPart},${decimalPart}`
+		// }
+
+		// FUNCIONA PERO MAL
+		agregarMiles(price) {
+			let partesNumero = price.toString().split('.');
+			partesNumero[0] = partesNumero[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+			return partesNumero.join('.')
 
 		}
-	};
+
+		// FUNCIONA PERO MAL
+		// agregarMiles(numero, separador = '.') {
+		// 	if (typeof numero != 'number' || !Number.isInteger(numero)) {
+		// 		return null;
+		// 	}
+		// 	numero = String(numero)
+		// 	let partes = numero.replace(/\B(?=(\d{3})+(?!\d))/g, separador)
+		// 	return partes;
+		// },
+
+
+		// FUNCIONA PERO MAL
+		// agregarMiles(numero){
+		// 	let numeroStr = numero.toString();
+		// 	let [parteEntera, parteDecimal] = numeroStr.split(".");
+		// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		// 	if (parteDecimal) {
+		// 		parteDecimal = parteDecimal.substring(0, 2);
+		// 		return `${parteEntera},${parteDecimal}`;
+		// 	  }
+		// 	  return parteEntera;
+		// 	}
+
+		// agregarMiles(numero){
+		// 	Number(numero)
+		// 	if (isNaN(numero)) return '';
+		// 	let numeroRedondeado = (Math.round(numero * 100) / 100).toFixed(2)
+		// 	let [parteEntera, parteDecimal] = numeroRedondeado.split(".");
+		// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		// 	if (parteDecimal) {
+		// 		return `${parteEntera},${parteDecimal}`;
+		// 	  }
+		// 	  return parteEntera;z
+		// 	}	
+
+	}
+}
 };
 
 export default getState;

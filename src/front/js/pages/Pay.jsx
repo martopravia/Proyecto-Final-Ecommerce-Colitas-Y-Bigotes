@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Pay = () => {
   const [cardNumber, setCardNumber] = useState("");
@@ -10,6 +11,8 @@ const Pay = () => {
   const [postalCode, setPostalCode] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState([]);
+
+  const navigate = useNavigate()
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
@@ -67,6 +70,8 @@ const Pay = () => {
       setCity("");
       setPostalCode("");
       setMessage("");
+      
+      navigate("/order");
     }
   };
 

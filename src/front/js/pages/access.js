@@ -27,12 +27,9 @@ export const Access = () => {
                 <button className="bg-dark w-25 rounded-4 p-1 mx-auto text-light fs-5 mt-3" type="submit"> Ingresar </button>
                 <Link className="bg-dark w-25 rounded-4 p-1 mx-auto text-light fs-5 mt-3" to={'/register'} > Crear cuenta </Link>
 
-                <div className="d-flex justify-content-between w-100 mt-2 px-3 ">
-                    <div>
-                        <input type="checkbox" id="remember_me" />
-                        <label htmlFor="remember_me" className="ms-1 fs-5">Recuérdame</label>
-                    </div>
-                    <a href="#" className="text-decoration-none fs-5">¿Olvidaste tu contraseña?</a>
+                <div className="d-flex justify-content-end w-100 mt-2 px-3 ">
+
+                    <Link className="text-decoration-none fs-5" to={'/forgot'}>¿Olvidaste tu contraseña?</Link>
                 </div>
             </form>
 

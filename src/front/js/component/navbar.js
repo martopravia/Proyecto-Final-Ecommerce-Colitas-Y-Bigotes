@@ -85,6 +85,11 @@ export const Navbar = () => {
                         Perfil
                       </Link>
                     </li>
+                    <li>
+                      <Link className="dropdown-item" to="/buys">
+                        Mis Compras
+                      </Link>
+                    </li>
 
                     <li>
                       <button
@@ -104,7 +109,7 @@ export const Navbar = () => {
                 <Link to="/access" className="btn btn-light">
                   <i className="fas fa-sign-in-alt fs-3" />
                 </Link>
-                <Link to="/cart" className="btn btn-light">
+                <Link to={store.isLogged ? '/cart' : '/access'} className="btn btn-light">
                   <i className="fas fa-shopping-cart fs-3" />
                   <span className="ms-2 fs-4" >{store.cart.length}</span>
                 </Link>

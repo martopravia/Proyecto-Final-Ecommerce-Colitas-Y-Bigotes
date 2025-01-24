@@ -8,7 +8,9 @@ const Cart = () => {
   const { store, actions } = useContext(Context);
   const {total, setTotal} = useState(0);
   
+
   useEffect(() => {}, []);
+  
   return (
     <>
       <div className="container-fluid">
@@ -42,7 +44,7 @@ const Cart = () => {
 
           <hr />
           <div className="px-3 px-md-5 py-1 text-end fs-3">
-            Total ({store.cart.length} productos): $ {store.cartTotal}
+            Total ({store.cart.length} productos): $ {actions.agregarMiles(store.cartTotal)}
           </div>
           <div className="px-3 px-md-5 py-2 text-end">
             <Link
