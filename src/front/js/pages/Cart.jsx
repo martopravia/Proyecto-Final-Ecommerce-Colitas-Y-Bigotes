@@ -34,7 +34,7 @@ const Cart = () => {
                 name={item.name}
                 photo={item.photo}
                 description={item.description}
-                price={(item.price)}
+                price={item.price}
                 quantity={item.quantity}
               />
             ))

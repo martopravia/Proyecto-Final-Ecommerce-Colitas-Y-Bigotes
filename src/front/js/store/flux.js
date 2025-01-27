@@ -27,7 +27,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cartTotal: 0,
 			relatedProducts: [],
 			filteredProducts: [],
-			order: [],
+			order: null,
+			orderHistory: [],
 
 
 
@@ -600,51 +601,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 
 			},
+			// saveOrderDataBase: async () => {
+
+			// }
 
 
 
-		// FUNCIONA PERO MAL
-		formatNumber(num) {
-			return new Intl.NumberFormat('es-CL').format(num);
-		  }
+			// FUNCIONA PERO MAL
+			formatNumber(num) {
+			
+				return new Intl.NumberFormat('es-CL').format(num);
+			}
 
-		// FUNCIONA PERO MAL
-		// agregarMiles(numero, separador = '.') {
-		// 	if (typeof numero != 'number' || !Number.isInteger(numero)) {
-		// 		return null;
-		// 	}
-		// 	numero = String(numero)
-		// 	let partes = numero.replace(/\B(?=(\d{3})+(?!\d))/g, separador)
-		// 	return partes;
-		// },
+			// FUNCIONA PERO MAL
+			// agregarMiles(numero, separador = '.') {
+			// 	if (typeof numero != 'number' || !Number.isInteger(numero)) {
+			// 		return null;
+			// 	}
+			// 	numero = String(numero)
+			// 	let partes = numero.replace(/\B(?=(\d{3})+(?!\d))/g, separador)
+			// 	return partes;
+			// },
 
 
-		// FUNCIONA PERO MAL
-		// agregarMiles(numero){
-		// 	let numeroStr = numero.toString();
-		// 	let [parteEntera, parteDecimal] = numeroStr.split(".");
-		// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-		// 	if (parteDecimal) {
-		// 		parteDecimal = parteDecimal.substring(0, 2);
-		// 		return `${parteEntera},${parteDecimal}`;
-		// 	  }
-		// 	  return parteEntera;
-		// 	}
+			// FUNCIONA PERO MAL
+			// agregarMiles(numero){
+			// 	let numeroStr = numero.toString();
+			// 	let [parteEntera, parteDecimal] = numeroStr.split(".");
+			// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+			// 	if (parteDecimal) {
+			// 		parteDecimal = parteDecimal.substring(0, 2);
+			// 		return `${parteEntera},${parteDecimal}`;
+			// 	  }
+			// 	  return parteEntera;
+			// 	}
 
-		// agregarMiles(numero){
-		// 	Number(numero)
-		// 	if (isNaN(numero)) return '';
-		// 	let numeroRedondeado = (Math.round(numero * 100) / 100).toFixed(2)
-		// 	let [parteEntera, parteDecimal] = numeroRedondeado.split(".");
-		// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-		// 	if (parteDecimal) {
-		// 		return `${parteEntera},${parteDecimal}`;
-		// 	  }
-		// 	  return parteEntera;z
-		// 	}	
+			// agregarMiles(numero){
+			// 	Number(numero)
+			// 	if (isNaN(numero)) return '';
+			// 	let numeroRedondeado = (Math.round(numero * 100) / 100).toFixed(2)
+			// 	let [parteEntera, parteDecimal] = numeroRedondeado.split(".");
+			// 	parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+			// 	if (parteDecimal) {
+			// 		return `${parteEntera},${parteDecimal}`;
+			// 	  }
+			// 	  return parteEntera;z
+			// 	}	
 
-	}
-};
+		}
+	};
 }
 
 export default getState;

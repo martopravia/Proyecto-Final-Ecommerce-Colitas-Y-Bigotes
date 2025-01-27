@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 
 const ItemsInCart = ({ id, name, photo, description, price, quantity = 1 }) => {
   const { store, actions } = useContext(Context)
-
+  console.log(typeof price)
   return (
     <>
       <div className="row d-flex p-5">
@@ -39,7 +39,7 @@ const ItemsInCart = ({ id, name, photo, description, price, quantity = 1 }) => {
         </div>
         <div className="col-12 col-md-6 d-flex justify-content-start justify-content-md-end mt-3 mt-md-0">
           <div className="product-price d-flex align-items-center  ">
-            <span className="ms-2 fs-2">${price * quantity}</span>
+            <span className="ms-2 fs-2">$ {actions.formatNumber(price * quantity)}</span>
           </div>
         </div>
       </div>

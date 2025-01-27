@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Product, Category, Subcategory, RecoverPassword, OTP, Order
+from api.models import db, User, Product, Category, Subcategory, RecoverPassword, OTP, Order, OrderDetail
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -428,3 +428,63 @@ def save_otp():
         
     # except Exception as e:
     #     return jsonify({"error", e})
+
+@api.route('/order', methods= ['POST'])
+def create_order():
+    data = request.get_json()
+    user_id = data.get('user_id')
+    total = data.get('total')
+    items = data.get('items')
+    
+    if not user_id or not total or not items:
+        return jsonify({"message": "Faltan datos"}), 400
+    
+    try:
+        new_order = Order(user_id=user_id, total=total)
+        db.session.add(new_order)
+        db.session.commit()
+        
+        for item in items:
+            new_detail = OrderDetail(
+                order_id= new_order.id,
+                product_id=item['product_id'],
+                quantity=item['quantity'],
+                price=item['price']
+                
+            )
+            db.session.add(new_detail)
+        db.session.commit()
+        
+        return jsonify({"message": "Orden Creada con éxito", "order_id": new_order.id})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": str(e)}), 500
+
+@api.route('/orders/<int:user_id>', methods=['GET'])
+def get_orders(user_id):
+    try:
+        orders = Order.query.filter_by(user_id=user_id).all()
+        if not orders:
+            return jsonify({"message": "No se encontraron órdenes"}), 404
+
+        result = []
+        for order in orders:
+            order_details = OrderDetail.query.filter_by(order_id=order.id).all()
+            details = [{
+                "product_id": detail.product_id,
+                "quantity": detail.quantity,
+                "price": detail.price,
+                "name": detail.product.name  
+                # aca neceitamos relationship entrew orderDetail y Product, que no me deja
+            } for detail in order_details]
+
+            result.append({
+                "id": order.id,
+                "total": order.total,
+                "items": details
+            })
+
+        return jsonify(result), 200
+
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
