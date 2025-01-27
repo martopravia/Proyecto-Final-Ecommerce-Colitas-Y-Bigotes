@@ -95,6 +95,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				e.preventDefault();
 				try {
 					const { email, password } = e.target
+					console.log("Datos enviados:", email.value, password.value)
 					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/login", {
 						method: "POST",
 						headers: {
@@ -105,6 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 
 						const data = await response.json();
+						console.log("Respuesta del servidor: ", data)
 						const currentUser = {
 							email: email.value,
 							admin: data.admin || false,
@@ -124,6 +126,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						email.value = ""
 						password.value = ""
 
+					}
+					else {
+						console.error("Error de autenticación:", response.status);
+						const errorData = await response.json();
+						console.error("Mensaje del servidor:", errorData.message);
 					}
 				} catch (error) {
 					console.error("Error al realizar el fetch: ", error)
@@ -422,7 +429,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getCategories: async () => {
 				try {
-					const response = await fetch("https://organic-enigma-q7p9pw5g6jjw3w96-3001.app.github.dev/api/categories")
+					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/categories")
 					const data = await response.json()
 					setStore({
 						categories: data
@@ -436,7 +443,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getSubCategories: async () => {
 				try {
 					const store = getStore()
-					const response = await fetch(`https://organic-enigma-q7p9pw5g6jjw3w96-3001.app.github.dev/api/subcategories`)
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/subcategories`)
 					const data = await response.json()
 					setStore({
 						subcategories: data
@@ -569,7 +576,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadProducts: async () => {
 				try {
-					const response = await fetch(`https://organic-enigma-q7p9pw5g6jjw3w96-3001.app.github.dev/api/products`);
+					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
 					if (!response.ok)
 						throw new Error("Error en el fetch");
 
@@ -638,5 +645,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 	}
 };
+}
 
 export default getState;

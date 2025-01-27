@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { Navigate } from "react-router-dom";
 
 
 export const Register = () => {
     const { store, actions } = useContext(Context)
+ 
+    if (store.isLogged) return <Navigate to="/" replace />
     return (
         <>
             <form className="register-form d-flex flex-column bg-light aling-items-center text-center mx-auto my-5"  onSubmit={actions.handleSubmitRegister}>

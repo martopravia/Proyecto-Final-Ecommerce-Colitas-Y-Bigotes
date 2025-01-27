@@ -17,7 +17,7 @@ export const Home = () => {
     return new Intl.NumberFormat('es-CL').format(num);
   }
 
-  console.log(formatNumber(10000000))
+  
 
   return (
     <>

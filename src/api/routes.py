@@ -7,17 +7,18 @@ from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import os, datetime
+from datetime import datetime, timedelta
 from base64 import b64encode
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 import cloudinary.uploader
 from random import sample
 
 
+
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
-
 
 
 @api.route('/products', methods=['GET'])
@@ -224,6 +225,8 @@ def get_users():
 @api.route('/login', methods=["POST"])
 def login():
     body = request.get_json()
+    if not body:
+        return jsonify({"message": "El cuerpo de la solicitud esta vacío"})
     email = body.get("email", None)
     password = body.get("password", None)
     
@@ -238,7 +241,7 @@ def login():
             return jsonify({"message" : "Alguno de los datos no es correcto"}), 400
         else: 
             if check_password_hash(user.password, f"{password}{user.salt}"):
-                expire_at = datetime.timedelta(days=3)
+                expire_at = timedelta(days=3)
                 token = create_access_token(identity=str(user.id), expires_delta=expire_at)
                 return jsonify({
                     "token" : token,
@@ -386,6 +389,29 @@ def verify_otp():
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
+    
+@api.route('/save_otp', methods=["POST"])
+def save_otp():
+    print("Recibiendo OTP")
+    body = request.json
+    email = body.get("email")
+    otp = body.get("otp")
+    
+    if not email or not otp:
+        return jsonify({"message" : "Email y OTP son requeridos"}), 400
+    
+    expiration_time = datetime.utcnow() + timedelta(minutes=10)
+    
+    try:
+        otp_entry = OTP(email=email, otp=otp, expires_at=expiration_time)
+        db.session.add(otp_entry)
+        db.session.commit()
+        
+        return jsonify({"message" : " OTP guardado"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+        
     
 # @api.route('/get_order', methods=["GET"])
 # @jwt_required()
