@@ -10,7 +10,7 @@ const ConfirmBuys = () => {
     // }, [])
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(e.target.elements)
+       
         const soloNumeros = /^\+[0-9]{9,}$/
         const {
             address_dom,

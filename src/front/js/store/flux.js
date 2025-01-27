@@ -606,12 +606,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 		// }
 
 		// FUNCIONA PERO MAL
-		agregarMiles(price) {
-			let partesNumero = price.toString().split('.');
-			partesNumero[0] = partesNumero[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-			return partesNumero.join('.')
-
-		}
+		formatNumber(num) {
+			return new Intl.NumberFormat('es-CL').format(num);
+		  }
 
 		// FUNCIONA PERO MAL
 		// agregarMiles(numero, separador = '.') {

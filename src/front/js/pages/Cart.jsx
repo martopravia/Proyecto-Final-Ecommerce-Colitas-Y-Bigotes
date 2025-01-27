@@ -6,11 +6,11 @@ import { Context } from "../store/appContext.js";
 
 const Cart = () => {
   const { store, actions } = useContext(Context);
-  const {total, setTotal} = useState(0);
-  
+  const { total, setTotal } = useState(0);
 
-  useEffect(() => {}, []);
-  
+
+  useEffect(() => { }, []);
+
   return (
     <>
       <div className="container-fluid">
@@ -34,7 +34,7 @@ const Cart = () => {
                 name={item.name}
                 photo={item.photo}
                 description={item.description}
-                price={item.price}
+                price={(item.price)}
                 quantity={item.quantity}
               />
             ))
@@ -44,7 +44,7 @@ const Cart = () => {
 
           <hr />
           <div className="px-3 px-md-5 py-1 text-end fs-3">
-            Total ({store.cart.length} productos): $ {actions.agregarMiles(store.cartTotal)}
+            Total ({store.cart.length} productos): $ {actions.formatNumber(store.cartTotal)}
           </div>
           <div className="px-3 px-md-5 py-2 text-end">
             <Link
@@ -59,7 +59,7 @@ const Cart = () => {
 
         <div className="row">
           <div className="col-12 px-3 px-md-5 pb-4">
-             <Link to="/" className="btn btn-dark mt-5 fs-4" >Seguir comprando</Link>
+            <Link to="/" className="btn btn-dark mt-5 fs-4" >Seguir comprando</Link>
           </div>
           <div className="container px-3 px-md-5">
             <div
