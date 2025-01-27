@@ -12,7 +12,13 @@ export const Home = () => {
   useEffect(() => {
     actions.loadProducts()
   }, [])
-  
+
+  const formatNumber = (num) => {
+    return new Intl.NumberFormat('es-CL').format(num);
+  }
+
+  console.log(formatNumber(10000000))
+
   return (
     <>
       <Carousel />
@@ -31,7 +37,7 @@ export const Home = () => {
           })}
 
         </div>
-        
+
       </div>
     </>
   );
