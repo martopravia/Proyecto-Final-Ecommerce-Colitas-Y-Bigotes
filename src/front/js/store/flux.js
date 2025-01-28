@@ -595,9 +595,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			addToOrder: async () => {
-				const store = getStore()
 				setStore({
-					order: store.cart,
+					order: getStore().cart,
+					cart: [],
+					cartTotal: 0
 				})
 
 			},

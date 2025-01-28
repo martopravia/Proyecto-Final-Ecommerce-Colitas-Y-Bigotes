@@ -4,9 +4,14 @@ import { Context } from '../store/appContext'
 
 const Buys = () => {
     const { store, actions } = useContext(Context)
+
+    // aca iria un fetch con token y currentUser, el fetch a la ruta de /orders/id?
     return (
         <>
+        {/* aca mapear los items dentro de la orden? */}
             <div className="container">
+                <h1 className='mt-5 text-center'>Historial de pedidos</h1>
+
                 <div className="row mt-5 p-2 border">
                     <div className="col-11 d-flex justify-content-between">
                         <div className="item">

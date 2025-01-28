@@ -449,7 +449,8 @@ def create_order():
                 order_id= new_order.id,
                 product_id=item['product_id'],
                 quantity=item['quantity'],
-                price=item['price']
+                price=item['price'],
+                name=item['name']
                 
             )
             db.session.add(new_detail)

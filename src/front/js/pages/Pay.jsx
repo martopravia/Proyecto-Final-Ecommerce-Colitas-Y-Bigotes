@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const Pay = () => {
+  const { store, actions } = useContext(Context)
   const [cardNumber, setCardNumber] = useState("");
   const [cvc, setCvc] = useState("");
   const [amount, setAmount] = useState("");
@@ -70,10 +72,46 @@ const Pay = () => {
       setCity("");
       setPostalCode("");
       setMessage("");
-      
+
       navigate("/order");
+      const sendOrderToBack = async () => {
+        try {
+          const token = sessionStorage.getItem("token")
+          const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
+          const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/order", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer + token"
+            },
+            body: JSON.stringify({
+              user_id: currentUser.id,
+              total: store.cartTotal,
+              items: store.cart.map((item) => ({ //esto lo recorre o se queda con el ultimo item?
+                product_id: item.id,
+                name: item.name,
+                quantity: item.quantity,
+                price: item.price
+              }))
+
+            })
+          })
+          console.log(response.ok)
+          console.log(response.status)
+          if (response.ok) {
+            const data = await response.json()
+            console.log("orden fue creada: ", data)
+          } else {
+            console.log("Error creando la orden", response.status)
+          }
+        } catch (err) {
+          console.error("Error creando la orden", err)
+        }
+      }
+      sendOrderToBack()
     }
-  };
+  }
+
 
   return (
     <div className="container">
@@ -207,7 +245,7 @@ const Pay = () => {
                 </div>
               </div>
 
-            
+
               <div className="col-md-6 pb-3 mb-2">
                 <label htmlFor="message" className="fw-semibold mb-2">
                   Mensaje
@@ -222,7 +260,7 @@ const Pay = () => {
                 <small className="text-muted">Agregue comentarios aquí</small>
               </div>
             </div>
-            
+
 
 
 
