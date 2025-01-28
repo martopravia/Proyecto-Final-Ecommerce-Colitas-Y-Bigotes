@@ -49,7 +49,7 @@ class OrderDetail(db.Model):
     name = db.Column(db.String(120), nullable=False)
     quantity = db.Column(db.Integer, nullable=False) 
     price = db.Column(db.Float, nullable=False)
-    # product = db.relationship('Product', backref='order_details') NO deja agregarla
+    
 
 class Product(db.Model):
     __tablename__ = "products"

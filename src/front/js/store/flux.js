@@ -119,6 +119,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("Token:", data.token);
 						sessionStorage.setItem("token", data.token);
 						sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+						localStorage.setItem("token", data.token);
+
 						setStore({
 							token: data.token,
 							isLogged: true,
@@ -610,7 +612,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// FUNCIONA PERO MAL
 			formatNumber(num) {
-			
+
 				return new Intl.NumberFormat('es-CL').format(num);
 			}
 

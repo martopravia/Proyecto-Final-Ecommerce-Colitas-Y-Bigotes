@@ -250,6 +250,7 @@ def login():
                     "email": user.email,
                     "photo": None,
                     "admin": user.admin,
+                    
                     }), 200
             else:
                 return jsonify({"message":"Sus credenciales no son correctas"}),400
@@ -430,17 +431,22 @@ def save_otp():
     #     return jsonify({"error", e})
 
 @api.route('/order', methods= ['POST'])
+@jwt_required()
 def create_order():
     data = request.get_json()
-    user_id = data.get('user_id')
-    total = data.get('total')
+    date = datetime.now()
+    price = data.get("total")
+    address = "Direccion de Prueba"
+    deliver_address = "Direccion de Prueba"
+    status = "OK"
     items = data.get('items')
+    user_id=get_jwt_identity() 
     
-    if not user_id or not total or not items:
+    if not items:
         return jsonify({"message": "Faltan datos"}), 400
     
     try:
-        new_order = Order(user_id=user_id, total=total)
+        new_order = Order(user_id=user_id, date=date, price=price, address=address, deliver_address=deliver_address, status=status)
         db.session.add(new_order)
         db.session.commit()
         
@@ -459,6 +465,7 @@ def create_order():
         return jsonify({"message": "Orden Creada con éxito", "order_id": new_order.id})
     except Exception as e:
         db.session.rollback()
+        print(e)
         return jsonify({"message": str(e)}), 500
 
 @api.route('/orders/<int:user_id>', methods=['GET'])
@@ -471,17 +478,18 @@ def get_orders(user_id):
         result = []
         for order in orders:
             order_details = OrderDetail.query.filter_by(order_id=order.id).all()
+            
             details = [{
                 "product_id": detail.product_id,
                 "quantity": detail.quantity,
                 "price": detail.price,
-                "name": detail.product.name  
-                # aca neceitamos relationship entrew orderDetail y Product, que no me deja
+                 "name": Product.query.get(detail.product_id).name  
+                
             } for detail in order_details]
 
             result.append({
                 "id": order.id,
-                "total": order.total,
+                "total": order.price,
                 "items": details
             })
 

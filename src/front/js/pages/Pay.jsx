@@ -76,18 +76,18 @@ const Pay = () => {
       navigate("/order");
       const sendOrderToBack = async () => {
         try {
-          const token = sessionStorage.getItem("token")
+
+          const token = localStorage.getItem("token")
           const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
           const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/order", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer + token"
+              Authorization: "Bearer " + token
             },
             body: JSON.stringify({
-              user_id: currentUser.id,
               total: store.cartTotal,
-              items: store.cart.map((item) => ({ //esto lo recorre o se queda con el ultimo item?
+              items: store.cart.map((item) => ({ 
                 product_id: item.id,
                 name: item.name,
                 quantity: item.quantity,
