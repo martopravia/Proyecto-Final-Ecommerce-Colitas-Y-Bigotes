@@ -72,6 +72,7 @@ const Pay = () => {
       setCity("");
       setPostalCode("");
       setMessage("");
+      
 
       navigate("/order");
       const sendOrderToBack = async () => {
@@ -101,6 +102,7 @@ const Pay = () => {
           if (response.ok) {
             const data = await response.json()
             console.log("orden fue creada: ", data)
+            actions.clearCart()
           } else {
             console.log("Error creando la orden", response.status)
           }

@@ -468,9 +468,12 @@ def create_order():
         print(e)
         return jsonify({"message": str(e)}), 500
 
-@api.route('/orders/<int:user_id>', methods=['GET'])
-def get_orders(user_id):
+@api.route('/orders', methods=['GET'])
+@jwt_required()
+def get_orders():
     try:
+        
+        user_id = get_jwt_identity()
         orders = Order.query.filter_by(user_id=user_id).all()
         if not orders:
             return jsonify({"message": "No se encontraron órdenes"}), 404
@@ -483,14 +486,17 @@ def get_orders(user_id):
                 "product_id": detail.product_id,
                 "quantity": detail.quantity,
                 "price": detail.price,
-                 "name": Product.query.get(detail.product_id).name  
+                "name": Product.query.get(detail.product_id).name, 
+                "photo": Product.query.get(detail.product_id).photo 
                 
             } for detail in order_details]
 
             result.append({
                 "id": order.id,
                 "total": order.price,
-                "items": details
+                "items": details,
+                "date": order.date
+                
             })
 
         return jsonify(result), 200

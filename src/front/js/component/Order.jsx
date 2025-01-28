@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { Context } from '../store/appContext'
 
 const Order = () => {
+    const {store, actions} = useContext(Context)
     return (
         <div className="container-fluid">
             <div className=' row w-50 text-center m-auto mt-5 p-5 border border-3 border-dark'>
                 <div className="col-12">
                     <h2 className='pb-5'>
-                        Tu orden n° 101010
+                       Tu orden fue aceptada
                     </h2>
                 </div>
                 <div className="col-12">
                     <h2 className='pt-5'>
-                        Fue aceptada
+                        Consultá las mismas desde tu usuario
                     </h2>
                 </div>
             </div>
