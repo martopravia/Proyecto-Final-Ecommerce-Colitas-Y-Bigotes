@@ -6,7 +6,6 @@ const Pay = () => {
   const { store, actions } = useContext(Context)
   const [cardNumber, setCardNumber] = useState("");
   const [cvc, setCvc] = useState("");
-  const [amount, setAmount] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [city, setCity] = useState("");
@@ -14,7 +13,10 @@ const Pay = () => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState([]);
 
+
   const navigate = useNavigate()
+
+  const amount = store.cartTotal; 
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
@@ -29,11 +31,6 @@ const Pay = () => {
 
     if (cvc.length !== 3 && cvc.length !== 4 || isNaN(cvc)) {
       errorMessages.push("El CVC debe tener 3 o 4 dígitos.");
-    }
-
-
-    if (isNaN(amount) || amount <= 0) {
-      errorMessages.push("El importe debe ser mayor a $0.");
     }
 
 
@@ -66,7 +63,6 @@ const Pay = () => {
 
       setCardNumber("");
       setCvc("");
-      setAmount("");
       setFirstName("");
       setLastName("");
       setCity("");
@@ -156,11 +152,10 @@ const Pay = () => {
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${isNaN(amount) || amount <= 0 ? 'is-invalid' : ''}`}
+                  className="form-control"
                   id="amount"
-                  placeholder="Amount"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
+                  value={`${amount}`} 
+                  readOnly
                 />
               </div>
             </div>

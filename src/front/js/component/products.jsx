@@ -48,12 +48,12 @@ const Products = () => {
                     <p className='fw-bolder my-3'>Categorias: <span className='fw-normal'>{store.category}, Subcategoria: {store.subcategory} </span> </p>
                     <p className='fw-bolder' style={{ fontSize: "18px" }}> Compartir:
 
-                        <a href={`//www.facebook.com/sharer.php?u=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} className="facebook text-decoration-none"><i className="fa-brands fa-facebook-f mx-2 bg-body-secondary"></i></a>
+                        <Link to={`//www.facebook.com/sharer.php?u=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} className="facebook text-decoration-none"><i className="fa-brands fa-facebook-f mx-2 bg-body-secondary"></i></Link>
 
-                        <a href="https://www.instagram.com/tu_perfil/" className="instagram text-decoration-none"> <i className="fa-brands fa-instagram me-2"></i></a>
+                        <Link to="https://www.instagram.com/tu_perfil/" className="instagram text-decoration-none"> <i className="fa-brands fa-instagram me-2"></i></Link>
 
-                        <a href={`//twitter.com/share?url=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} className="twitter text-decoration-none"><i className="fa-brands fa-twitter me-2"></i></a>
-                        <a href={`https://api.whatsapp.com/send?text=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} className="whatsapp text-decoration-none"><i className="fa-brands fa-whatsapp me-2"></i></a>
+                        <Link to={`//twitter.com/share?url=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} className="twitter text-decoration-none"><i className="fa-brands fa-twitter me-2"></i></Link>
+                        <Link to={`https://api.whatsapp.com/send?text=https://opulent-succotash-pjgxgx4rq7xqcr4rg-3000.app.github.dev/product/${dinamicId}`} className="whatsapp text-decoration-none"><i className="fa-brands fa-whatsapp me-2"></i></Link>
 
 
 
