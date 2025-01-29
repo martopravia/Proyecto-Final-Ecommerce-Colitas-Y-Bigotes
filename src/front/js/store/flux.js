@@ -133,7 +133,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					else {
 						console.error("Error de autenticación:", response.status);
 						const errorData = await response.json();
-						console.error("Mensaje del servidor:", errorData.message);
+						if (errorData.message === "Contraseña incorrecta") {
+							alert("La contraseña ingresada no es correcta. Por favor, intenta nuevamente.");
+						} else {
+							alert(`Error: ${errorData.message}`);
+						}
 					}
 				} catch (error) {
 					console.error("Error al realizar el fetch: ", error)
