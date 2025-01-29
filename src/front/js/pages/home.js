@@ -18,7 +18,7 @@ export const Home = () => {
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
           {!!store.products &&
             [...store.products] 
-              .sort(() => Math.random() - 0.5) 
+              
               .slice(0, 10) 
               .map((product) => (
                 <ProductCard
