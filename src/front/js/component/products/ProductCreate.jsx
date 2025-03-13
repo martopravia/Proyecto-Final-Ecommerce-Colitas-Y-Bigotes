@@ -32,8 +32,8 @@ const ProductCreate = () => {
                         <option value="" disabled>Seleccione una categoria</option>
                         <option value="1">Perros</option>
                         <option value="2">Gatos</option>
-                        <option value="3">Roedores</option>
-                        <option value="4">Aves</option>
+                        <option value="3">Aves</option>
+                        <option value="4">Roedores</option>
                     </select>
                 </div>
                 <div className='my-3'>

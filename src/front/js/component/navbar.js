@@ -12,8 +12,8 @@ export const Navbar = () => {
   const handleSearch = (e) => {
     e.preventDefault()
     actions.getProductByName(searchWord)
-    navigate(`/?search=` + actions.getProductByName(searchWord) )
-  
+    navigate(`/?search=` + actions.getProductByName(searchWord))
+
 
   }
   return (
@@ -121,26 +121,7 @@ export const Navbar = () => {
       <div className="container-fluid mt-2 px-3 px-md-5">
         <div className="row align-items-center justify-content-center">
           <div className="dropdown col-md-2 mb-2 mb-md-0">
-            <button
-              className="btn btn-outline-dark fw-bold button-NavBar dropdown-toggle button fs-5"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Categorías
-            </button>
-            <ul className="dropdown-menu">
-              {
-                !!store.categories && store.categories.map(category => (
-                  <li key={category.id} >
-                    <Link className="dropdown-item fs-5" to={`/categories/${category.id}`}>
-                      {category && category?.name}
-                    </Link>
-                  </li>
-                ))
-              }
 
-            </ul>
           </div>
 
           <div className="col-12 col-md-8 d-flex flex-wrap justify-content-center gap-2">
