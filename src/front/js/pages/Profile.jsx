@@ -82,8 +82,8 @@ const Profile = () => {
   return (
     <>
       <div className="container">
-        <div className="row text-center mt-4 fs-1">
-          <div className="col"><h1>Perfil</h1></div>
+        <div className="row text-center mt-4">
+          <div className="col"><h2>Perfil</h2></div>
         </div>
         {message && (
           <div className={`alert alert-${styleMessage}`} role="alert">
@@ -109,7 +109,7 @@ const Profile = () => {
             <div className="col-md-4">
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
-                  <h4>Nombre</h4>
+                  <h6>Nombre</h6>
                 </label>
                 <input
                   type="text"
@@ -119,7 +119,7 @@ const Profile = () => {
                   defaultValue={store.currentUser?.name}
                 />
                 <label htmlFor="lastname" className="form-label mt-5">
-                  <h4>Apellido</h4>
+                  <h6>Apellido</h6>
                 </label>
                 <input
                   type="text"
@@ -134,7 +134,7 @@ const Profile = () => {
             <div className="col-md-4">
               <div className="mb-5">
                 <label htmlFor="inputEmail" className="form-label">
-                  <h4>Email</h4>
+                  <h6>Email</h6>
                 </label>
                 <input
                   type="email"
@@ -146,7 +146,7 @@ const Profile = () => {
                   disabled
 
                 />
-                <div className="mt-5 mt-2-sm pt-5">
+                <div className="mt-5 mt-2-sm pt-5 fs-4">
                 <button type="submit" className="btn btn-secondary" >Actualizar cambios</button>
                 </div>
                 
@@ -160,9 +160,9 @@ const Profile = () => {
           <div className="row mt-3">
             <div className="col-md-7 offset-md-3">
               <div className="border p-2 text-center d-flex flex-column justify-content-center">
-                <div className="fs-4 fw-bold"><h2>Cambiar contraseña</h2></div>
+                <div className="fw-bold"><h2>Cambiar contraseña</h2></div>
                 <label htmlFor="inputPassword" className="form-label my-2">
-                  <h4>Contraseña actual</h4>
+                  <h6>Contraseña actual</h6>
                 </label>
                 <input
                   type="password"
@@ -171,7 +171,7 @@ const Profile = () => {
                   placeholder="Ingrese su contraseña..."
                 />
                 <label htmlFor="inputNewPassword" className="form-label m-2">
-                  <h4>Nueva contraseña</h4>
+                  <h6>Nueva contraseña</h6>
                 </label>
                 <input
                   type="password"
@@ -194,7 +194,7 @@ const Profile = () => {
               </div>
               <div className="d-flex justify-content-center mt-3 mb-5">
                 <button type="submit" className="btn btn-secondary">
-                  <h5>Confirmar cambios</h5>
+                  <h6>Confirmar cambios</h6>
                 </button>
               </div>
             </div>

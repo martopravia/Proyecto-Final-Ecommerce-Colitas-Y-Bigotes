@@ -41,7 +41,7 @@ const ProductList = () => {
     return (
         <div className="container mt-5">
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h1 className="text-start">CRUD Database</h1>
+                <h2 className="text-start">Carga, Modificación y Eliminación de productos</h2>
                 <input
                     type="text"
                     className="form-control w-25"

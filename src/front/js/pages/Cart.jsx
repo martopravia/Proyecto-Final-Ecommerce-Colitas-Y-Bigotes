@@ -16,12 +16,12 @@ const Cart = () => {
       <div className="container-fluid">
         <div className="row d-flex mt-5 px-3 px-md-5 pt-5 pb-3">
           <div className="titles d-flex align-items-center">
-            <h1 className="d-inline-block">Carrito de compras</h1>
+            <h3 className="d-inline-block">Carrito de compras</h3>
             <span className="ms-2">
-              <i className="fas fa-shopping-cart fs-1" />
+              <i className="fas fa-shopping-cart fs-3" />
             </span>
             <span className="ms-auto">
-              <i className="me-5 bi bi-currency-dollar d-flex fs-1 d-inline-block"></i>
+              <i className="me-5 bi bi-currency-dollar d-flex fs-3 d-inline-block"></i>
             </span>
           </div>
           <hr className="mt-4" />
@@ -43,13 +43,13 @@ const Cart = () => {
           )}
 
           <hr />
-          <div className="px-3 px-md-5 py-1 text-end fs-3">
+          <div className="px-3 px-md-5 py-1 text-end fs-5">
             Total ({store.cart.length} productos): $ {actions.formatNumber(store.cartTotal)}
           </div>
           <div className="px-3 px-md-5 py-2 text-end">
             <Link
               to="/confirmbuys"
-              className="btn btn-outline-dark fw-bold button fs-3"
+              className="btn btn-outline-dark fw-bold button fs-6"
               type="button"
             >
               Continuar al pago
@@ -59,7 +59,7 @@ const Cart = () => {
 
         <div className="row">
           <div className="col-12 px-3 px-md-5 pb-4">
-            <Link to="/" className="btn btn-dark mt-5 fs-4" >Seguir comprando</Link>
+            <Link to="/" className="btn btn-dark mt-5 fs-6" >Seguir comprando</Link>
           </div>
           <div className="container px-3 px-md-5">
             <div

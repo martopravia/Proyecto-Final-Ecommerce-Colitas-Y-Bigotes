@@ -17,14 +17,14 @@ const ItemsInCart = ({ id, name, photo, description, price, quantity = 1 }) => {
               />
             </div>
             <div className="item-details d-flex flex-column justify-content-between">
-              <h3 className="ms-3 display-5">
+              <h3 className="ms-3">
                 {name}
               </h3>
-              <p className="ms-3 fs-4">{description}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nunc felis, volutpat vel dolor non, condimentum aliquet mauris. Sed at pulvinar lectus, nec laoreet massa.</p>
+              <p className="ms-3 fs-6">{description}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nunc felis, volutpat vel dolor non, condimentum aliquet mauris. Sed at pulvinar lectus, nec laoreet massa.</p>
               <div className="d-flex align-items-center">
-                <button className="border border-0 bg-white" onClick={() => actions.removeFromCart(id)}><i className="bi bi-trash fs-4 trash-icon ms-3"></i></button>
+                <button className="border border-0 bg-white" onClick={() => actions.removeFromCart(id)}><i className="bi bi-trash fs-6 trash-icon ms-3"></i></button>
                 <input
-                  className="ms-3 inputCart fs-4"
+                  className="ms-3 inputCart fs-6"
                   type="number"
                   name=""
                   id=""
@@ -39,7 +39,7 @@ const ItemsInCart = ({ id, name, photo, description, price, quantity = 1 }) => {
         </div>
         <div className="col-12 col-md-6 d-flex justify-content-start justify-content-md-end mt-3 mt-md-0">
           <div className="product-price d-flex align-items-center  ">
-            <span className="ms-2 fs-2">$ {actions.formatNumber(price * quantity)}</span>
+            <span className="ms-2 fs-4">$ {actions.formatNumber(price * quantity)}</span>
           </div>
         </div>
       </div>

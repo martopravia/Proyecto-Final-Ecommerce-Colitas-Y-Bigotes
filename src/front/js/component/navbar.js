@@ -18,7 +18,7 @@ export const Navbar = () => {
   }
   return (
     <>
-      <nav className="navbar bg-light py-2 px-3 px-md-5">
+      <nav className="navbar bg-light py-2 px-2 px-md-6">
         <div className="container-fluid d-flex flex-wrap align-items-center justify-content-between">
           <Link className="navbar-brand" to="/">
             <img src={logo} alt="Logo" className="me-2 imgNavbar" />
@@ -107,11 +107,11 @@ export const Navbar = () => {
             ) : (
               <div className="d-flex gap-3">
                 <Link to="/access" className="btn btn-light">
-                  <i className="fas fa-sign-in-alt fs-3" />
+                  <i className="fas fa-sign-in-alt fs-4" />
                 </Link>
                 <Link to={store.isLogged ? '/cart' : '/access'} className="btn btn-light">
-                  <i className="fas fa-shopping-cart fs-3" />
-                  <span className="ms-2 fs-4" >{store.cart.length}</span>
+                  <i className="fas fa-shopping-cart fs-4" />
+                  <span className="ms-2" >{store.cart.length}</span>
                 </Link>
               </div>
             )}
@@ -130,7 +130,7 @@ export const Navbar = () => {
 
               <div key={category.id} className="dropdown">
                 <button
-                  className="fs-5 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
+                  className="fs-6 btn btn-outline-dark fw-bold px-3 button-NavBar dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -140,7 +140,7 @@ export const Navbar = () => {
                 <ul className="dropdown-menu">
                   {!!store.subcategories && store.subcategories.map((subcategory) => (
                     <li key={subcategory.id}>
-                      <Link className="dropdown-item fs-5" to={`/categories/${category.id}/${subcategory.id}`}>
+                      <Link className="dropdown-item fs-6" to={`/categories/${category.id}/${subcategory.id}`}>
                         {subcategory && subcategory?.name}
                       </Link>
                     </li>

@@ -4,42 +4,42 @@ import { Tab, Nav } from "react-bootstrap";
 const QuestionsAnswer = () => {
   return (
     <div className="container my-5">
-      <h1 className="text-center mb-4" style={{ fontSize: "2.5rem" }}>
+      <h3 className="text-center mb-4" >
         Preguntas Frecuentes
-      </h1>
+      </h3>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
         <div className="row">
           <div className="col-lg-4 col-md-5 col-sm-12">
-            <Nav variant="pills" className="flex-column" style={{ fontSize: "1.2rem" }}>
+            <Nav variant="pills" className="flex-column" >
               <Nav.Item>
-                <Nav.Link eventKey="first" className="fs-4 btn btn-outline-dark text-dark py-3 my-2">
+                <Nav.Link eventKey="first" className="fs-6 btn btn-outline-dark text-dark py-3 my-2">
                   ¿Quiénes somos?
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="second" className="fs-4 btn btn-outline-dark text-dark py-3 my-2">
+                <Nav.Link eventKey="second" className="fs-6 btn btn-outline-dark text-dark py-3 my-2">
                   ¿Para qué me registro?
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="third" className="fs-4 btn btn-outline-dark text-dark py-3 my-2">
+                <Nav.Link eventKey="third" className="fs-6 btn btn-outline-dark text-dark py-3 my-2">
                   Pedidos y Compras
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="fourth" className="fs-4 btn btn-outline-dark text-dark py-3 my-2">
+                <Nav.Link eventKey="fourth" className="fs-6 btn btn-outline-dark text-dark py-3 my-2">
                   Envíos
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="fifth" className="fs-4 btn btn-outline-dark text-dark py-3 my-2">
+                <Nav.Link eventKey="fifth" className="fs-6 btn btn-outline-dark text-dark py-3 my-2">
                   Cambios y Devoluciones
                 </Nav.Link>
               </Nav.Item>
             </Nav>
           </div>
           <div className="col-lg-8 col-md-7 col-sm-12">
-            <Tab.Content style={{ fontSize: "1.2rem" }}>
+            <Tab.Content >
               <Tab.Pane eventKey="first">
                 <p>Somos una tienda online dedicada al cuidado de tus mascotas. Ofrecemos una amplia variedad de productos para perros, gatos, roedores y aves, incluyendo comida, accesorios y juguetes. Nuestro objetivo es proporcionar productos de calidad que mejoren la vida de tus amigos peludos y emplumados. Sabemos que las mascotas son parte de tu familia, y trabajamos para ser tu mejor aliado en su cuidado.</p>
               </Tab.Pane>

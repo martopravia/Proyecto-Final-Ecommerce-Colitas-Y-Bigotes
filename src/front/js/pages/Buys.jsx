@@ -44,7 +44,7 @@ const Buys = () => {
 
     return (
         <div className="container">
-            <h1 className="mt-5 text-center">Historial de pedidos</h1>
+            <h2 className="mt-5 text-center">Historial de pedidos</h2>
 
             {loading ? ( 
                
@@ -54,14 +54,14 @@ const Buys = () => {
                     </div>
                 </div>
             ) : orders.length === 0 ? (
-                <h2 className="text-center mt-5">No se encontraron pedidos para el usuario</h2>
+                <h3 className="text-center mt-5">No se encontraron pedidos para el usuario</h3>
             ) : (
                 orders.map((order) => (
                     <div key={order.id} className="row mt-5 p-2 border">
                         <div className="col-12">
-                            <h4 className="mb-3">Orden #{order.id}</h4>
+                            <h5 className="mb-3">Orden #{order.id}</h5>
                             <p><strong>Fecha:</strong> {order.date}</p>
-                            <h5 className="mt-4">Productos:</h5>
+                            <h6 className="mt-4">Productos:</h6>
                             <div className="row">
                                 {order.items.map((item) => (
                                     <div key={item.product_id} className="col-12 d-flex align-items-center mb-3">

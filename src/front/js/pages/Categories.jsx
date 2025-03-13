@@ -62,10 +62,10 @@ const Categories = () => {
 
   return (
     <div className="container-fluid mt-4 p-5">
-      <h1>{!!store.categories && store.categories.find(cat => cat.id == category)?.name.toUpperCase()}</h1>
+      <h3>{!!store.categories && store.categories.find(cat => cat.id == category)?.name.toUpperCase()}</h3>
 
       {subcategory && (
-      <h3>{!!store.subcategories && store.subcategories.find(subcat => subcat.id == subcategory)?.name.toUpperCase()}</h3>
+      <h5>{!!store.subcategories && store.subcategories.find(subcat => subcat.id == subcategory)?.name.toUpperCase()}</h5>
     )}
      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
       
@@ -91,9 +91,9 @@ const Categories = () => {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <h3 className="text-center">
+                <h5 className="text-center">
                   No tenemos disponible estos productos
-                </h3>
+                </h5>
                 <img
                   src={photo}
                   alt="foto perro triste"

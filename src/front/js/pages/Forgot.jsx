@@ -127,11 +127,11 @@ const Forgot = () => {
                     <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>)}
             <form className="register-form d-flex flex-column bg-light aling-items-center text-center mx-auto my-5" onSubmit={sendEmail} method="GET">
-                <h1 className="h1"> OLVIDÉ MI CONTRASEÑA </h1>
+                <h3 className="h3"> OLVIDÉ MI CONTRASEÑA </h3>
                 <label className="register-label" htmlFor="user_name"> Ingrese su Email<span className="asq"> * </span></label>
                 <input type="text" id="email" className="bg-light register-input" placeholder="Ingrese su email..." onChange={(e) => setEmail(e.target.value)} />
 
-                <button className="bg-dark w-25 rounded-4 p-1 mx-auto text-light fs-5 mt-3" type="submit"> Enviar </button>
+                <button className="bg-dark w-25 rounded-4 p-1 mx-auto text-light fs-6 mt-3" type="submit"> Enviar </button>
 
             </form>
 

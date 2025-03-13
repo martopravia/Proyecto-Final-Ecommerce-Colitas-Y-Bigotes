@@ -49,7 +49,7 @@ const ResetPassword = () => {
   return (
     <>
     <form onSubmit={verify} className="register-form d-flex flex-column bg-light align-items-center text-center mx-auto my-5" action="#" method="POST">
-        <h1 className="h1">Reestablecer Contraseña</h1>
+        <h1 className="h3">Reestablecer Contraseña</h1>
         <p className="text-muted mb-4">Ingrese el código enviado a su mail (OTP), mail y su nueva contraseña</p>
         
         <label className="register-label" htmlFor="mail">
@@ -72,8 +72,8 @@ const ResetPassword = () => {
         </label>
         <input type="password" id="reconfirmPassword" className="bg-light register-input" required placeholder="Reconfirme su nueva contraseña..." onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword}/>
   
-        <button className="bg-dark w-25 rounded-4 p-1 mx-auto text-light fs-5 mt-3" type="submit">
-            Reestablecer contrasñea
+        <button className="bg-dark w-25 rounded-4 p-1 mx-auto text-light fs-6 mt-3" type="submit">
+            Reestablecer contraseña
         </button>
     </form>
 </>
