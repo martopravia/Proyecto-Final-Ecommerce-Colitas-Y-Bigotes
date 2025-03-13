@@ -195,38 +195,80 @@ def delete_subcategory():
 @api.route('/register', methods=["POST"])
 def register():
     body = request.json
-    name = body.get("name", None)
-    lastname = body.get("lastname", None)
-    email = body.get("email", None)
-    password = body.get("password", None)
-    admin = body.get("admin", False)
+    name = body.get("name")
+    lastname = body.get("lastname")
+    email = body.get("email")
+    password = body.get("password")
+
+    if not email or not password or not name or not lastname:
+        return jsonify({"message": "Faltan datos"}), 400
+
+    user_exist = User.query.filter_by(email=email).first()
+    if user_exist:
+        return jsonify({"message": "El usuario ya existe"}), 400
+
+    salt = b64encode(os.urandom(32)).decode("utf-8")
+    hashed_password = generate_password_hash(f"{password}{salt}")
+
+    new_user = User(
+        name=name,
+        lastname=lastname,
+        email=email,
+        password=hashed_password,
+        salt=salt,
+        admin=False
+    )
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    # ✅ Generamos el token para que el usuario se loguee directamente
+    token = create_access_token(identity=new_user.id, expires_delta=timedelta(days=3))
+
+    return jsonify({
+        "message": "Usuario registrado con éxito",
+        "token": token,
+        "name": new_user.name,
+        "lastname": new_user.lastname,
+        "email": new_user.email,
+        "admin": new_user.admin
+    }), 201
+
+# @api.route('/register', methods=["POST"])
+# def register():
+#     body = request.json
+#     name = body.get("name", None)
+#     lastname = body.get("lastname", None)
+#     email = body.get("email", None)
+#     password = body.get("password", None)
+#     admin = body.get("admin", False)
     
-    if email is None or password is None or name is None or lastname is None:
-        return jsonify({"message": "Los campos email, name, lastname y password son obligatorios"}), 400
-    else:
-        user = User()
-        user_exist = User.query.filter_by(email=email).one_or_none()
+#     if email is None or password is None or name is None or lastname is None:
+#         return jsonify({"message": "Los campos email, name, lastname y password son obligatorios"}), 400
+#     else:
+#         user = User()
+#         user_exist = User.query.filter_by(email=email).one_or_none()
         
-        if user_exist is not None:
-            return jsonify({"message": "El usuario ya se encuentra registrado"}), 400
+#         if user_exist is not None:
+#             return jsonify({"message": "El usuario ya se encuentra registrado"}), 400
         
-        salt = b64encode(os.urandom(32)).decode("utf-8")
-        password = generate_password_hash(f"{password}{salt}")
+#         salt = b64encode(os.urandom(32)).decode("utf-8")
+#         password = generate_password_hash(f"{password}{salt}")
         
-        user.name = name
-        user.lastname = lastname
-        user.email = email
-        user.password = password
-        user.salt = salt
-        user.admin = admin
-        db.session.add(user)
+#         user.name = name
+#         user.lastname = lastname
+#         user.email = email
+#         user.password = password
+#         user.salt = salt
+#         user.admin = admin
+#         db.session.add(user)
         
-        try:
-            db.session.commit()
-            return jsonify({"message": "Usuario registrado con éxito"}), 201
-        except Exception as err:
-            db.session.rollback()
-            return jsonify({"message": f"Error:{err.args}"}),500
+#         try:
+#             db.session.commit()
+#             return jsonify({"message": "Usuario registrado con éxito"}), 201
+#         except Exception as err:
+#             db.session.rollback()
+#             return jsonify({"message": f"Error:{err.args}"}),500
     
 @api.route('/get_users', methods=["GET"])
 def get_users():

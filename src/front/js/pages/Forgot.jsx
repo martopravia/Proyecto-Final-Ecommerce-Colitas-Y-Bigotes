@@ -42,16 +42,23 @@ const Forgot = () => {
             to_email: email,
             to_name: "Estimado Usuario",
             otp: otpCode,
-            from_name: "Colitas y Bigotes"
+            from_name: "Colitas y Bigotes",
+            from_email: "proyectocolitasybigotes@gmail.com"
         };
 
         emailjs
             .send(
-                "service_n6x8ry5",
+                "service_svj7iil",
                 "template_5mwhnfj",
                 templateParams,
                 "XoMyv80WhFK9_e27p"
             )
+            .then((response) => {
+                console.log("Correo enviado exitosamente:", response);
+            })
+            .catch((err) => {
+                console.error("Error al enviar el correo:", err);
+            })
             // .then(
             //     (response) => {
             //         console.log("Correo enviado exitosamente:", response);
@@ -86,7 +93,7 @@ const Forgot = () => {
             // )
             .finally(() => setIsSending(false));
             const otp_send = { email: email, otp: otpCode }
-            fetch ("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/save_otp",
+            fetch ("https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/save_otp",
                 {
                     method: "POST",
                     headers: {
