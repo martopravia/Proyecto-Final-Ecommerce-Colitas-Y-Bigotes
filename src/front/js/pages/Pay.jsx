@@ -112,9 +112,9 @@ const Pay = () => {
 
 
   return (
-    <div className="container">
+    <div className="container col-8">
       <div className="card mt-5">
-        <div className="card-header fs-4 fw-bolder text-start">
+        <div className="card-header fs-5 fw-bolder text-start">
           Ingrese los datos de su tarjeta
         </div>
         <div className="card-body pb-0">
@@ -273,7 +273,7 @@ const Pay = () => {
             )}
 
             <div className="card-footer text-muted text-end">
-              <button className="btn btn-primary" type="submit">
+              <button className="btn btn-primary fs-6" type="submit">
                 Procesar Pago
               </button>
             </div>

@@ -46,13 +46,13 @@ export const Navbar = () => {
                 <div className="d-flex gap-3">
 
                   <Link to="/cart" className="btn btn-light">
-                    <i className="fas fa-shopping-cart fs-3" />
+                    <i className="fas fa-shopping-cart fs-4" />
                     <span className="ms-2 fs-4" >{store.cart.length}</span>
                   </Link>
                 </div>
                 <div className="dropdown">
                   <button
-                    className="btn btn-light dropdown-toggle d-flex align-items-center"
+                    className="btn btn-light dropdown-toggle d-flex align-items-center fs-4"
                     type="button"
                     id="userMenu"
                     data-bs-toggle="dropdown"
@@ -66,7 +66,7 @@ export const Navbar = () => {
                       alt="User"
                       className="rounded-circle me-2 photoAvatarLogin"
                     />
-                    <span className="fs-5 fw-bold">
+                    <span className="fs-6 fw-bold">
                       {store.currentUser?.name}
                     </span>
                   </button>
@@ -107,10 +107,10 @@ export const Navbar = () => {
             ) : (
               <div className="d-flex gap-3">
                 <Link to="/access" className="btn btn-light">
-                  <i className="fas fa-sign-in-alt fs-4" />
+                  <i className="fas fa-sign-in-alt fs-5" />
                 </Link>
                 <Link to={store.isLogged ? '/cart' : '/access'} className="btn btn-light">
-                  <i className="fas fa-shopping-cart fs-4" />
+                  <i className="fas fa-shopping-cart fs-5" />
                   <span className="ms-2" >{store.cart.length}</span>
                 </Link>
               </div>
