@@ -3,17 +3,18 @@
 */
 
 .icon {
-  font-size: 2rem;
-  margin: 5px;
+  font-size: 1.5rem;
+  margin: 3px;
 }
 
 .footer-text {
   background-color: #191919;
   color: white;
+  font-size: 0.9rem;
 }
 
 .carouselImg {
-  height: 400px;
+  height: 300px;
   object-fit: cover;
 }
 
