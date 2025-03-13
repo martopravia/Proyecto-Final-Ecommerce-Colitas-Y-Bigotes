@@ -12,6 +12,7 @@ from base64 import b64encode
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 import cloudinary.uploader
 from random import sample
+import cloudinary
 
 
 
@@ -20,6 +21,17 @@ api = Blueprint('api', __name__)
 # Allow CORS requests to this API
 CORS(api)
 
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET")
+)
+
+
+print("Cloudinary Config:")
+print("CLOUD_NAME:", os.getenv("CLOUDINARY_CLOUD_NAME"))
+print("API_KEY:", os.getenv("CLOUDINARY_API_KEY"))
+print("API_SECRET:", os.getenv("CLOUDINARY_API_SECRET"))
 
 @api.route('/products', methods=['GET'])
 def get_products():
