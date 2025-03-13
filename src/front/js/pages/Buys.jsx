@@ -18,7 +18,7 @@ const Buys = () => {
                     return;
                 }
 
-                const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/orders", {
+                const response = await fetch("https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/orders", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

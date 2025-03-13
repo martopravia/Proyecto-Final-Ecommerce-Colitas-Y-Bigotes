@@ -12,8 +12,13 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
+from flask_cors import CORS
+
 
 # from models import Person
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
+
 cloudinary.config(
     cloud_name = os.getenv("CLOUDINARY_CLOUD_NAME"),
     api_key= os.getenv("CLOUDINARY_API_KEY"),
