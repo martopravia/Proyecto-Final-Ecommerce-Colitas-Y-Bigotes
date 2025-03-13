@@ -97,7 +97,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const { email, password } = e.target
 					console.log("Datos enviados:", email.value, password.value)
-					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/login", {
+					const response = await fetch("https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/login", {
 						method: "POST",
 						headers: {
 							"Content-type": "application/json"
@@ -182,7 +182,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 					const cloudResponse = await fetch(
-						"https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products",
+						"https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/products",
 						{
 							method: "POST",
 							body: formData,
@@ -218,7 +218,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteProduct: async (id) => {
 				try {
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/${id}`, {
+					const response = await fetch(`https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/products/${id}`, {
 						method: 'DELETE',
 						headers: {
 							"Content-Type": "application/json"
@@ -237,7 +237,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			fetchProducts: async () => {
 				try {
-					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products");
+					const response = await fetch("https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/products");
 					const data = await response.json();
 					setStore({ products: data });
 				} catch (error) {
@@ -262,7 +262,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 					const cloudResponse = await fetch(
-						"https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/" + id,
+						"https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/products/" + id,
 						{
 							method: "PUT",
 							body: formData,
@@ -298,7 +298,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getProductById: async (id) => {
 				try {
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/${id}`);
+					const response = await fetch(`https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/products/${id}`);
 					if (!response.ok)
 						throw new Error("Error en el fetch");
 
@@ -327,7 +327,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			updateProduct: async (id, updatedProduct) => {
 				try {
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/${id}`, {
+					const response = await fetch(`https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/products/${id}`, {
 						method: "PUT",
 						body: formData,
 					});
@@ -359,7 +359,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return;
 					}
 					console.log({ email: email, password: password, name: name, lastname: lastname })
-					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/register", {
+					const response = await fetch("https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/register", {
 						method: "POST",
 						headers: {
 							"Content-type": "application/json"
@@ -421,7 +421,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadProducts: async () => {
 				try {
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
+					const response = await fetch(`https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/products`);
 					if (!response.ok)
 						throw new Error("Error en el fetch");
 
@@ -436,7 +436,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getCategories: async () => {
 				try {
-					const response = await fetch("https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/categories")
+					const response = await fetch("https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/categories")
 					const data = await response.json()
 					setStore({
 						categories: data
@@ -450,7 +450,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getSubCategories: async () => {
 				try {
 					const store = getStore()
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/subcategories`)
+					const response = await fetch(`https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/subcategories`)
 					const data = await response.json()
 					setStore({
 						subcategories: data
@@ -486,7 +486,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loadProductByCategoryRelated: async (category) => {
 				try {
 					const store = getStore()
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/related/${category}`);
+					const response = await fetch(`https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/products/related/${category}`);
 
 					if (!response.ok)
 						throw new Error("Error en el fetch");
@@ -507,7 +507,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const { name, lastname } = e.target
 				try {
 					const { currentUser, token } = getStore()
-					const response = await fetch('https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/profile', {
+					const response = await fetch('https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/profile', {
 						method: "PUT",
 						body: JSON.stringify({ name: name.value, lastname: lastname.value }),
 						headers: {
@@ -537,7 +537,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				try {
 					const { currentUser, token } = getStore()
-					const response = await fetch('https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/update-password', {
+					const response = await fetch('https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/update-password', {
 						method: "PUT",
 						body: JSON.stringify({ current_password: current_password.value, new_password: new_password.value }),
 						headers: {
@@ -564,7 +564,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getProductByName: async (search) => {
 				try {
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products/search?q=${search}`);
+					const response = await fetch(`https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/products/search?q=${search}`);
 					if (!response.ok)
 						throw new Error("Error en el fetch");
 
@@ -583,7 +583,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadProducts: async () => {
 				try {
-					const response = await fetch(`https://opulent-succotash-pjgxgx4rq7xqcr4rg-3001.app.github.dev/api/products`);
+					const response = await fetch(`https://stunning-guacamole-7vrgrg6947wvhp6qv-3001.app.github.dev/api/products`);
 					if (!response.ok)
 						throw new Error("Error en el fetch");
 
@@ -603,13 +603,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addToOrder: async () => {
 				setStore({
 					order: getStore().cart,
-					
-					
+
+
 				})
 
 			},
-			clearCart: () =>{
-				setStore({ cart:[]})
+			clearCart: () => {
+				setStore({ cart: [] })
 			},
 			// saveOrderDataBase: async () => {
 
